@@ -11,21 +11,9 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120623182517) do
+ActiveRecord::Schema.define(:version => 20120623183027) do
 
   create_table "mentees", :force => true do |t|
-    t.string   "birthday"
-    t.string   "access_token"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "email"
-    t.string   "picture_url"
-    t.integer  "grade"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
-
-  create_table "mentors", :force => true do |t|
     t.string   "birthday"
     t.string   "access_token"
     t.string   "first_name"
