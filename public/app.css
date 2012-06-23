@@ -9,7 +9,7 @@
 body {
   background: #eeeeee url(../images/bright_squares.png);
   text-align: center;
-  font: 1em "Helvetica", arial, sans-serif; }
+  font: 1em "Lato", "Helvetica", arial, sans-serif; }
 
 a {
   text-decoration: none; }
@@ -27,7 +27,7 @@ a {
   margin: 0px auto; }
 
 label {
-  font-weight: bold;
+  font-weight: 300;
   font-size: 0.85em; }
   label#purplelabel {
     color: #8b67a8; }
@@ -40,10 +40,10 @@ label {
   border-radius: 5px;
   width: 248px;
   padding: 10px 8px;
-  font: 0.85em "Helvetica", arial, sans-serif;
+  font: 0.85em "Lato", "Helvetica", arial, sans-serif;
   color: #dddddd;
   outline: none;
-  font-weight: 100; }
+  font-weight: 300; }
   #samewidth:focus {
     border: 1px solid #77b4e8;
     color: #aaaaaa; }
@@ -56,14 +56,16 @@ label {
   display: block;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  font-weight: 100;
-  color: white; }
+  font-weight: bold;
+  font-size: 0.75em;
+  color: white;
+  text-transform: uppercase; }
 
 #signup:hover {
   background: #77b4e8 !important; }
 
 #nerds {
-  font: 0.75em "Helvetica", arial, sans-serif;
+  font: 0.75em "Lato", "Helvetica", arial, sans-serif;
   color: #aaaaaa; }
   #nerds a {
     color: #222222;
