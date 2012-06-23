@@ -1,0 +1,21 @@
+#recorderContainer
+{
+	float:left;
+	height:340px;
+	width:329px;
+	margin-right:8px;
+}
+
+#playerContainer
+{
+	float:left;
+ 	height:340px;
+	width 320px; 
+	display:none
+}
+
+#archiveList
+{
+	height:100px;
+	display:none;
+}
