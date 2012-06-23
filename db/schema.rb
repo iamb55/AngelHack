@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20120623221156) do
     t.text     "email"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.boolean  "mentor"
   end
 
   create_table "mentees", :force => true do |t|

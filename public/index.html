@@ -9,11 +9,35 @@
 	<!-- Included CSS Files -->
 
 	<link rel="stylesheet" href="app.css">
+	<script src='jquery-1.7.2.min.js'></script>
 
 	<!--[if lt IE 9]>
 		<link rel="stylesheet" href="stylesheets/ie.css">
 	<![endif]-->
-	
+	<script>
+	  $(document).ready(function() {
+	    
+	    $('#samewidth').on('click', function() {
+	      $(this).val('');
+	    });
+	    
+	    $('#signup').on('click', function() {
+	      var data = {};
+    	  if($('input[name="selectmentor"]').val() == 'mentor') data.type = 'true';
+    	  else data.type = 'false';
+    	  data.email = $('#samewidth').val();
+    	  $.post('/emails/add_email',
+    	    data,
+    	    function() {
+    	      $('#signup').hide();
+    	      $('#signup').replaceWith("<label style='margin-top:20px; display:block;'>Thanks, we'll get back to you soon!</label>");
+    	      $('#signup').fadeIn(1000);
+    	    }
+  	    );
+  	    
+	    });
+	  });
+	</script>
 
 </head>
 <body>
@@ -33,8 +57,8 @@
 						
 						
 									
-													<label for="radio1" id="purplelabel"><input type="radio" name="selectmentor">&nbsp; I'm a Mentor</label> &nbsp; &nbsp;
-													<label for="radio2" id="greenlabel"><input type="radio" name="selectmentor">&nbsp; I Need a Mentor</label>
+													<label for="radio1" id="purplelabel"><input type="radio" name="selectmentor" value='mentor''>&nbsp; I'm a Mentor</label> &nbsp; &nbsp;
+													<label for="radio2" id="greenlabel"><input type="radio" name="selectmentor" value='mentee'>&nbsp; I Need a Mentor</label>
 													
 														<br /><br />
 						

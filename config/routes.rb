@@ -16,6 +16,8 @@ AngelHack::Application.routes.draw do
       get 'conversations'
     end
   end
+  
+  post 'emails/add_email'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

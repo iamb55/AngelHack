@@ -1,3 +1,3 @@
 class Email < ActiveRecord::Base
-  attr_accessible :email
+  attr_accessible :email, :mentor
 end
