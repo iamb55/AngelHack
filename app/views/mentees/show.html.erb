@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Birthday:</b>
+  <%= @mentee.birthday %>
+</p>
+
+<p>
+  <b>Access token:</b>
+  <%= @mentee.access_token %>
+</p>
+
+<p>
+  <b>First name:</b>
+  <%= @mentee.first_name %>
+</p>
+
+<p>
+  <b>Last name:</b>
+  <%= @mentee.last_name %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @mentee.email %>
+</p>
+
+<p>
+  <b>Picture url:</b>
+  <%= @mentee.picture_url %>
+</p>
+
+<p>
+  <b>Grade:</b>
+  <%= @mentee.grade %>
+</p>
+
+
+<%= link_to 'Edit', edit_mentee_path(@mentee) %> |
+<%= link_to 'Back', mentees_path %>
