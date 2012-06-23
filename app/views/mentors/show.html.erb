@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Birthday:</b>
+  <%= @mentor.birthday %>
+</p>
+
+<p>
+  <b>Access token:</b>
+  <%= @mentor.access_token %>
+</p>
+
+<p>
+  <b>First name:</b>
+  <%= @mentor.first_name %>
+</p>
+
+<p>
+  <b>Last name:</b>
+  <%= @mentor.last_name %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @mentor.email %>
+</p>
+
+<p>
+  <b>Picture url:</b>
+  <%= @mentor.picture_url %>
+</p>
+
+
+<%= link_to 'Edit', edit_mentor_path(@mentor) %> |
+<%= link_to 'Back', mentors_path %>
