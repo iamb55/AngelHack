@@ -1,0 +1,72 @@
+#wrap {
+  padding: 10% 0;
+  margin: 0px auto; }
+
+* {
+  margin: 0;
+  padding: 0; }
+
+body {
+  background: #eeeeee url(../images/bright_squares.png);
+  text-align: center;
+  font: 1em "Helvetica", arial, sans-serif; }
+
+a {
+  text-decoration: none; }
+
+#logo {
+  padding: 0px 0px 15px; }
+
+#landingcollect {
+  background: white;
+  padding: 25px 0 15px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  border: 5px solid rgba(0, 0, 0, 0.15);
+  width: 300px;
+  margin: 0px auto; }
+
+label {
+  font-weight: bold;
+  font-size: 0.85em; }
+  label#purplelabel {
+    color: #8b67a8; }
+  label#greenlabel {
+    color: #4ea7b9; }
+
+#samewidth {
+  border: 1px solid #ddd;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  width: 248px;
+  padding: 10px 8px;
+  font: 0.85em "Helvetica", arial, sans-serif;
+  color: #dddddd;
+  outline: none;
+  font-weight: 100; }
+  #samewidth:focus {
+    border: 1px solid #77b4e8;
+    color: #aaaaaa; }
+
+#signup {
+  background: #5592c6 !important;
+  padding: 14px 0px;
+  margin: 10px auto 0;
+  width: 266px;
+  display: block;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  font-weight: 100;
+  color: white; }
+
+#signup:hover {
+  background: #77b4e8 !important; }
+
+#nerds {
+  font: 0.75em "Helvetica", arial, sans-serif;
+  color: #aaaaaa; }
+  #nerds a {
+    color: #222222;
+    /*border-bottom: 1px dotted $mdgrey;*/ }
+    #nerds a:hover {
+      border-bottom: 1px dotted #222222; }
