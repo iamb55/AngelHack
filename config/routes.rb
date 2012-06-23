@@ -1,4 +1,6 @@
 AngelHack::Application.routes.draw do
+  resources :messages
+
   resources :mentors
 
   resources :tags
