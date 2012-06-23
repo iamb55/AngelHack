@@ -1,13 +1,21 @@
 AngelHack::Application.routes.draw do
   resources :messages
 
-  resources :mentors
+  resources :mentors do
+    member do
+      get 'conversations'
+    end
+  end
 
   resources :tags
 
   resources :conversations
 
-  resources :mentees
+  resources :mentees do
+    member do
+      get 'conversations'
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

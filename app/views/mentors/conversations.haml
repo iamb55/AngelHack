@@ -1,0 +1,43 @@
+=content_for :head do
+  =javascript_include_tag 'conversation_view'
+  =javascript_include_tag{id: "message", type: 'text/html'}
+  =stylesheet_link_tag 'conversation_view'
+.conversations
+  .four.columns
+    .users
+      %ul
+        %li
+          .user{data: { id: '1234'}}
+            %img{src: "http://placekitten.com/50/50"}
+            .information
+              %h4 Jesse Pollak
+            .clear
+        %li
+          .user{data: { id: '1234'}}
+            %img{src: "http://placekitten.com/50/50"}
+            .information
+              %h4 Jesse Pollak
+            .clear
+        %li
+          .user{data: { id: '1234'}}
+            %img{src: "http://placekitten.com/50/50"}
+            .information
+              %h4 Jesse Pollak
+            .clear
+        %li
+          .user{data: { id: '1234'}}
+            %img{src: "http://placekitten.com/50/50"}
+            .information
+              %h4 Jesse Pollak
+            .clear
+        %li
+          .user{data: { id: '1234'}}
+            %img{src: "http://placekitten.com/50/50"}
+            .information
+              %h4 Jesse Pollak
+            .clear
+                      
+          
+  .eight.columns
+    .messages
+      %ul

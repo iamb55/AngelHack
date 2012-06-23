@@ -80,4 +80,7 @@ class MenteesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def conversations
+  end
 end

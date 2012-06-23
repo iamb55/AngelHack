@@ -12,12 +12,17 @@
 # It's strongly recommended to check this file into your version control system.
 
 ActiveRecord::Schema.define(:version => 20120623221156) do
-
   create_table "conversations", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "mentee_id"
     t.integer  "mentor_id"
+  end
+
+  create_table "emails", :force => true do |t|
+    t.text     "email"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "mentees", :force => true do |t|
