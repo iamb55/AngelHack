@@ -1,4 +1,6 @@
 AngelHack::Application.routes.draw do
+  resources :conversations
+
   resources :mentees
 
   # The priority is based upon order of creation:
