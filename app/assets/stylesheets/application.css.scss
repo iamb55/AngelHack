@@ -167,8 +167,20 @@ li {
 
 .imagerounded {
 	@include border5;
-/*	@include picpretty;*/
+
 }
+
+.button {
+	padding: 15px 10px;
+	color: white;
+	font: $fontMM "Lato", "Helvetica", arial, sans-serif;
+	text-transform: uppercase;
+	padding-left: 80px;
+	font-weight: bold;
+	text-decoration: none;
+	margin: 20px;
+}
+
 
 
 /*END OF GLOBAL*/
