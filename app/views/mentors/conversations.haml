@@ -50,7 +50,7 @@
                       .grid_1
                         %img.imagerounded{src: owner.picture_url}
                       .grid_5
-                        %h5 Conway Anderson
+                        %h5=owner.first_name
                       .grid_2#timestamp  
                         4:45 PM
                     .videoPlayer{id: "#{message.value}", data: { id: "#{message.value}" } }

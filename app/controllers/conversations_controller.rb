@@ -18,12 +18,12 @@ class ConversationsController < ApplicationController
     @messages = @conversation.messages.collect do |message|
       @data = message.attributes
       owner = message.conversation.send(message.owner_type)
-      p owner
       @data['name'] = owner.first_name  
       @data['picture_url'] = owner.picture_url
-      return @data
+      @data
     end
-
+    p "TEST"
+    p @messages
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @messages }

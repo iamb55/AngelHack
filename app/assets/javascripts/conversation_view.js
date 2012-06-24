@@ -17,6 +17,7 @@ $(document).ready(function() {
     }
   });
   
+  console.log(getParameterByName('conversation_id'));
   if(getParameterByName('conversation_id')) {
     var el = $("[data-id='" + getParameterByName('conversation_id') + "']");
     changeConversation(el[0]);
@@ -137,7 +138,7 @@ function formatDate(date) {
 function createMessage(message) {
   var li = $("<li></li>");
   var m = $("<div class='container_12 " + message.owner_type + "'></div>");
-  var img = "<div class='grid_1'><img src=" + message.picture_url + "/></div>";
+  var img = "<div class='grid_1'><img src='" + message.picture_url + "'/></div>";
   var name = "<div class='grid_5'><h5>" + message.name + "</h5></div>";
   var timestamp = "<div class='grid_2' id='timestamp'>" + formatDate(message.created_at) + "</div>";
   var content = "<div class='message " + message.owner_type + "'><p>" + message.value + "</p></div>";
@@ -153,7 +154,7 @@ function createMessage(message) {
 function createVideoMessage(message) {
   var li = $("<li></li>");
   var m = $("<div class='container_12 " + message.owner_type + "'></div>");
-  var img = "<div class='grid_1'><img src=" + message.picture_url + "/></div>";
+  var img = "<div class='grid_1'><img src='" + message.picture_url + "'/></div>";
   var name = "<div class='grid_5'><h5>" + message.name + "</h5></div>";
   var timestamp = "<div class='grid_2' id='timestamp'>" + formatDate(message.created_at) + "</div>";
   var videoPlayer = $("<div class='videoPlayer' id='" + message.value + "' data-id='" + message.value + "'></div>");

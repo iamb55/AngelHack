@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<head>
+	<meta charset="utf-8" />
+
+	<title>Mentor.im</title>
+  <link href='http://fonts.googleapis.com/css?family=Lato:100,300,700,300italic' rel='stylesheet' type='text/css'>
+
+	<!-- Included CSS Files -->
+
+	<link rel="stylesheet" href="app.css">
+	<script src='jquery-1.7.2.min.js'></script>
+
+	<!--[if lt IE 9]>
+		<link rel="stylesheet" href="stylesheets/ie.css">
+	<![endif]-->
+	<script>
+	  $(document).ready(function() {
+
+	    $('#samewidth').on('click', function() {
+	      $(this).val('');
+	    });
+
+	    $('#login').on('click', function() {
+	      var data = {};
+    	  if($('input[name="selectmentor"]').val() == 'mentor') window.location = '/start_session?type=Mentor';
+    	  else if ($('input[name="selectmentor"]').val() == 'mentee') window.location = '/start_session?type=Mentee';
+    	  else return false
+	    });
+	  });
+	</script>
+
+</head>
+<body>
+
+
+	<div id="wrap">
+		<a href="../index.html"><img src="mentor-v.png" title="mentor.im" id="logo" /></a><br />
+
+			<div id="landingcollect">
+
+
+				<label for="radio1" id="purplelabel"><input type="radio" name="selectmentor" value='mentor''>&nbsp; I'm a Mentor</label> &nbsp; &nbsp;
+				<label for="radio2" id="greenlabel"><input type="radio" name="selectmentor" value='mentee'>&nbsp; I Need a Mentor</label>
+													<br /><br />
+
+
+				<p><a href="#" class="large button radius" id="login">Login with Facebook</a></p>
+
+
+			</div>
+			</div>
+
+
+
+
+</body>
+</html>
