@@ -10,4 +10,8 @@ class Mentee < ActiveRecord::Base
   def mentee?
     true
   end
+
+  def user_type
+    "mentee"
+  end
 end

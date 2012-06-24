@@ -10,4 +10,8 @@ class Mentor < ActiveRecord::Base
   def mentee?
     false
   end
+
+  def user_type
+    "mentor"
+  end
 end
