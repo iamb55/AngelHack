@@ -18,7 +18,7 @@
             %span New Question
             .ask2 &nbsp;
           %ul.list
-            -if @conversations
+            -if @conversations && !@conversations.empty?
               -@conversations.each do |conversation| 
                 %li.chatSelection
                   .user{data: { id: "#{conversation[:id]}"}}
