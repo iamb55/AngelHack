@@ -41,7 +41,6 @@
                         =owner.created_at
                     .message{class: "#{message.owner_type}"}
                       %p=message.value
-                      %span=message.created_at
                   -else
                     .container_12
                       .grid_1
@@ -76,7 +75,8 @@
 #responseModal.reveal-modal
   %h1= 'Submit a Response'
   #recorderContainer
-  <a class="close-reveal-modal">&#215;</a>  
+  <a class="close-reveal-modal">&#215;</a>
+
   
 .footer
   .container_12

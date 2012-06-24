@@ -1,6 +1,5 @@
 =content_for :head do
   =javascript_include_tag 'conversation_view'
-  =javascript_include_tag 'ICanHaz.min.js'
   
 #main
   .container_12
@@ -76,7 +75,12 @@
 #responseModal.reveal-modal
   %h1= 'Submit a Response'
   #recorderContainer
-  <a class="close-reveal-modal">&#215;</a>  
+  <a class="close-reveal-modal">&#215;</a>
+  
+#newQuestion.reveal-modal  
+  %h1 Ask a question to find a mentor!
+  %textarea
+  .button.blue#submitQ Submit
   
 .footer
   .container_12

@@ -49,7 +49,13 @@ class ConversationsController < ApplicationController
   # POST /conversations
   # POST /conversations.json
   def create
-    @conversation = Conversation.new(params[:conversation])
+    @conversation = current_user.conversations.build
+    m = @conversation.messages.build
+    m.value = params[:value]
+    m.data_type = params[:data_type]
+    m.owner_type = current_user.user_type
+    m.save
+    p m
 
     respond_to do |format|
       if @conversation.save

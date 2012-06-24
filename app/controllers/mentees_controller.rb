@@ -88,9 +88,9 @@ class MenteesController < ApplicationController
         if current_user.mentor?
           { user: conversation.mentee, id: conversation.id }
         else
-          { user: conversation.mentor, id: conversation.id }
+          { user: conversation.mentor, id: conversation.id } if conversation.messages.count > 1
         end
-      end
+      end.compact
       @messages = cs.first.messages
     end
   end

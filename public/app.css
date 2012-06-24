@@ -48,7 +48,7 @@ label {
     border: 1px solid #77b4e8;
     color: #aaaaaa; }
 
-#signup {
+#signup, #login {
   background: #5592c6 !important;
   padding: 14px 0px 14px;
   margin: 10px auto 0;

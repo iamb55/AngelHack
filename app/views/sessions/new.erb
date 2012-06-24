@@ -23,9 +23,13 @@
 
 	    $('#login').on('click', function() {
 	      var data = {};
-    	  if($('input[name="selectmentor"]').val() == 'mentor') window.location = '/start_session?type=Mentor';
-    	  else if ($('input[name="selectmentor"]').val() == 'mentee') window.location = '/start_session?type=Mentee';
-    	  else return false
+    	  if($('input[name="selectmentor"]').val() == 'mentor') {
+    	    window.location = '/start_session?type=Mentor';
+    	  } else if ($('input[name="selectmentor"]').val() == 'mentee') {
+    	    window.location = '/start_session?type=Mentee';
+    	  } else {
+    	    return;
+    	  }
 	    });
 	  });
 	</script>

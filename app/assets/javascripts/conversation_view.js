@@ -41,8 +41,30 @@ $(document).ready(function() {
 
   processVideos();
   
-
-  
+  if($('#newq').length != 0) {
+    $('#newq').on('click', function() {
+      $('#newQuestion').reveal();
+    });
+    
+    $('#submitQ').on('click', function() {
+      var content = $(this).siblings('textarea').val();
+      $.post('/conversations',
+        {
+          data_type: 'text',
+          value: content
+        }, 
+        function() {
+          $('#newQuestion textarea, #newQuestion .button').hide();
+          $('#newQuestion h1').text("We'll connect you with a mentor as quickly as possible!");
+          setTimeout(function() {
+            $('#newQuestion').fadeOut(1000, function() {
+              $('.close-reveal-modal').trigger('click');
+            });
+          })
+        }
+      )
+    });
+  }
 
 
 });
@@ -56,8 +78,7 @@ function respond() {
         { 
           conversation_id: conversation_id, 
           data_type: 'text', 
-          value: reply,
-          csrf: $('meta[name="csrf-token"]').attr('content')
+          value: reply
         },
         function(data) {
           $('.replybar textarea').val('');
