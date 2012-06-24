@@ -13,14 +13,15 @@ class ApplicationController < ActionController::Base
   private
    
     def current_user
-      return @current_user unless @current_user.nil?
-      if session[:user_id]
-        if session[:type] == 'Mentor'
-          @current_user = Mentor.find(session[:user_id])
-        else
-          @current_user = Mentee.find(session[:user_id])
-        end
-      end
+      Mentor.first
+      # return @current_user unless @current_user.nil?
+      # if session[:user_id]
+      #   if session[:type] == 'Mentor'
+      #     @current_user = Mentor.find(session[:user_id])
+      #   else
+      #     @current_user = Mentee.find(session[:user_id])
+      #   end
+      # end
     end
     
     def current_user=(user)

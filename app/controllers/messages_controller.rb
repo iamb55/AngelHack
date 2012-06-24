@@ -43,8 +43,9 @@ class MessagesController < ApplicationController
   # POST /messages.json
   def create
     conversation = Conversation.find(params[:conversation_id])
-    render status: 401, nothing: true  if (conversation.nil? || ( conversation.mentor_id != current_user.id && conversation.mentee_id != current_user id))
-    
+    if (conversation.nil? || ( conversation.mentor_id != current_user.id && conversation.mentee_id != current_user.id))
+      render status: 401, nothing: true
+    end
     
     @message = Message.new
     @message.conversation_id = params[:conversation_id]
