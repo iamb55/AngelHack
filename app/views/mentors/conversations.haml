@@ -7,9 +7,6 @@
     .conversations
       .leftbar
         .users
-          .button.blue#newq 
-            %span New Question
-            .ask2 &nbsp;
           %ul.list
             -if @conversations
               -@conversations.each do |conversation| 
@@ -71,9 +68,7 @@
           .messages
             %ul
               %li
-                %h3 You don't have any conversations right now!
-                  
-       
+                %h3 You don't have any conversations right now!       
           .clear
     .clear   
     

@@ -1,50 +1,85 @@
 =content_for :head do
   =javascript_include_tag 'conversation_view'
   =javascript_include_tag 'ICanHaz.min.js'
-  =javascript_include_tag 'templates/message'
-  =javascript_include_tag 'conversation_view'
   
 #main
   .container_12
     .conversations
       .leftbar
         .users
-          .button.blue#newq New Question
+          .button.blue#newq 
+            %span New Question
+            .ask2 &nbsp;
           %ul.list
-            -@conversations.each do |conversation| 
+            -if @conversations
+              -@conversations.each do |conversation| 
+                %li
+              
+                  .user{data: { id: "#{conversation[:id]}"}}
+                    %img.imagerounded{src: "#{conversation[:user].picture_url}"}
+                    .information
+                      %p.rightf timestamp
+                      %h4= conversation[:user].first_name
+                      %p This is a message here
+                    .clear 
+            -else
               %li
-                
-                .user{data: { id: "#{conversation[:id]}"}}
-                  %img.imagerounded{src: "#{conversation[:user].picture_url}"}
-                  .information
-                    %p.rightf test
-                    %h4= conversation[:user].first_name
-                    %p test
-                  .clear    
-                
+                .user
+                  %h4 You don't have any conversation right now!
+              
       .rightbar
-        .messages
-          %ul
-            -@messages.each do |message| 
+        -if @conversations
+          .messages#scroll{ data: { id: "#{@conversations[0][:id]}"} }
+            %ul
+              -@messages.each do |message| 
+                -owner = message.conversation.send(message.owner_type) 
+                %li
+                  -if message['data_type'] == 'text'
+                    .container_12
+                      .grid_1
+                        %img.imagerounded{src: owner.picture_url}
+                      .grid_5
+                        %h5=owner.first_name
+                      .grid_2#timestamp  
+                        =owner.created_at
+                    .message{class: "#{message.owner_type}"}
+                      %p=message.value
+                      %span=message.created_at
+                  -else
+                    .container_12
+                      .grid_1
+                        %img.imagerounded{src: owner.picture_url}
+                      .grid_5
+                        %h5 Conway Anderson
+                      .grid_2#timestamp  
+                        4:45 PM
+                    .videoPlayer{id: "#{message.value}", data: { id: "#{message.value}" } }
+                      %div{id: "p#{message.value}"}
+                
+          .replybar
+            %p
+              %textarea= ""
+            .rightf
+              .button.blue.reply.rightf.text
+                %span Reply
+                .ask3 &nbsp;
+            .clear   
+        -else
+          .messages
+            %ul
               %li
-                .container_12
-                  .grid_1
-                    %img.imagerounded{src: "http://www.dummyimage.com/50x50/000000/fff"}
-                  .grid_5
-                    %h5 Conway Anderson
-                  .grid_2#timestamp  
-                    4:45 PM
-                .message{class: "#{message.owner_type}"}
-                  %p=message.value
-                  %span=message.created_at
-                  
-        .replybar
-
-          %p
-            %textarea= ""
-          .rightf
- 
-            .button.blue.reply.rightf Reply
-            .button.grey.reply.rightf Add Video
+                %h3 You don't have any conversations right now!       
           .clear
-    .clear        
+    .clear   
+    
+
+#responseModal.reveal-modal
+  %h1= 'Submit a Response'
+  #recorderContainer
+  <a class="close-reveal-modal">&#215;</a>  
+  
+.footer
+  .container_12
+    %p.leftf 
+      Made by <a href="https://twitter.com/#!/brennenbyrne" title="brenne byrne">five</a> <a href="https://twitter.com/#!/grungerabbit" title="cheryl wu">nerds</a> <a href="https://twitter.com/#!/conwayanderson" title="conway anderson">at</a> <a href="https://twitter.com/#!/jessepollak" title="jesse pollak">Angelhack</a> <a href="https://twitter.com/#!/thetabyte" title="jordan goldstein">NYC</a>
+    %p.rightf About | Navigation | Navigation   
