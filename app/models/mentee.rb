@@ -19,7 +19,8 @@ class Mentee < ActiveRecord::Base
           picture_url: "https://graph.facebook.com/#{@fb_profile['id']}/picture?type=square",
           u_id: @fb_profile['id']
       end
-    rescue
+    rescue Exception => e
+      p e
       false
     end
   end
