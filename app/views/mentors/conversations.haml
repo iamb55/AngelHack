@@ -41,7 +41,12 @@
             %textarea= ""
           .rightf
  
-            .button.blue.reply.rightf Reply
-            .button.grey.reply.rightf Add Video
+            .button.blue.reply.rightf.text Reply
+            .button.grey.reply.rightf.video Add Video
           .clear
-    .clear        
+    .clear   
+    
+#responseModal.reveal-modal
+  %h1= 'Submit A response'
+  #recorderContainer
+  <a class="close-reveal-modal">&#215;</a>     

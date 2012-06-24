@@ -1,7 +1,32 @@
+var recorderManager;
+var recorder;
+var player;
+var recImgData;
+var questionID;
+
+var API_KEY = '16288541';
+var TOKEN = 'moderator_token';
+
+var VIDEO_HEIGHT = 240;
+var VIDEO_WIDTH = 320;
+
 $(document).ready(function() {
   
   $('.user').on('click', function() { changeConversation(this) } );
-  $('.reply').on('click', respond);
+  $('.text').on('click', respond);
+  
+  $('.replybar textarea').keypress(function(e) {
+    if (e.keyCode == 13 && !e.shiftKey) {
+      e.preventDefault();
+      respond();
+    }
+  });
+  
+  $('.video').click(respondVideo);
+  
+  recorderManager = TB.initRecorderManager(API_KEY);
+  
+  createRecorder();
   
   
   
@@ -10,6 +35,8 @@ $(document).ready(function() {
     myDiv.scrollTop = myDiv.scrollHeight + 200;
   }, 500);
 });
+
+
 
 function respond() {
   reply = $('.replybar textarea').val();
@@ -22,7 +49,14 @@ function respond() {
           csrf: $('meta[name="csrf-token"]').attr('content')
         },
         function(data) {
-          console.log('success!');
+          $('.replybar textarea').val('');
+          var m = createMessage(data);
+          $('.messages ul').append(m);
+          m.fadeIn(1000, function() {
+            console.log('test');
+            var myDiv = document.getElementById('scroll');
+            myDiv.scrollTop = myDiv.scrollHeight + 200;
+          });
         }
   );
 }
@@ -34,18 +68,7 @@ function changeConversation(t) {
         var new_messages = []
         var messages = $('.messages ul');
         response.forEach(function(message) {
-          var li = $("<li></li>");
-          var m = $("<div class='container_12 " + message.owner_type + "'></div>");
-          var img = "<div class='grid_1'><img src='http://www.dummyimage.com/50x50/000000/fff'/></div>";
-          var name = "<div class='grid_5'><h5>Conway Anderson</h5></div>";
-          var timestamp = "<div class='grid_2' id='timestamp'>" + formatDate(message.created_at) + "</div>";
-          var content = "<div class='message " + message.owner_type + "'><p>" + message.value + "</p></div>";
-          m.append(img);
-          m.append(name);
-          m.append(timestamp);
-          li.append(m);
-          li.append(content);
-          li.hide();
+          var li = createMessage(message);
           new_messages.push(li);
         });
         var height = $('.messages').height();
@@ -56,6 +79,7 @@ function changeConversation(t) {
         });
         var myDiv = document.getElementById('scroll');
         myDiv.scrollTop = myDiv.scrollHeight;
+        $('.messages').data('id', _this.data().id)
   }, 'json')
 }
 
@@ -79,5 +103,105 @@ function formatDate(date) {
 
 
 
-    return h + ":" + m;
+    return h + ":" + m + " " + dd;
 }
+
+function createMessage(message) {
+  var li = $("<li></li>");
+  var m = $("<div class='container_12 " + message.owner_type + "'></div>");
+  var img = "<div class='grid_1'><img src='http://www.dummyimage.com/50x50/000000/fff'/></div>";
+  var name = "<div class='grid_5'><h5>Conway Anderson</h5></div>";
+  var timestamp = "<div class='grid_2' id='timestamp'>" + formatDate(message.created_at) + "</div>";
+  var content = "<div class='message " + message.owner_type + "'><p>" + message.value + "</p></div>";
+  m.append(img);
+  m.append(name);
+  m.append(timestamp);
+  li.append(m);
+  li.append(content);
+  li.hide();
+  return li;
+}
+
+function createVideoMessage(message) {
+  var li = $("<li></li>");
+  var m = $("<div class='container_12 " + message.owner_type + "'></div>");
+  var img = "<div class='grid_1'><img src='http://www.dummyimage.com/50x50/000000/fff'/></div>";
+  var name = "<div class='grid_5'><h5>Conway Anderson</h5></div>";
+  var timestamp = "<div class='grid_2' id='timestamp'>" + formatDate(message.created_at) + "</div>";
+  var videoPlayer = $("<div class='videoPlayer' id='" + message.value + "'></div>");
+	playerDiv = document.createElement('div');
+	playerDiv.setAttribute('id', "p" + message.value);
+	videoPlayer.append(playerDiv);
+	videoPlayer.css('display', 'block');
+  m.append(img);
+  m.append(name);
+  m.append(timestamp);
+  li.append(m);
+  li.append(videoPlayer);
+  li.hide();
+  return li;
+}
+
+var respondVideo = function() {
+    $('#responseModal').reveal();
+    questionID = $('.messages').data('id');
+}
+
+function createRecorder() {
+    var recDiv = document.createElement('div');
+    recDiv.setAttribute('id', 'recorderElement');
+    document.getElementById('recorderContainer').appendChild(recDiv);
+    recorder = recorderManager.displayRecorder(TOKEN, recDiv.id);
+    recorder.addEventListener('recordingStarted', recStartedHandler);
+    recorder.addEventListener('archiveSaved', archiveSavedHandler);
+}
+
+function getImg(imgData) {
+    var img = document.createElement('img');
+    img.setAttribute('src', imgData);
+    return img;
+}
+
+function loadArchiveInPlayer(archiveId) {
+}
+
+
+//--------------------------------------
+//  OPENTOK EVENT HANDLERS
+//--------------------------------------
+
+function recStartedHandler(event) {
+    recImgData = recorder.getImgData();
+}
+
+function archiveSavedHandler(event) {
+    $.post('/messages',
+        {
+	        csrf: $('meta[name="csrf-token"]').attr('content'),
+	        value: event.archives[0].archiveId,
+     	    data_type: 'video',
+	        conversation_id: questionID
+        },
+        function(data) {
+          console.log(data);
+	        $('.close-reveal-modal').trigger('click');
+          var m = createVideoMessage(data);
+          $('.messages ul').append(m);
+          m.fadeIn(1000, function() {
+            console.log('test');
+            var myDiv = document.getElementById('scroll');
+            myDiv.scrollTop = myDiv.scrollHeight + 500;
+            player = recorderManager.displayPlayer(data.value, TOKEN, "p" + data.value);
+          });
+    	  }
+    );
+}
+
+function archiveLoadedHandler(event) {
+    archive = event.archives[0];
+    archive.startPlayback();
+}
+
+
+
+

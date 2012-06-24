@@ -54,7 +54,7 @@ class MessagesController < ApplicationController
     @message.data_type = params[:data_type]
 
     if @message.save
-      render status: 200, nothing: true
+      render status: 200, json: @message
     else
       render status: 500, nothing: true
     end
