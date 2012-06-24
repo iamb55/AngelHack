@@ -1,6 +1,7 @@
 // main colors
 $dkgrey: #222;
 $mdgrey: #aaa;
+$llgrey: #eee;
 $ltgrey: #ddd;
 $transgrey: rgba(0, 0, 0, .15);
 $white: #fff;
@@ -293,22 +294,40 @@ input.range::-webkit-slider-thumb {
 }
 
 .button {
-
+	&.blue {
 	-webkit-box-shadow: 
 		inset 0 1px 0 rgba(255, 255, 255, 0.6),
-		0 1px 0 rgba(0, 0, 0, 0.2),
-		0 0 0 1px rgb(150, 150, 150),
-		0 1px 2px rgba(0, 0, 0, 0.25);
+		0 1px 0 $bluel,
+		0 0 0 1px $bluel,
+		0 1px 2px $bluel;
+		background-image: 
+			-webkit-gradient(
+				linear,
+				left top,
+				left bottom,
+				from($bluel + $dkgrey),
+				to($bluel)
+			);
+		}
+	&.grey {
+		-webkit-box-shadow: 
+			inset 0 1px 0 rgba(255, 255, 255, 0.6),
+			0 1px 0 rgba(0, 0, 0, 0.2),
+			0 0 0 1px rgb(200, 200, 200),
+			0 1px 2px rgba(0, 0, 0, 0.25);
+			background-image: 
+				-webkit-gradient(
+					linear,
+					left top,
+					left bottom,
+					from(rgb(240, 240, 240)),
+					to(rgb(210, 210, 210))
+				);
+			color: $mdgrey !important;
+		}
 	border-radius: 3px;
 
-	background-image: 
-		-webkit-gradient(
-			linear,
-			left top,
-			left bottom,
-			from($bluel + $dkgrey),
-			to($bluel)
-		);
+
 		
 
 
@@ -328,7 +347,7 @@ input.range::-webkit-slider-thumb {
 ul.list {
 	-webkit-box-shadow: 
 		0 1px 0 rgba(0, 0, 0, 0.2),
-		0 0 0 1px rgb(150, 150, 150),
+		0 0 0 1px $ltgrey,
 		0 1px 2px rgba(0, 0, 0, 0.25);
 	background: rgba(255, 255, 255, 0.8);
 	color: rgb(90, 90, 90);
@@ -337,7 +356,7 @@ ul.list {
 
 ul.list li {
 	-webkit-box-shadow:
-		0 -1px 0 rgba(0, 0, 0, 0.2),
+		0 -1px 0 $mdgrey,
 		inset 0 1px 0 rgba(255, 255, 255, 0.6);
 	background-image: 
 		-webkit-gradient(

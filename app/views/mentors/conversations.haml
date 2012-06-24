@@ -7,10 +7,10 @@
 #main
   .container_12
     .conversations
-      .grid_4
+      .leftbar
         .users
         
-          .nice.button New Question
+          .button.blue#newq New Question
           %ul.list
             -@conversations.each do |conversation| 
               %li
@@ -22,8 +22,8 @@
                     %h4= conversation[:user].first_name
                     %p test
                   .clear    
-              
-      .grid_8
+                
+      .rightbar
         .messages
           %ul
             -@messages.each do |message| 
@@ -34,8 +34,18 @@
                   .grid_5
                     %h5 Conway Anderson
                   .grid_2#timestamp  
-                    yay
+                    4:45 PM
                 .message{class: "#{message.owner_type}"}
                   %p=message.value
                   %span=message.created_at
+                  
+        .replybar
+
+          %p
+            %textarea= ""
+          .rightf
+ 
+            .button.blue.reply.rightf Reply
+            .button.grey.reply.rightf Add Video
+          .clear
     .clear        
