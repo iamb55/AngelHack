@@ -8,6 +8,7 @@ class Mentor < ActiveRecord::Base
                   "https://api.singly.com/profiles/facebook",
                    { :query => { :access_token => access } }
                    ).parsed_response['data']
+    p @fb_profile
     if mentor = find_by_u_id(@fb_profile['id'])
       mentor
     else
@@ -15,7 +16,7 @@ class Mentor < ActiveRecord::Base
         last_name: @fb_profile['last_name'],
         birthday: @fb_profile['birthday'],
         email: @fb_profile['email'],
-        picture_url: @fb_profile['picture'],
+        picture_url: "https://graph.facebook.com/#{@fb_profile['id']}/picture?type=square",
         u_id: @fb_profile['id']
     end
   end
