@@ -1,7 +1,6 @@
 =content_for :head do
   =javascript_include_tag 'conversation_view'
   =javascript_include_tag 'ICanHaz.min.js'
-  =javascript_include_tag 'templates/message'
   =javascript_include_tag 'conversation_view'
   
 #main
@@ -23,7 +22,7 @@
                   .clear    
                 
       .rightbar
-        .messages
+        .messages#scroll{ data: { id: "#{@conversations[0][:id]}"} }
           %ul
             -@messages.each do |message| 
               %li

@@ -42,16 +42,20 @@ class MessagesController < ApplicationController
   # POST /messages
   # POST /messages.json
   def create
-    @message = Message.new(params[:message])
+    conversation = Conversation.find(params[:conversation_id])
+    render status: 401, nothing: true  if (conversation.nil? || ( conversation.mentor_id != current_user.id && conversation.mentee_id != current_user id))
+    
+    
+    @message = Message.new
+    @message.conversation_id = params[:conversation_id]
+    @message.value = params[:value]
+    @message.owner_type = session[:type]
+    @message.data_type = params[:data_type]
 
-    respond_to do |format|
-      if @message.save
-        format.html { redirect_to @message, notice: 'Message was successfully created.' }
-        format.json { render json: @message, status: :created, location: @message }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @message.errors, status: :unprocessable_entity }
-      end
+    if @message.save
+      render status: 200, nothing: true
+    else
+      render status: 500, nothing: true
     end
   end
 
