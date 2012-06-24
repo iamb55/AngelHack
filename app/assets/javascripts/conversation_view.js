@@ -28,12 +28,19 @@ $(document).ready(function() {
   
   createRecorder();
   
+  videoPlayers = $('.videoPlayer');
   
+  videoPlayers.each(function(player) {
+    player = $(videoPlayers[player]);
+    var id = player.data('id');
+    recorderManager.displayPlayer(id, TOKEN, "p" + id);
+  });
   
   setTimeout(function() {
     var myDiv = document.getElementById('scroll');
     myDiv.scrollTop = myDiv.scrollHeight + 200;
-  }, 500);
+  }, 500)
+
 });
 
 
@@ -188,10 +195,11 @@ function archiveSavedHandler(event) {
           var m = createVideoMessage(data);
           $('.messages ul').append(m);
           m.fadeIn(1000, function() {
-            console.log('test');
-            var myDiv = document.getElementById('scroll');
-            myDiv.scrollTop = myDiv.scrollHeight + 500;
             player = recorderManager.displayPlayer(data.value, TOKEN, "p" + data.value);
+            setTimeout(function() {
+              var myDiv = document.getElementById('scroll');
+              myDiv.scrollTop = myDiv.scrollHeight + 500;
+            }, 500)
           });
     	  }
     );
