@@ -1,0 +1,30 @@
+%html
+  %head
+    %title AngelHack
+    = stylesheet_link_tag "application", :media => "all"
+    = stylesheet_link_tag "application", :media => "all"
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,700,300italic' rel='stylesheet' type='text/css'>
+  	
+    = javascript_include_tag "jquery-1.7.2.min.js"
+    = csrf_meta_tags
+    = yield :head
+
+  %body
+  
+    #header
+      .container_12
+        .grid_2
+          = link_to image_tag( '../images/mentor-v.png'), 'google.com'
+        .grid_2
+          = link_to 'Messages', '#'
+        .grid_2
+          = link_to 'Profile', '#'
+        .grid_2
+          = link_to 'Find a Mentor', '#'
+        .grid_2
+          = link_to 'Mentors', '#'
+        .grid_2
+          = link_to 'Home', '#'    
+          
+      .container_12#main
+        = yield

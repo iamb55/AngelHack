@@ -4,7 +4,7 @@
   =javascript_include_tag 'templates/message'
   =javascript_include_tag 'conversation_view'
 .conversations
-  .four.columns
+  .grid_4
     .users
       %ul
         -@conversations.each do |conversation| 
@@ -15,11 +15,23 @@
                 %h4= conversation[:user].first_name
               .clear    
           
-  .eight.columns
+  .grid_8
     .messages
       %ul
-        -@messages.each do |message| 
-          %li
-            .message{class: "#{message.owner_type}"}
-              %p=message.value
-              %span=message.created_at
+        .container_12
+          .grid_1
+            %img{src: "http://www.dummyimage.com/50x50/000000/fff"}
+          .grid_6#nameoverride
+            hay
+          .grid_1  
+            yay
+        .container_12
+          .grid_1
+            woo
+          .grid_7#msgoverride
+            -@messages.each do |message| 
+              %li
+                .message{class: "#{message.owner_type}"}
+                  %p=message.value
+                  %span=message.created_at
+          

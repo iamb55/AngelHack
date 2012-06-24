@@ -1,6 +1,65 @@
+$borders: 1px solid;      
+
+// main colors
+$dkgrey: #222;
+$mdgrey: #aaa;
+$ltgrey: #ddd;
+$transgrey: rgba(0, 0, 0, .15);
+$white: #fff;
+$greenn: #4ea7b9;
+$purplen: #8b67a8;
+$bluen: #5592c6;
+
+$purplel: #a58db9;
+$turquoisel: #99cbeb;
+$transpurple: rgba(165, 141, 185, .5);
+$transturq: rgba(153, 203, 235, .5);
+$bluel: #6b93c8;
+$greyL: #818383;
+
+$bg: url(../images/bright_squares.png);
+
+
+
+// font sizes   
+$fontXXL: 5em;
+$fontXL: 3em;
+$fontL: 2.5em;  
+$fontML: 2em; 
+$fontMM: 1.5em;
+$fontMS: 1.2em; 
+$fontR: 1em;
+$fontRS: .85em;  
+$fontS: .75em;  
+$fontXS: .55em;
+
+$fontstack: "Lato", "Helvetica", arial, sans-serif;
+
+$bsd: 10px 0px 10px $mdgrey;
+
+@mixin no-sides {
+	border-left: none;
+	border-right: none;
+}    
+@mixin font2 {     
+	font-family: '', sans-serif;
+}
+@mixin defaultbox {
+	-moz-box-shadow: $bsd;
+	-webkit-box-shadow: $bsd;
+	box-shadow: $bsd;
+}
+@mixin border10 {
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+
+
+
 .users {  
-  border: 2px solid #eee;
   li {
+	background: $white;
+	border-bottom: $borders $mdgrey;
     img {
       float: left;
     }
@@ -21,6 +80,23 @@
   }
 }
 
+
 .messages {
-  border: 2px solid #eee;
+	background: $ltgrey;
+	border: none;
+
+	li {
+		background: $white;
+		border-bottom: $borders $mdgrey;
+
+	}
+	p {
+		font-size: $fontMM;
+	}
+}
+#nameoverride {
+	width: 400px;
+}
+#msgoverride {
+	width: 500px;
 }

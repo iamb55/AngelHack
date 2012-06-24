@@ -1,0 +1,333 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+$borders: 1px solid;      
+
+// main colors
+$dkgrey: #222;
+$mdgrey: #aaa;
+$ltgrey: #ddd;
+$transgrey: rgba(0, 0, 0, .15);
+$white: #fff;
+$greenn: #4ea7b9;
+$purplen: #8b67a8;
+$bluen: #5592c6;
+
+$purplel: #a58db9;
+$turquoisel: #99cbeb;
+$transpurple: rgba(165, 141, 185, .5);
+$transturq: rgba(153, 203, 235, .5);
+$bluel: #6b93c8;
+$greyL: #818383;
+
+$bg: url(../images/bright_squares.png);
+
+
+
+// font sizes   
+$fontXXL: 5em;
+$fontXL: 3em;
+$fontL: 2.5em;  
+$fontML: 2em; 
+$fontMM: 1.5em;
+$fontMS: 1.2em; 
+$fontR: 1em;
+$fontRS: .85em;  
+$fontS: .75em;  
+$fontXS: .55em;
+
+$fontstack: "Lato", "Helvetica", arial, sans-serif;
+
+$bsd: 10px 0px 10px $mdgrey;
+
+@mixin no-sides {
+	border-left: none;
+	border-right: none;
+}    
+@mixin font2 {     
+	font-family: '', sans-serif;
+}
+@mixin defaultbox {
+	-moz-box-shadow: $bsd;
+	-webkit-box-shadow: $bsd;
+	box-shadow: $bsd;
+}
+@mixin border10 {
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+
+
+
+.clear-left {
+  clear: left;
+}
+
+.clear-right {
+  clear: right;
+}
+
+.clear {
+  clear: both;
+}
+
+
+.righta {
+	text-align: right;
+}
+.lefta {
+	text-align: left;
+}
+#wrap {
+	padding: 10% 0;
+	margin: 0px auto;
+}
+#wraptwo {
+	padding: 5% 0;
+	margin: 0px auto;
+}
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: #eee $bg !important;
+	text-align: center;
+	font: $fontR $fontstack !important;
+}
+a {
+	text-decoration: none;
+}
+li {
+	list-style: none;
+}
+#header {
+	height: 70px;
+	padding: 0;
+	background: $white;
+	@include defaultbox;
+	.grid_2 {
+		padding: 30px 0;
+	}
+	a {
+		text-transform: uppercase;
+		font-size: $fontMM;
+		font-weight: bold;
+		color: $mdgrey;
+		&:hover {
+			color: $bluel;
+		}
+	}
+	
+}
+#main {
+	background: $white;
+	padding: 20px 8px;
+	margin: 0px auto 10px;
+	text-align: left;
+}
+
+
+
+
+/*END OF GLOBAL*/
+
+/* landing page */
+
+
+#logo {
+	padding: 0px 0px 15px;
+	position: relative;
+	z-index: 10;
+}
+#landingcollect {
+	background: $white;
+	padding: 25px 0 15px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	border: 5px solid $transgrey;
+	width: 300px;
+	margin: 0px auto;
+}
+label {
+	font-weight: 300;
+	font-size: $fontRS;
+	&#purplelabel {
+		color: $purplen;
+	}
+	&#greenlabel {
+		color: $greenn;
+	}	
+}
+#samewidth {
+	border: 1px solid #ddd;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	width: 248px;
+	padding: 10px 8px;
+	font: $fontRS $fontstack;
+	color: $ltgrey;
+	outline: none;
+	font-weight: 300;
+	&:focus {
+		border: 1px solid $bluen + #222;
+		color: $mdgrey;
+		
+	}
+}
+#signup {
+	background: $bluen !important;
+	padding: 14px 0px;
+	margin: 10px auto 0;
+	width: 266px;
+	display: block;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	font-weight: bold;
+	font-size: $fontS;
+	color: $white;
+	text-transform: uppercase;
+
+}
+#signup:hover {
+	background: $bluen + #222 !important;
+}
+#nerds {
+	font: $fontS $fontstack;
+	color: $mdgrey;
+	a {
+		color: $dkgrey;
+		/*border-bottom: 1px dotted $mdgrey;*/
+		&:hover {
+			border-bottom: 1px dotted $dkgrey;
+		}
+	}
+}
+/* real mainpage
+lolol
+
+ */
+
+#mainpage {
+	width: 100%;
+	margin-top: 30px;
+}
+#headline {
+	position: relative;
+	z-index: 5;
+	padding-bottom: 20px;
+	color: $greenn;
+}
+#capture {
+	background: $purplel;
+	position: relative;
+	-moz-border-radius: 40px;
+	border-radius: 40px;
+	min-height: 100px;
+	top: -70px;
+/*	height: 40px;*/
+	text-transform: uppercase;
+	h2 {
+		font-weight: 300 !important;
+
+	}
+/*
+	a h2 { 
+		padding: 28px 5px;
+		position: relative;
+		display: block;
+		width: 324px;
+		margin: 0;
+	}*/
+
+	a h2 {
+		display: block;
+		padding: 28px 5px;
+		min-width: 300px;
+		margin-top: 8px;
+	}
+
+
+	h3 {
+		background: $bluel + #333;
+		-moz-border-radius: 40px;
+		border-radius: 40px;
+		height: 20px;
+		width: 25px;
+		padding: 30px 25px 25px;
+		font-size: $fontMM;
+		margin: 18px auto 0;
+	
+	}
+
+/*
+	a h2#be {
+		background: $purplen;
+	}
+	a h2#find {
+		background: $greenn;
+
+	}*/
+
+	a:hover h2#be, a:hover h2#find {
+		color: $ltgrey;
+	}
+
+
+}
+
+#triangle {
+	display: none;
+	margin: -250px -228px 0;
+	position: absolute;
+	width: 0; 
+	height: 0; 
+	border-left: 400px solid transparent;
+	border-right: 400px solid transparent;
+	
+	&.tripurple {
+		border-bottom: 400px solid $transpurple;
+	}
+	&.triturq {
+		border-bottom: 400px solid $transturq;
+	}
+}
+
+
+#secondary {
+	margin-top: 80px;
+	background: $mdgrey;
+	min-height: 500px;
+	
+	h1 {
+		font-weight: 300;
+		color: $purplen;
+	}
+	p {
+		font-size: $fontML;
+		color: $dkgrey;
+	}
+
+}
+
+.explain {
+	p {
+		text-align: left;
+	}
+}
+#bigfooter {
+	padding: 50px;
+	background: $turquoisel;
+}
