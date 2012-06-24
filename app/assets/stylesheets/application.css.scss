@@ -16,11 +16,13 @@ $borders: 1px solid;
 
 // main colors
 $dkgrey: #222;
+$dmgrey: #858585;
 $mdgrey: #aaa;
 $llgrey: #eee;
 $ltgrey: #ddd;
 $transgrey: rgba(0, 0, 0, .15);
 $transgrey2: rgba(0, 0, 0, .25);
+$owhite: #f2f2f2;
 $white: #fff;
 $greenn: #4ea7b9;
 $purplen: #8b67a8;
@@ -33,7 +35,7 @@ $transturq: rgba(153, 203, 235, .5);
 $bluel: #6b93c8;
 $greyL: #818383;
 
-$bg: url(bright_squares.png);
+$bg: url(concrete_wall_3.png);
 $mainbg: url(bg.png);
 
 
@@ -81,10 +83,25 @@ $inset: inset 0 0 10px #000000;
     -webkit-border-radius: 10px;
 	border-radius: 10px;
 }
+@mixin border15 {
+	-moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+	border-radius: 15px;
+}
 @mixin border20 {
        -moz-border-radius: 20px;
        -webkit-border-radius: 20px;
        border-radius: 20px;
+}
+@mixin border10br {
+		-moz-border-radius-bottomright: 10px;
+		-webkit-border-bottom-right-radius: 10px;
+		border-bottom-right-radius: 10px;
+}
+@mixin border10tr {
+		-moz-border-radius-topright: 10px;
+		-webkit-border-top-right-radius: 10px;
+		border-top-right-radius: 10px;
 }
 
 .clear-left {
@@ -160,7 +177,7 @@ li {
 		font-size: $fontMS;
 		font-weight: bold;
 		color: $mdgrey;
-		&:hover {
+		&:hover, &.active {
 			color: $bluel;
 		}
 	}
@@ -173,6 +190,7 @@ li {
 	text-align: left;
 	width: 960px;
 	@include defaultbox2;
+	@include border10;
 }
 
 
@@ -204,7 +222,6 @@ li {
 .leftbar {
 	width: 300px;
 	float: left;
-	background: #eee;
 
 }
 .rightbar {
@@ -212,6 +229,27 @@ li {
 	float: left;
 	border-left: $borders $ltgrey;
 }
+.footer {
+	p {
+		font-size: $fontMM;
+		color: $dkgrey;
+	}
+	background: $owhite;
+	border-top: $borders $ltgrey;
+	text-align: left;
+	padding: 30px 0;
+	min-height: 100px;
+	a {
+		color: $dkgrey;
+		border-bottom: $borders $mdgrey;
+		&:hover {
+			color: $mdgrey;
+		}
+	}
+}
+
+
+
 
 /*END OF GLOBAL*/
 
