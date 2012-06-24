@@ -18,3 +18,4 @@
 *.swp
 
 *.esproj/
+.DS_Store
