@@ -6,11 +6,11 @@ class Mentee < ActiveRecord::Base
   def self.find_or_create_from_singly(access)
     begin
       @unparsed = HTTParty.get(
-                    "https://api.singly.com/services/facebook/self",
+                    "https://api.singly.com/profiles/facebook",
                      { :query => { :access_token => access } }
                      )
       
-      @fb_profile = @unparsed.parsed_response['data']
+      @fb_profile = unparsed.parsed_response['data']
       
       if mentee = find_by_u_id(@fb_profile['id'])
         mentee
