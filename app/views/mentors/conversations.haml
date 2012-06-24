@@ -15,7 +15,7 @@
       .leftbar
         .users
           %ul.list
-            -if @conversations
+            -if @conversations && !@conversations.empty?
               -@conversations.each do |conversation| 
                 %li.chatSelection
                   .user{data: { id: "#{conversation[:id]}"}}
@@ -34,7 +34,7 @@
                   %h4 You don't have any conversations right now!
               
       .rightbar
-        -if @conversations
+        -if @conversations && !@conversations.empty?
           .messages#scroll{ data: { id: "#{@conversations[0][:id]}"} }
             %ul
               -@messages.each do |message| 
