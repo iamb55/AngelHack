@@ -6,20 +6,18 @@ $(document).ready(function() {
 
 function changeConversation(t) {
   var _this = $(t);
-  $.get({
-    url: '/conversations/get_conversation.json',
-    data: { 'id': _this.data().id },
-    success: function(response) {
-      var data = response.data;
-      var new_messages = $("<div class='messages'></div>");
-      data.messages.forEach(function(message) {
-        var m = $(ich.message(message));
-        if (m.type === "mentor") m.addClass('mentor');
-        new_messages.append(m);
-      });
-      $('.messages').hide();
-      $('.messages').replaceWith(new_messages);
-      $('.messages').fadeIn();
-    }
+  $.get('/conversations/' + _this.data().id + ".json",
+      function(response) {
+        new_messages = $("<div class='messages'></div>");
+        new_messages.css('display','none');
+        response.forEach(function(message) {
+          var m = $("<div class='" + message.owner_type + "'></div>");
+          m.append("<p>" + message.value + "</p>");
+          m.append("<span>" + message.created_at + "</p>");
+          new_messages.append(m);
+        });
+        $('.messages').hide();
+        $('.messages').replaceWith(new_messages);
+        $('.messages').slideDown(1000);
   }, 'json')
 }

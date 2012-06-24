@@ -86,9 +86,9 @@ class MentorsController < ApplicationController
     cs = current_user.conversations
     @conversations = cs.collect do |conversation|
       if current_user.mentor?
-        conversation.mentee
+        { user: conversation.mentee, id: conversation.id }
       else
-        conversation.mentor
+        { user: conversation.mentor, id: conversation.id }
       end
     end
     @messages = cs.first.messages

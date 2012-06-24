@@ -1,16 +1,18 @@
 =content_for :head do
   =javascript_include_tag 'conversation_view'
-  =stylesheet_link_tag 'conversation_view'
+  =javascript_include_tag 'ICanHaz.min.js'
+  =javascript_include_tag 'templates/message'
+  =javascript_include_tag 'conversation_view'
 .conversations
   .four.columns
     .users
       %ul
-        -@conversations.each do |user| 
+        -@conversations.each do |conversation| 
           %li
-            .user{data: { id: "#{user.id}"}}
-              %img{src: "#{user.picture_url}"}
+            .user{data: { id: "#{conversation[:id]}"}}
+              %img{src: "#{conversation[:user].picture_url}"}
               .information
-                %h4= user.first_name
+                %h4= conversation[:user].first_name
               .clear    
           
   .eight.columns

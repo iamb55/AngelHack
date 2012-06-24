@@ -17,7 +17,7 @@ class ConversationsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @conversation }
+      format.json { render json: @conversation.messages }
     end
   end
 
@@ -79,8 +79,5 @@ class ConversationsController < ApplicationController
       format.html { redirect_to conversations_url }
       format.json { head :no_content }
     end
-  end
-  
-  def get_conversation
   end
 end
