@@ -54,13 +54,14 @@ $(document).ready(function() {
           value: content
         }, 
         function() {
-          var newQuestion = $('#newQuestion').clone();
           $('#newQuestion textarea, #newQuestion .button').hide();
           $('#newQuestion h1').text("We'll connect you with a mentor as quickly as possible!");
           setTimeout(function() {
               $('.close-reveal-modal').trigger('click');
+              $('#newQuestion textarea').val('');
+              $('#newQuestion textarea, #newQuestion .button').show();
+              $('#newQuestion h1').text("Ask a question to find a mentor!");
             }, 500);
-          $('#newQuestion').replaceWith(newQuestion);
         }
       );
     });
