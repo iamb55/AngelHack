@@ -38,7 +38,7 @@ $greyL: #818383;
 $bg: url(concrete_wall_3.png);
 $mainbg: url(bg.png);
 $video: url(video.png) no-repeat left center;
-$splash: url(sample.jpg) no-repeat center center;
+$splash: url(sample-3.jpg) no-repeat center center;
 
 
 // font sizes   
@@ -105,6 +105,19 @@ $inset: inset 0 0 10px #000000;
 		-webkit-border-top-right-radius: 10px;
 		border-top-right-radius: 10px;
 }
+@mixin border10tl {
+		-moz-border-radius-topleft: 10px;
+		-webkit-border-top-left-radius: 10px;
+		border-top-left-radius: 10px;
+}
+@mixin bordertop10 {
+	@include border10tr;
+	@inlcude border10tl;
+}
+@mixin textshad {
+	text-shadow: 0px 1px 4px #000;
+}
+
 
 .clear-left {
   clear: left;
@@ -211,16 +224,7 @@ li {
 .imagerounded {
 	@include border5;
 }
-.button {
-	padding: 15px 10px;
-	color: white;
-	font: $fontRS "Lato", "Helvetica", arial, sans-serif;
-	text-transform: uppercase;
-	padding-left: 80px;
-	font-weight: bold;
-	text-decoration: none;
-	margin: 20px;
-}
+
 
 .button {
 	padding: 10px 10px;
@@ -279,17 +283,35 @@ li {
 	margin-left: -20px;
 }
 
-#headline {
-	font-weight: 300;
-	margin: 50px 0;
+#header.splash .grid_2 {
+	border-right: none;
 }
+#header.splash .login {
+	position: absolute;
+	margin-left: 120px;
+	margin-top: 0px;
+	font-size: $fontR;
+}
+
+/* splash */
+
+
 #primary {
 	background: $splash;
 	margin-top: 20px;
 	min-height: 300px;
+	@include border10tr;
+	@include border10tl;
+	text-align: center;
+}
+#headline {
+	font-weight: 300;
+	padding: 110px 50px 50px;
+	color: $white;
+	@include textshad;
 }
 #secondary {
-  min-height: 500px;
+  min-height: 300px;
  	margin-bottom: 20px}
   #secondary h1 {
     font-weight: 300;
@@ -301,7 +323,10 @@ li {
     font-size: 1.75em;
     color: #222222; }
 #secondary .button {
-	width: 200px;
+	width: 150px;
+	margin: 25px 0;
+	padding: 20px;
+	text-align: center;
 }
 #secondary .grid_6 {
 	text-align: left;
