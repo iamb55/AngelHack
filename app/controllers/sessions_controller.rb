@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
   
   def start_session
     session[:type] = params[:type]
-    redirect_to "/auth/singly?service=facebook"
+    redirect_to "/auth/singly?service=facebook?scope=user_about_me,email,user_birthday"
   end
   
   def create
