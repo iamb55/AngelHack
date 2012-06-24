@@ -1,4 +1,6 @@
 class MentorsController < ApplicationController
+  load_and_authorize_resource
+
   # GET /mentors
   # GET /mentors.json
   def index
