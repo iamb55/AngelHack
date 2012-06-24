@@ -11,6 +11,12 @@ end
 
 module AngelHack
   class Application < Rails::Application
+    ENV['SINGLY_ID'] = 'b212dcb8b9b45c571bb2d601e1a298dc'
+    ENV['SINGLY_SECRET'] = 'd6eedbd738b7f06acd56701ec46dcda8'
+    
+    use OmniAuth::Builder do
+      provider :singly, ENV['SINGLY_ID'], ENV['SINGLY_SECRET']
+    end
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

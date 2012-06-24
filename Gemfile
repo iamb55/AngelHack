@@ -3,6 +3,7 @@ source 'http://rubygems.org'
 gem 'rails', '3.2.6'
 gem 'haml'
 gem 'cancan'
+gem 'omniauth-singly'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

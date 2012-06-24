@@ -19,6 +19,11 @@ AngelHack::Application.routes.draw do
   end
   
   post 'emails/add_email'
+  
+  match '/auth/singly/callback' => 'sessions#create'
+  match '/log_out'              => 'sessions#destroy'
+  match '/sign_in'              => 'sessions#new'
+  match '/start_session'        => 'sessions#start_session'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
