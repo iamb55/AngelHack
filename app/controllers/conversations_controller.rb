@@ -22,8 +22,6 @@ class ConversationsController < ApplicationController
       @data['picture_url'] = owner.picture_url
       @data
     end
-    p "TEST"
-    p @messages
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @messages }
@@ -55,7 +53,6 @@ class ConversationsController < ApplicationController
     m.data_type = params[:data_type]
     m.owner_type = current_user.user_type
     m.save
-    p m
 
     respond_to do |format|
       if @conversation.save

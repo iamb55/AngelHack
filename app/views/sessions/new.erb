@@ -23,9 +23,9 @@
 
 	    $('#login').on('click', function() {
 	      var data = {};
-    	  if($('input[name="selectmentor"]').val() == 'mentor') {
+    	  if($('input[name="selectmentor"]:checked').val() == 'mentor') {
     	    window.location = '/start_session?type=Mentor';
-    	  } else if ($('input[name="selectmentor"]').val() == 'mentee') {
+    	  } else if ($('input[name="selectmentor"]:checked').val() == 'mentee') {
     	    window.location = '/start_session?type=Mentee';
     	  } else {
     	    return;
@@ -43,10 +43,10 @@
 
 			<div id="landingcollect">
 
-
-				<label for="radio1" id="purplelabel"><input type="radio" name="selectmentor" value='mentor''>&nbsp; I'm a Mentor</label> &nbsp; &nbsp;
+      
+				<label for="radio1" id="purplelabel"><input type="radio" name="selectmentor" value='mentor'>&nbsp; I'm a Mentor</label> &nbsp; &nbsp;
 				<label for="radio2" id="greenlabel"><input type="radio" name="selectmentor" value='mentee'>&nbsp; I Need a Mentor</label>
-													<br /><br />
+									<br /><br />
 
 
 				<p><a href="#" class="large button radius" id="login">Login with Facebook</a></p>

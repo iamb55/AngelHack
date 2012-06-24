@@ -19,7 +19,6 @@
             -if @conversations
               -@conversations.each do |conversation| 
                 %li.chatSelection
-              
                   .user{data: { id: "#{conversation[:id]}"}}
                     %img.imagerounded{src: "#{conversation[:user].picture_url}"}
                     .information
@@ -49,7 +48,7 @@
                       .grid_5
                         %h5=owner.first_name
                       .grid_2#timestamp  
-                        = format_date(owner.created_at)
+                        = format_date(message['created_at'])
                     .message{class: "#{message.owner_type}"}
                       %p=message.value
                   -else
@@ -59,7 +58,7 @@
                       .grid_5
                         %h5=owner.first_name
                       .grid_2#timestamp  
-                        4:45 PM
+                        = format_date(message['created_at'])
                     .videoPlayer{id: "#{message.value}", data: { id: "#{message.value}" } }
                       %div{id: "p#{message.value}"}
                 

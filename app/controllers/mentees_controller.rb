@@ -88,12 +88,11 @@ class MenteesController < ApplicationController
     unless cs.empty?
       @conversations = cs.collect do |conversation|
         if current_user.mentor?
-          { user: conversation.mentee, id: conversation.id }
+          { message: conversation.messages.last, updated_at: conversation.updated_at, user: conversation.mentee, id: conversation.id }
         else
-          { user: conversation.mentor, id: conversation.id } if conversation.messages.count > 1
+          { message: conversation.messages.last, updated_at: conversation.updated_at, user: conversation.mentor, id: conversation.id } if conversation.messages.count > 1
         end
-      end.compact
-      p @conversations
+      end
       @messages = cs.first.messages
     end
   end
