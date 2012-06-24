@@ -39,7 +39,7 @@
                       .grid_1
                         %img.imagerounded{src: owner.picture_url}
                       .grid_5
-                        %h5=owner.name
+                        %h5=owner.first_name
                       .grid_2#timestamp  
                         =owner.created_at
                     .message{class: "#{message.owner_type}"}
