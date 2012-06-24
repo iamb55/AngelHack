@@ -37,7 +37,7 @@
                   %h4 You don't have any conversation right now!
               
       .rightbar
-        -if !@conversations.empty?
+        -if @conversations && !@conversations.empty?
           .messages#scroll{ data: { id: "#{@conversations[0][:id]}"} }
             %ul
               -@messages.each do |message| 
