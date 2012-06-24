@@ -56,6 +56,7 @@ $bsd: 10px 0px 10px $mdgrey;
 
 
 
+
 .users {  
   li {
 	background: $white;
@@ -82,21 +83,34 @@ $bsd: 10px 0px 10px $mdgrey;
 
 
 .messages {
-	background: $ltgrey;
 	border: none;
+	padding: none;
+
 
 	li {
-		background: $white;
 		border-bottom: $borders $mdgrey;
-
+		width: 560px !important;
+		padding: 20px 0;
 	}
 	p {
 		font-size: $fontMM;
+		line-height: $fontMM;
+	}
+	h5 {
+		color: $greenn;
+		font-weight: bold;
 	}
 }
-#nameoverride {
-	width: 400px;
+
+
+#timestamp {
+	color: $bluel;
+	font-size: $fontMM;
+	padding: 0;
+	width: 100px;
+	text-align: right;
 }
-#msgoverride {
-	width: 500px;
+.message {
+	width: 450px;
+	padding-left: 90px;
 }
