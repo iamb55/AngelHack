@@ -61,7 +61,7 @@ function recStartedHandler(event) {
 function archiveSavedHandler(event) {
     $ajax(function() {
 	url: "/messages/new",
-        method: 'POST',
+        method: "POST",
 	data: {
 	    csrf: $('meta[name="csrf-token"]').attr('content');
             value: event.archives[0].archiveId;
