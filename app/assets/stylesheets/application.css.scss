@@ -38,7 +38,7 @@ $greyL: #818383;
 $bg: url(concrete_wall_3.png);
 $mainbg: url(bg.png);
 $video: url(video.png) no-repeat left center;
-
+$splash: url(sample.jpg) no-repeat center center;
 
 
 // font sizes   
@@ -162,6 +162,14 @@ li {
 	background: $white;
 	@include defaultbox;
 	border-bottom: 2px solid $llgrey;
+	.grid_10 {
+		height: 17px;
+		padding: 30px 0px 23px;
+	}
+	.button {
+		margin-top: -10px;
+		font-size: $fontR;
+	}
 	.grid_2 {
 		height: 17px;
 		padding: 30px 0px 23px;
@@ -172,6 +180,7 @@ li {
 			border-right: none;
 			text-align: right;
 		}
+
 	}
 	a {
 		text-transform: uppercase;
@@ -193,6 +202,9 @@ li {
 	width: 960px;
 	@include defaultbox2;
 	@include border10;
+	&.bill {
+		background: $white;
+	}
 }
 
 
@@ -248,6 +260,9 @@ li {
 			color: $mdgrey;
 		}
 	}
+	.rightf {
+		display: none;
+	}
 }
 
 
@@ -264,5 +279,32 @@ li {
 	margin-left: -20px;
 }
 
-
-
+#headline {
+	font-weight: 300;
+	margin: 50px 0;
+}
+#primary {
+	background: $splash;
+	margin-top: 20px;
+	min-height: 300px;
+}
+#secondary {
+  min-height: 500px;
+ 	margin-bottom: 20px}
+  #secondary h1 {
+    font-weight: 300;
+    color: #8b67a8; }
+  #secondary h2 {
+	font-size: 3em;
+}
+  #secondary p {
+    font-size: 1.75em;
+    color: #222222; }
+#secondary .button {
+	width: 200px;
+}
+#secondary .grid_6 {
+	text-align: left;
+	padding: 40px;
+	width: 380px;
+}
