@@ -176,6 +176,21 @@ $bsd: 10px 0px 10px $mdgrey;
 		border: $borders $mdgrey;
 	}
 }
+.reveal-modal {
+	textarea {
+		width: 100%;
+		height: 60px;
+		padding: 10px;
+		font: $fontMM $fontstack;
+		@include border5;
+		border: $borders $mdgrey;
+	}
+	.button.blue {
+		float: right;
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+}
 #timestamp {
 	color: $bluel;
 	font-size: $fontMM;
