@@ -43,7 +43,7 @@ class SessionsController < ApplicationController
   
   protected
    def authenticator
-     @authenticator ||= Koala::Facebook::OAuth.new(ENV["FACEBOOK_APP_ID"], ENV["FACEBOOK_SECRET"], 'http://localhost:3000/auth/facebook/callback')
+     @authenticator ||= Koala::Facebook::OAuth.new(ENV["FACEBOOK_APP_ID"], ENV["FACEBOOK_SECRET"], 'http://mentorim.herokuapp.com/auth/facebook/callback')
    end
 end
 
