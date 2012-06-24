@@ -60,7 +60,16 @@ $bsd: 10px 0px 10px $mdgrey;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
 }
-
+@mixin border10br {
+		-moz-border-radius-bottomright: 15px;
+		-webkit-border-bottom-right-radius: 15px;
+		border-bottom-right-radius: 15px;
+}
+@mixin border15tr {
+		-moz-border-radius-topright: 15px;
+		-webkit-border-top-right-radius: 15px;
+		border-top-right-radius: 15px;
+}
 
 .button {
   cursor: pointer;
@@ -112,7 +121,6 @@ $bsd: 10px 0px 10px $mdgrey;
 	overflow: scroll;
 	overflow-x: hidden;
 
-
 	li {
 		border-bottom: $borders $ltgrey;
 		width: 580px !important;
@@ -130,9 +138,11 @@ $bsd: 10px 0px 10px $mdgrey;
 	}
 }
 
+
 .replybar {
 	background: $ltgrey;
 	padding: 20px;
+	@include border10br;
 /*
 	position: fixed;
 	bottom: 0;*/
@@ -154,7 +164,7 @@ $bsd: 10px 0px 10px $mdgrey;
 	width: 90px;
 	text-align: right;
 }
-.message {
+.message, .videoPlayer {
 	width: 480px;
 	padding-left: 90px;
 }
