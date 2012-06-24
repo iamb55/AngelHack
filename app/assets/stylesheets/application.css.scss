@@ -32,8 +32,8 @@ $transturq: rgba(153, 203, 235, .5);
 $bluel: #6b93c8;
 $greyL: #818383;
 
-$bg: url(/assets/bright_squares.png);
-
+$bg: url(bright_squares.png);
+$mainbg: url(bg.png);
 
 
 // font sizes   
@@ -136,13 +136,22 @@ li {
 	padding: 0;
 	background: $white;
 	@include defaultbox;
-	border-bottom: 2px solid $ltgrey;
+	border-bottom: 2px solid $llgrey;
 	.grid_2 {
-		padding: 30px 0;
+		height: 17px;
+		padding: 30px 0px 23px;
+		border-right: 1px solid $llgrey;
+		margin: 0px 0 0;
+		&#home {
+			width: 250px;
+			border-right: none;
+			text-align: right;
+		}
 	}
 	a {
 		text-transform: uppercase;
-		font-size: $fontMM;
+		padding: 30px 5px;
+		font-size: $fontMS;
 		font-weight: bold;
 		color: $mdgrey;
 		&:hover {
@@ -152,7 +161,7 @@ li {
 	
 }
 #main {
-	background: $white;
+	background: $white $mainbg;
 	padding: 0px;
 	margin: 20px auto;
 	text-align: left;

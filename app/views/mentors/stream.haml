@@ -1,16 +1,36 @@
 =content_for :head do
   =javascript_include_tag "mentor_stream"
 
-%ul.mentorStream
-  -@questions.each do |question|
-    %li.mentorItem{ data: { id: question.id } }
-      .name= question.mentee.first_name
-      .question= question.messages.first.value
-      .matchValue= '67%'
-      %button.respondButton= 'Respond'
 
+    
+#main
+  .container_12
+    .conversations
+      .leftbar
+        tets
 
+      .rightbar
+        %ul.mentorStream
+          -@questions.each do |question|
+            %li.mentorItem{ data: { id: question.id } }
+              .container_12
+                %h3 425 Unanswered Questions
+                .grid_1
+                  %img.imagerounded{src: "http://www.dummyimage.com/50x50/000000/fff"}
+                .message
+                  %h5.name= question.mentee.first_name
+                  %p.question= question.messages.first.value
+                  .leftf
+                    %span.matchValue
+                      \67%
+                    
+                    %p.match Match
+                  .button.grey.reply.rightf.respondButton Respond
+        
+        
 #responseModal.reveal-modal
-  %h1= 'Submit A response'
-  #recorderContainer= 'Recorder:'
-  <a class="close-reveal-modal">&#215;</a>
+  %h1 Submit A response
+  #recorderContainer
+    %a.close-reveal-modal &#215
+
+    .clear
