@@ -79,13 +79,6 @@ $inset: inset 0 0 10px #000000;
        -webkit-border-radius: 20px;
        border-radius: 20px;
 }
-/*
-@mixin picpretty {
-	box-shadow: $inset;
-	-moz-box-shadow: $inset;
-	-webkit-box-shadow: $inset;
-}*/
-
 
 .clear-left {
   clear: left;
@@ -167,7 +160,10 @@ li {
 
 .imagerounded {
 	@include border5;
+<<<<<<< HEAD
 /*	@include picpretty;*/
+=======
+>>>>>>> changes
 }
 
 
