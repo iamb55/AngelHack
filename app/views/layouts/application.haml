@@ -3,7 +3,7 @@
     %title AngelHack
     = stylesheet_link_tag "application", :media => "all"
     = stylesheet_link_tag "application", :media => "all"
-    %link{ href: 'favicon.png', rel: 'shortcut icon', type: 'image/png' }/
+    %link{ href: 'images/favicon.png', rel: 'shortcut icon', type: 'image/png' }/
     
     <link href='http://fonts.googleapis.com/css?family=Lato:100,300,700,300italic' rel='stylesheet' type='text/css'>
     = javascript_include_tag "jquery-1.7.2.min.js"
@@ -31,5 +31,5 @@
           = link_to 'Mentors', 'stream'
         .grid_2#home
           = link_to 'Conway A.', '#'    
-
+          .button.grey.rightf Logout
     = yield
