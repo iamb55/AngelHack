@@ -66,8 +66,11 @@ function archiveSavedHandler(event) {
 	data: {
 	    csrf: $('meta[name="csrf-token"]').attr('content'),
 	    value: event.archives[0].archiveId,
-	    format: 'video',
+	    data_type: 'video',
 	    questionID: questionID
+        },
+	success: function() {
+	    $('.close-reveal-modal').trigger('click');
 	}
     });
 }

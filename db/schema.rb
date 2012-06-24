@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120624040101) do
+ActiveRecord::Schema.define(:version => 20120624063814) do
 
   create_table "conversations", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(:version => 20120624040101) do
     t.datetime "updated_at",                          :null => false
     t.integer  "conversation_id"
     t.string   "owner_type"
-    t.string   "format",          :default => "text"
+    t.string   "data_type",       :default => "text"
   end
 
   create_table "tags", :force => true do |t|
