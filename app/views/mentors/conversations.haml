@@ -5,38 +5,19 @@
   .four.columns
     .users
       %ul
-        %li
-          .user{data: { id: '1234'}}
-            %img{src: "http://placekitten.com/50/50"}
-            .information
-              %h4 Jesse Pollak
-            .clear
-        %li
-          .user{data: { id: '1234'}}
-            %img{src: "http://placekitten.com/50/50"}
-            .information
-              %h4 Jesse Pollak
-            .clear
-        %li
-          .user{data: { id: '1234'}}
-            %img{src: "http://placekitten.com/50/50"}
-            .information
-              %h4 Jesse Pollak
-            .clear
-        %li
-          .user{data: { id: '1234'}}
-            %img{src: "http://placekitten.com/50/50"}
-            .information
-              %h4 Jesse Pollak
-            .clear
-        %li
-          .user{data: { id: '1234'}}
-            %img{src: "http://placekitten.com/50/50"}
-            .information
-              %h4 Jesse Pollak
-            .clear
-                      
+        -@conversations.each do |user| 
+          %li
+            .user{data: { id: "#{user.id}"}}
+              %img{src: "#{user.picture_url}"}
+              .information
+                %h4= user.first_name
+              .clear    
           
   .eight.columns
     .messages
       %ul
+        -@messages.each do |message| 
+          %li
+            .message{class: "#{message.owner_type}"}
+              %p=message.value
+              %span=message.created_at
