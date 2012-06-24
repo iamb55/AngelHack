@@ -8,7 +8,7 @@ class Mentee < ActiveRecord::Base
                   "https://api.singly.com/services/facebook/self",
                    { :query => { :access_token => access } }
                    )
-    @fb_profile = @unparsed.parsed_response['data']
+    @fb_profile = @unparsed.parsed_response[0]['data']
     
     if mentee = find_by_u_id(@fb_profile['id'])
       mentee
