@@ -14,7 +14,7 @@
             -if @conversations
               -@conversations.each do |conversation| 
                 %li
-                
+              
                   .user{data: { id: "#{conversation[:id]}"}}
                     %img.imagerounded{src: "#{conversation[:user].picture_url}"}
                     .information
@@ -26,7 +26,7 @@
               %li
                 .user
                   %h4 You don't have any conversation right now!
-                
+              
       .rightbar
         -if @conversations
           .messages#scroll{ data: { id: "#{@conversations[0][:id]}"} }
@@ -54,43 +54,35 @@
                         4:45 PM
                     .videoPlayer{id: "#{message.value}", data: { id: "#{message.value}" } }
                       %div{id: "p#{message.value}"}
-                  
+                
           .replybar
             %p
               %textarea= ""
             .rightf
- 
-<<<<<<< HEAD
- 
- 
- 
-            .button.blue.reply.rightf.text
-              %span Reply
-              .ask3 &nbsp;
-            .button.grey.reply.rightf.respondButton.video
-              %span Answer
-              .video2 &nbsp;
-          .clear
-=======
-              .button.blue.reply.rightf.text Reply
-              .button.grey.reply.rightf.video Add Video
-            .clear
-          -else
-            .messages
-              %ul
-                %li
-                  %h3 You don't have any conversations right now!
->>>>>>> movements working
-    .clear   
-    
+              .button.blue.reply.rightf.text
+                %span Reply
+                .ask3 &nbsp;
+              .button.grey.reply.rightf.respondButton.video
+                %span Answer
+                .video2 &nbsp;
+            .clear   
+        -else
+          .messages
+            %ul
+              %li
+                %h3 You don't have any conversations right now!
+   
+
 #responseModal.reveal-modal
   %h1= 'Submit a Response'
   #recorderContainer
-  <a class="close-reveal-modal">&#215;</a>     
-
-    
+  <a class="close-reveal-modal">&#215;</a>  
+  
 .footer
   .container_12
     %p.leftf 
       Made by <a href="https://twitter.com/#!/brennenbyrne" title="brenne byrne">five</a> <a href="https://twitter.com/#!/grungerabbit" title="cheryl wu">nerds</a> <a href="https://twitter.com/#!/conwayanderson" title="conway anderson">at</a> <a href="https://twitter.com/#!/jessepollak" title="jesse pollak">Angelhack</a> <a href="https://twitter.com/#!/thetabyte" title="jordan goldstein">NYC</a>
-    %p.rightf About | Navigation | Navigation
+    %p.rightf About | Navigation | Navigation   
+
+    
+
