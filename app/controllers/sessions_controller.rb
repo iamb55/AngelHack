@@ -6,25 +6,30 @@ class SessionsController < ApplicationController
   
   def start_session
     session[:type] = params[:type]
-    redirect_to '/auth/singly?service=#{service}'
+    redirect_to "/auth/singly?service=facebook"
   end
   
   def create
-    auth = request.env['omniauth.auth']
+    session[:access_token] = request.env['omniauth.auth'].credentials.token
     if session[:type] == 'Mentor'
-      current_user = Mentor.find_or_create_from_singly(auth)
-      redirect_to 'mentors#conversations'
+      current_user = Mentor.find_or_create_from_singly(session[:access_token])
+      session[:user_id] = current_user.id
+      redirect_to '/mentors/' + current_user.id.to_s + '/conversations'
     elsif session[:type] == 'Mentee'
-      current_user = Mentee.find_or_create_from_singly(auth)
-      redirect_to 'mentees#conversations'
+      current_user = Mentee.find_or_create_from_singly(session[:access_token])
+      session[:user_id] = current_user.id
+      redirect_to '/mentees/' + current_user.id.to_s + '/conversations'
     else
-      redirect_to root_url
+      redirect_to '/'
     end
   end
   
   def destroy
     session[:user_id] = nil
     session[:type] = nil
-    redirect_to root_url
+    session[:access_token] = nil
+    current_user = nil
+    redirect_to '/'
   end
 end
+

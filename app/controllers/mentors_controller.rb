@@ -84,14 +84,16 @@ class MentorsController < ApplicationController
   
   def conversations
     cs = current_user.conversations
-    @conversations = cs.collect do |conversation|
-      if current_user.mentor?
-        { user: conversation.mentee, id: conversation.id }
-      else
-        { user: conversation.mentor, id: conversation.id }
+    unless cs.empty?
+      @conversations = cs.collect do |conversation|
+        if current_user.mentor?
+          { user: conversation.mentee, id: conversation.id }
+        else
+          { user: conversation.mentor, id: conversation.id }
+        end
       end
+      @messages = cs.first.messages
     end
-    @messages = cs.first.messages
   end
 
   def stream

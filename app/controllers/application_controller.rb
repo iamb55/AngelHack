@@ -15,9 +15,9 @@ class ApplicationController < ActionController::Base
       return @current_user unless @current_user.nil?
       if session[:user_id]
         if session[:type] == 'Mentor'
-          Mentor.find(session[:user_id])
+         @current_user = Mentor.find(session[:user_id])
         else
-          Mentee.find(session[:user_id])
+          @current_user = Mentee.find(session[:user_id])
         end
       end
     end
