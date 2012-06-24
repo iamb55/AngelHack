@@ -50,6 +50,7 @@ $fontXS: .55em;
 $fontstack: "Lato", "Helvetica", arial, sans-serif;
 
 $bsd: 10px 0px 10px $mdgrey;
+$inset: inset -5px -5px 5px 5px #888;
 
 @mixin no-sides {
 	border-left: none;
@@ -63,12 +64,26 @@ $bsd: 10px 0px 10px $mdgrey;
 	-webkit-box-shadow: $bsd;
 	box-shadow: $bsd;
 }
+@mixin border5 {
+       -moz-border-radius: 5px;
+       -webkit-border-radius: 5px;
+       border-radius: 5px;
+}
 @mixin border10 {
 	-moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
 	border-radius: 10px;
 }
-
-
+@mixin border20 {
+       -moz-border-radius: 20px;
+       -webkit-border-radius: 20px;
+       border-radius: 20px;
+}
+@mixin picpretty {
+	box-shadow: $inset;
+	-moz-box-shadow: $inset;
+	-webkit-box-shadow: $inset;
+}
 
 .clear-left {
   clear: left;
@@ -89,6 +104,12 @@ $bsd: 10px 0px 10px $mdgrey;
 .lefta {
 	text-align: left;
 }
+.rightf {
+	float: right;
+}
+.leftf {
+	float: left;
+}
 #wrap {
 	padding: 10% 0;
 	margin: 0px auto;
@@ -106,6 +127,7 @@ body {
 	background: #eee $bg !important;
 	text-align: center;
 	font: $fontR $fontstack !important;
+	overflow-x: hidden;
 }
 a {
 	text-decoration: none;
@@ -135,11 +157,16 @@ li {
 #main {
 	background: $white;
 	padding: 20px 8px;
-	margin: 0px auto 10px;
+	margin: 20px auto;
 	text-align: left;
+	width: 960px;
 }
 
 
+.imagerounded {
+	@include border5;
+	@include picpretty;
+}
 
 
 /*END OF GLOBAL*/
