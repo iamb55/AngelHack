@@ -50,7 +50,7 @@ $fontXS: .55em;
 $fontstack: "Lato", "Helvetica", arial, sans-serif;
 
 $bsd: 10px 0px 10px $mdgrey;
-$inset: inset -5px -5px 5px 5px #888;
+$inset: inset 0 0 10px #000000;
 
 @mixin no-sides {
 	border-left: none;
@@ -79,11 +79,13 @@ $inset: inset -5px -5px 5px 5px #888;
        -webkit-border-radius: 20px;
        border-radius: 20px;
 }
+/*
 @mixin picpretty {
 	box-shadow: $inset;
 	-moz-box-shadow: $inset;
 	-webkit-box-shadow: $inset;
-}
+}*/
+
 
 .clear-left {
   clear: left;
@@ -165,7 +167,7 @@ li {
 
 .imagerounded {
 	@include border5;
-	@include picpretty;
+/*	@include picpretty;*/
 }
 
 

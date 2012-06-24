@@ -55,14 +55,20 @@ $bsd: 10px 0px 10px $mdgrey;
 }
 
 
+.button {
+	background-color: $bluel !important;
+}
+
 
 
 .users {  
   li {
 	background: $white;
+	margin: 0 !important;
 	border-bottom: $borders $mdgrey;
     img {
       float: left;
+		margin: 0px 10px 10px 0;
     }
     h3 {
       float: right;
@@ -89,7 +95,7 @@ $bsd: 10px 0px 10px $mdgrey;
 
 	li {
 		border-bottom: $borders $mdgrey;
-		width: 560px !important;
+		width: 620px !important;
 		padding: 20px 0;
 	}
 	p {
