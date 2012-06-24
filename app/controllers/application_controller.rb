@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
   private
    
     def current_user
+      return Mentor.first
       return @current_user unless @current_user.nil?
       if session[:user_id]
         if session[:type] == 'Mentor'
