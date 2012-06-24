@@ -19,7 +19,7 @@ $(document).ready(function() {
 
 var respond = function() {
     $('responseModal').reveal();
-    questionID = $(this).parent().data().id;
+    questionID = $(this).parent().data('id');
 }
 
 function createRecorder() {
@@ -59,15 +59,16 @@ function recStartedHandler(event) {
 }
 
 function archiveSavedHandler(event) {
-    $ajax(function() {
+    $.ajax({
 	url: "/messages/new",
         method: "POST",
 	data: {
-	    csrf: $('meta[name="csrf-token"]').attr('content');
-            value: event.archives[0].archiveId;
-	    format: 'video';
-	    questionID: questionID;
+	    csrf: $('meta[name="csrf-token"]').attr('content'),
+	    value: event.archives[0].archiveId,
+	    format: 'video',
+	    questionID: questionID
 	}
+    });
 }
 
 function archiveLoadedHandler(event) {
