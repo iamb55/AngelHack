@@ -80,7 +80,18 @@ class MentorsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
   
   def conversations
+    cs = current_user.conversations
+    @conversations = cs.collect do |conversation|
+      if current_user.mentor?
+        conversation.mentee
+      else
+        conversation.mentor
+      end
+    end
+    @messages = cs.first.messages
   end
+  
 end
