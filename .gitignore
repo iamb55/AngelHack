@@ -16,6 +16,6 @@
 
 # Ignore vim temporary files
 *.swp
-
+*~
 *.esproj/
 .DS_Store
