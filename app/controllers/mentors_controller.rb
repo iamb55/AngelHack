@@ -93,5 +93,9 @@ class MentorsController < ApplicationController
     end
     @messages = cs.first.messages
   end
+
+  def stream
+    @questions = Conversation.unanswered    
+  end
   
 end

@@ -1,0 +1,16 @@
+=content_for :head do
+  =javascript_include_tag "mentor_stream"
+
+%ul.mentorStream
+  -@questions.each do |question|
+    %li.mentorItem{ data: { id: question.id } }
+      .name= question.mentee.first_name
+      .question= question.messages.first.value
+      .matchValue= 67%
+      .respondButton     
+
+
+#responseModal.reveal-modal
+  %h1= Submit A response
+  #recorderContainer= Recorder:
+  <a class="close-reveal-modal">&#215;</a>
