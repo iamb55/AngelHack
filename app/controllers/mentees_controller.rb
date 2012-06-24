@@ -1,4 +1,6 @@
 class MenteesController < ApplicationController
+  load_and_authorize_resource
+
   # GET /mentees
   # GET /mentees.json
   def index
