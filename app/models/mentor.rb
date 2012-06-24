@@ -10,7 +10,7 @@ class Mentor < ActiveRecord::Base
                      { :query => { :access_token => access } }
                      )
       
-      @fb_profile = unparsed.parsed_response['data']
+      @fb_profile = @unparsed.parsed_response['data']
       
       if mentor = find_by_u_id(@fb_profile['id'])
         mentor
