@@ -7,7 +7,9 @@
     .conversations
       .leftbar
         .users
-          .button.blue#newq New Question
+          .button.blue#newq 
+            %span New Question
+            .ask2 &nbsp;
           %ul.list
             -@conversations.each do |conversation| 
               %li
@@ -35,7 +37,7 @@
                       4:45 PM
                   .message{class: "#{message.owner_type}"}
                     %p=message.value
-                    %span=message.created_at
+                    <!--%span=message.created_at-->
                 -else
                   .container_12
                     .grid_1
@@ -52,13 +54,20 @@
             %textarea= ""
           .rightf
  
-            .button.blue.reply.rightf.text Reply
-            .button.grey.reply.rightf.video Add Video
+ 
+ 
+ 
+            .button.blue.reply.rightf.text
+              %span Reply
+              .ask3 &nbsp;
+            .button.grey.reply.rightf.respondButton.video
+              %span Answer
+              .video2 &nbsp;
           .clear
     .clear   
     
 #responseModal.reveal-modal
-  %h1= 'Submit A response'
+  %h1= 'Submit a Response'
   #recorderContainer
   <a class="close-reveal-modal">&#215;</a>     
 
@@ -66,5 +75,5 @@
 .footer
   .container_12
     %p.leftf 
-      made by <a href="https://twitter.com/#!/brennenbyrne" title="brenne byrne">five</a> <a href="https://twitter.com/#!/grungerabbit" title="cheryl wu">nerds</a> <a href="https://twitter.com/#!/conwayanderson" title="conway anderson">at</a> <a href="https://twitter.com/#!/jessepollak" title="jesse pollak">angelhack</a> <a href="https://twitter.com/#!/thetabyte" title="jordan goldstein">nyc</a>
+      Made by <a href="https://twitter.com/#!/brennenbyrne" title="brenne byrne">five</a> <a href="https://twitter.com/#!/grungerabbit" title="cheryl wu">nerds</a> <a href="https://twitter.com/#!/conwayanderson" title="conway anderson">at</a> <a href="https://twitter.com/#!/jessepollak" title="jesse pollak">Angelhack</a> <a href="https://twitter.com/#!/thetabyte" title="jordan goldstein">NYC</a>
     %p.rightf About | Navigation | Navigation

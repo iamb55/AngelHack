@@ -37,6 +37,8 @@ $greyL: #818383;
 
 $bg: url(concrete_wall_3.png);
 $mainbg: url(bg.png);
+$video: url(/assets/video.png) no-repeat left center;
+
 
 
 // font sizes   
@@ -250,193 +252,17 @@ li {
 
 
 
-
-/*END OF GLOBAL*/
-
-/* landing page */
-
-
-#logo {
-	padding: 0px 0px 15px;
-	position: relative;
-	z-index: 10;
+.respondButton {
+	padding-left: 35px;
 }
-#landingcollect {
-	background: $white;
-	padding: 25px 0 15px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-	border: 5px solid $transgrey;
-	width: 300px;
-	margin: 0px auto;
-}
-label {
-	font-weight: 300;
-	font-size: $fontRS;
-	&#purplelabel {
-		color: $purplen;
-	}
-	&#greenlabel {
-		color: $greenn;
-	}	
-}
-#samewidth {
-	border: 1px solid #ddd;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-	width: 248px;
-	padding: 10px 8px;
-	font: $fontRS $fontstack;
-	color: $ltgrey;
-	outline: none;
-	font-weight: 300;
-	&:focus {
-		border: 1px solid $bluen + #222;
-		color: $mdgrey;
-		
-	}
-}
-#signup {
-	background: $bluen !important;
-	padding: 14px 0px;
-	margin: 10px auto 0;
-	width: 266px;
-	display: block;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-	font-weight: bold;
-	font-size: $fontS;
-	color: $white;
-	text-transform: uppercase;
-
-}
-#signup:hover {
-	background: $bluen + #222 !important;
-}
-#nerds {
-	font: $fontS $fontstack;
-	color: $mdgrey;
-	a {
-		color: $dkgrey;
-		/*border-bottom: 1px dotted $mdgrey;*/
-		&:hover {
-			border-bottom: 1px dotted $dkgrey;
-		}
-	}
-}
-/* real mainpage
-lolol
-
- */
-
-#mainpage {
-	width: 100%;
-	margin-top: 30px;
-}
-#headline {
-	position: relative;
-	z-index: 5;
-	padding-bottom: 20px;
-	color: $greenn;
-}
-#capture {
-	background: $purplel;
-	position: relative;
-	-moz-border-radius: 40px;
-	border-radius: 40px;
-	min-height: 100px;
-	top: -70px;
-/*	height: 40px;*/
-	text-transform: uppercase;
-	h2 {
-		font-weight: 300 !important;
-
-	}
-/*
-	a h2 { 
-		padding: 28px 5px;
-		position: relative;
-		display: block;
-		width: 324px;
-		margin: 0;
-	}*/
-
-	a h2 {
-		display: block;
-		padding: 28px 5px;
-		min-width: 300px;
-		margin-top: 8px;
-	}
-
-
-	h3 {
-		background: $bluel + #333;
-		-moz-border-radius: 40px;
-		border-radius: 40px;
-		height: 20px;
-		width: 25px;
-		padding: 30px 25px 25px;
-		font-size: $fontMM;
-		margin: 18px auto 0;
-	
-	}
-
-/*
-	a h2#be {
-		background: $purplen;
-	}
-	a h2#find {
-		background: $greenn;
-
-	}*/
-
-	a:hover h2#be, a:hover h2#find {
-		color: $ltgrey;
-	}
-
-
-}
-
-#triangle {
-	display: none;
-	margin: -250px -228px 0;
+.video2 {
+	background: $video !important;
+	height: 30px;
 	position: absolute;
-	width: 0; 
-	height: 0; 
-	border-left: 400px solid transparent;
-	border-right: 400px solid transparent;
-	
-	&.tripurple {
-		border-bottom: 400px solid $transpurple;
-	}
-	&.triturq {
-		border-bottom: 400px solid $transturq;
-	}
+	width: 30px;
+	margin-top: -22px;
+	margin-left: -15px;
 }
 
 
-#secondary {
-	margin-top: 80px;
-	background: $mdgrey;
-	min-height: 500px;
-	
-	h1 {
-		font-weight: 300;
-		color: $purplen;
-	}
-	p {
-		font-size: $fontML;
-		color: $dkgrey;
-	}
 
-}
-
-.explain {
-	p {
-		text-align: left;
-	}
-}
-#bigfooter {
-	padding: 50px;
-	background: $turquoisel;
-}

@@ -6,9 +6,18 @@
 #main
   .container_12
     .conversations
-      .leftbar
-        tets
-
+      .leftbar#checks
+        %h6 Personal Questions
+        <div class="checklist"><label for="checkbox1"><input type="checkbox" id="checkbox1"> Self Confidence</label></div>
+        <div class="checklist"><label for="checkbox1"><input type="checkbox" id="checkbox2"> LGBT</label></div>
+        <div class="checklist"><label for="checkbox1"><input type="checkbox" id="checkbox3"> Bullying</label></div>
+        <div class="checklist"><label for="checkbox1"><input type="checkbox" id="checkbox4"> Introversion</label></div>
+        %hr
+        %h6 Career &amp; Education Questions
+        <div class="checklist"><label for="checkbox1"><input type="checkbox" id="checkbox1"> Higher Education</label></div>
+        <div class="checklist"><label for="checkbox1"><input type="checkbox" id="checkbox2"> Applying for a Job</label></div>
+        <div class="checklist"><label for="checkbox1"><input type="checkbox" id="checkbox3"> Study Habits</label></div>
+        <div class="checklist"><label for="checkbox1"><input type="checkbox" id="checkbox4"> Scholarships and Loans</label></div>
       .rightbar
         %ul.mentorStream
           %h3 425 Unanswered Questions
@@ -26,11 +35,13 @@
                       \67%
                     
                     %p.match Match
-                  .button.grey.reply.rightf.respondButton Respond
+                  .button.grey.reply.rightf.respondButton
+                    %span Answer
+                    .video2 &nbsp;
         
         
 #responseModal.reveal-modal
-  %h1 Submit A response
+  %h1 Submit a Response
   #recorderContainer
     %a.close-reveal-modal &#215
 
@@ -40,5 +51,5 @@
 .footer
   .container_12
     %p.leftf 
-      made by <a href="https://twitter.com/#!/brennenbyrne" title="brenne byrne">five</a> <a href="https://twitter.com/#!/grungerabbit" title="cheryl wu">nerds</a> <a href="https://twitter.com/#!/conwayanderson" title="conway anderson">at</a> <a href="https://twitter.com/#!/jessepollak" title="jesse pollak">angelhack</a> <a href="https://twitter.com/#!/thetabyte" title="jordan goldstein">nyc</a>
+      Made by <a href="https://twitter.com/#!/brennenbyrne" title="brenne byrne">five</a> <a href="https://twitter.com/#!/grungerabbit" title="cheryl wu">nerds</a> <a href="https://twitter.com/#!/conwayanderson" title="conway anderson">at</a> <a href="https://twitter.com/#!/jessepollak" title="jesse pollak">Angelhack</a> <a href="https://twitter.com/#!/thetabyte" title="jordan goldstein">NYC</a>
     %p.rightf About | Navigation | Navigation

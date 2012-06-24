@@ -73,3 +73,36 @@ margin: 20px 0px 0px 0px;
     /*border-bottom: 1px dotted $mdgrey;*/ }
     #nerds a:hover {
       border-bottom: 1px dotted #222222; }
+	/* line 233, ../../app/assets/stylesheets/application.css.scss */
+	.footer {
+	  background: #f2f2f2;
+	  border-top: 1px solid #dddddd;
+	  text-align: left;
+	  padding: 30px 0;
+	  min-height: 100px;
+	}
+	/* line 234, ../../app/assets/stylesheets/application.css.scss */
+	.footer p {
+	  font-size: 1em;
+	  color: #222222;
+	}
+	/* line 243, ../../app/assets/stylesheets/application.css.scss */
+	.footer a {
+	  color: #222222;
+	  border-bottom: 1px solid #aaaaaa;
+	}
+	/* line 246, ../../app/assets/stylesheets/application.css.scss */
+	.footer a:hover {
+	  color: #aaaaaa;
+	}
+	
+	.container_12 {
+	  width: 940px;
+	margin: 0px auto;
+	}
+	.rightf {
+		float: right;
+	}
+	.leftf {
+		float: left;
+	}

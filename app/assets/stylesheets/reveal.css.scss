@@ -1,3 +1,65 @@
+// main colors
+$dkgrey: #222;
+$dmgrey: #858585;
+$mdgrey: #aaa;
+$llgrey: #eee;
+$ltgrey: #ddd;
+$transgrey: rgba(0, 0, 0, .15);
+$transgrey2: rgba(0, 0, 0, .25);
+$transgrey3: rgba(0, 0, 0, .45);
+$owhite: #f2f2f2;
+$white: #fff;
+$greenn: #4ea7b9;
+$purplen: #8b67a8;
+$bluen: #5592c6;
+
+$purplel: #a58db9;
+$turquoisel: #99cbeb;
+$transpurple: rgba(165, 141, 185, .5);
+$transturq: rgba(153, 203, 235, .5);
+$bluel: #6b93c8;
+$greyL: #818383;
+
+// font sizes   
+$fontXXL: 5em;
+$fontXL: 3em;
+$fontL: 2.5em;  
+$fontML: 2em; 
+$fontMM: 1.5em;
+$fontMS: 1.2em; 
+$fontR: 1em;
+$fontRS: .85em;  
+$fontS: .75em;  
+$fontXS: .55em;
+
+
+@mixin border5 {
+       -moz-border-radius: 5px;
+       -webkit-border-radius: 5px;
+       border-radius: 5px;
+}
+@mixin border10 {
+	-moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+	border-radius: 10px;
+}
+@mixin border15 {
+	-moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+	border-radius: 15px;
+}
+@mixin border20 {
+       -moz-border-radius: 20px;
+       -webkit-border-radius: 20px;
+       border-radius: 20px;
+}
+
+$bsd2: 0px 2px 6px $transgrey3;
+@mixin defaultbox2 {
+	-moz-box-shadow: $bsd2;
+	-webkit-box-shadow: $bsd2;
+	box-shadow: $bsd2;
+}
 /*	--------------------------------------------------
 	Reveal Modals
 	-------------------------------------------------- */
@@ -6,8 +68,8 @@
 		position: fixed; 
 		height: 100%;
 		width: 100%;
-		background: #000;
-		background: rgba(0,0,0,.8);
+		background: $ltgrey;
+		background: $transgrey3;
 		z-index: 100;
 		display: none;
 		top: 0;
@@ -20,16 +82,16 @@
 		left: 50%;
 		margin-left: -300px;
 		width: 520px;
-		background: #eee url(/assets/modal-gloss.png) no-repeat -200px -80px;
+		background: $llgrey;
 		position: absolute;
 		z-index: 101;
 		padding: 30px 40px 34px;
-		-moz-border-radius: 5px;
-		-webkit-border-radius: 5px;
-		border-radius: 5px;
-		-moz-box-shadow: 0 0 10px rgba(0,0,0,.4);
-		-webkit-box-shadow: 0 0 10px rgba(0,0,0,.4);
-		-box-shadow: 0 0 10px rgba(0,0,0,.4);
+		@include border10;
+		@include defaultbox2;
+			h1 {
+				font-weight: 300;
+				font-size: $fontL;
+			}
 		}
 		
 	.reveal-modal.small 		{ width: 200px; margin-left: -140px;}
@@ -49,7 +111,6 @@
 		cursor: pointer;
 		} 
 	/*
-		
 	NOTES
 	
 	Close button entity is &#215;

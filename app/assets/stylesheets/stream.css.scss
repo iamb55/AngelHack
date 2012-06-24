@@ -20,8 +20,7 @@ $transturq: rgba(153, 203, 235, .5);
 $bluel: #6b93c8;
 $greyl: #818383;
 
-$bg: url(/assets/bright_squares.png);
-
+$video: url(/assets/video.png) no-repeat left center;
 
 
 // font sizes   
@@ -108,5 +107,36 @@ $bsd: 10px 0px 10px $mdgrey;
 		color: $mdgrey;
 		font-weight: bold;
 		text-transform: uppercase;
+	}
+	.respondButton {
+		padding-left: 35px;
+	}
+	.video2 {
+		background: $video !important;
+		height: 30px;
+		position: absolute;
+		width: 30px;
+		margin-top: -22px;
+		margin-left: -15px;
+	}
+}
+
+#checks {
+	padding: 15px 20px;
+	width: 260px;
+	h6 {
+		font-weight: bold;
+		padding: 0 0 15px 0;
+	}
+	label {
+		font-size: $fontMM;
+	}
+	.checklist {
+		display: block;
+		padding: 3px 10px;
+	}
+	input {
+		padding: 5px;
+
 	}
 }
