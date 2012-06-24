@@ -24,6 +24,7 @@ AngelHack::Application.routes.draw do
   match '/sign_out'              => 'sessions#destroy'
   match '/sign_in'              => 'sessions#new'
   match '/start_session'        => 'sessions#start_session'
+  match '/auth/failure'         => 'sessions#failure'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

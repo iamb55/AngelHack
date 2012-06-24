@@ -33,5 +33,9 @@ class SessionsController < ApplicationController
     current_user = nil
     redirect_to '/'
   end
+  
+  def failure
+    render text: "<p>We're very sorry, but your authentication failed! Please <a href='/sign_in'>visit the login page</a> and try again</p>"
+  end
 end
 
