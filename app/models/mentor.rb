@@ -20,7 +20,7 @@ class Mentor < ActiveRecord::Base
           u_id: @fb_profile['id']
       end
     rescue
-      redirect_to '/auth/failure'
+      false
     end
   end
   

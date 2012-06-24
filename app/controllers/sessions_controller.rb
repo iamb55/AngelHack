@@ -15,16 +15,25 @@ class SessionsController < ApplicationController
     session[:access_token] = request.env['omniauth.auth'].credentials.token
     if session[:type] == 'Mentor'
       current_user = Mentor.find_or_create_from_singly(session[:access_token])
-      session[:user_id] = current_user.id
-      redirect_to '/mentors/' + current_user.id.to_s + '/conversations'
+      if current_user
+        session[:user_id] = current_user.id
+        redirect_to '/mentors/' + current_user.id.to_s + '/conversations'
+      else
+        redirect_to 'auth/failure'
+      end
     elsif session[:type] == 'Mentee'
       current_user = Mentee.find_or_create_from_singly(session[:access_token])
-      session[:user_id] = current_user.id
-      redirect_to '/mentees/' + current_user.id.to_s + '/conversations'
+      if current_user
+        session[:user_id] = current_user.id
+        redirect_to '/mentees/' + current_user.id.to_s + '/conversations'
+      else
+        redirect_to 'auth/failure'
+      end
     else
       redirect_to '/'
     end
   end
+
   
   def destroy
     session[:user_id] = nil
