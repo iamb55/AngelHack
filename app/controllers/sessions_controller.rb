@@ -2,8 +2,8 @@ class SessionsController < ApplicationController
   layout false
   
   def new
-    redirect_to 'mentors#conversations' if session[:type] == 'Mentor' && session[:user_id]
-    redirect_to 'mentees#conversations' if session[:type] == 'Mentee' && session[:user_id] 
+    redirect_to '/mentors/' + session[:user_id] + '/conversations' if session[:type] == 'Mentor' && session[:user_id]
+    redirect_to '/mentees/' + session[:user_id] + '/conversations' if session[:type] == 'Mentee' && session[:user_id] 
   end
   
   def start_session
