@@ -91,6 +91,7 @@ class MenteesController < ApplicationController
           { user: conversation.mentor, id: conversation.id } if conversation.messages.count > 1
         end
       end.compact
+      p @conversations
       @messages = cs.first.messages
     end
   end

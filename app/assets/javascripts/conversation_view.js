@@ -46,7 +46,7 @@ $(document).ready(function() {
       $('#newQuestion').reveal();
     });
     
-    $('#submitQ').on('click', function() {
+    $('.submitQ').on('click', function() {
       var content = $(this).siblings('textarea').val();
       $.post('/conversations',
         {
@@ -54,15 +54,15 @@ $(document).ready(function() {
           value: content
         }, 
         function() {
+          var newQuestion = $('#newQuestion').clone();
           $('#newQuestion textarea, #newQuestion .button').hide();
           $('#newQuestion h1').text("We'll connect you with a mentor as quickly as possible!");
           setTimeout(function() {
-            $('#newQuestion').fadeOut(1000, function() {
               $('.close-reveal-modal').trigger('click');
-            });
-          })
+            }, 500);
+          $('#newQuestion').replaceWith(newQuestion);
         }
-      )
+      );
     });
   }
 
