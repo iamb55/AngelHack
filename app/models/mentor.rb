@@ -6,7 +6,7 @@ class Mentor < ActiveRecord::Base
   def self.find_or_create_from_singly(access)
     begin
       @unparsed = HTTParty.get(
-                    "https://api.singly.com/profiles/facebook",
+                    "https://api.singly.com/services/facebook/self",
                      { :query => { :access_token => access } }
                      )
       
