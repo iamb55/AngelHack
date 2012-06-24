@@ -33,7 +33,7 @@
             = link_to 'Profile', mentor_path
         .grid_2
           -if current_user.user_type == 'mentee'
-            .submitQ Add A Question
+            %a.newq{href: "#"} Add A Question
           -else
             = link_to 'New Questions', 'stream'
         .grid_2

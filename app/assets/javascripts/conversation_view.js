@@ -41,35 +41,47 @@ $(document).ready(function() {
 
   processVideos();
   
-  if($('#newq').length != 0) {
-    $('#newq').on('click', function() {
+  if($('.newq').length != 0) {
+    $('.newq').on('click', function() {
       $('#newQuestion').reveal();
     });
     
     $('.submitQ').on('click', function() {
-      var content = $(this).siblings('textarea').val();
-      $.post('/conversations',
-        {
-          data_type: 'text',
-          value: content
-        }, 
-        function() {
-          $('#newQuestion textarea, #newQuestion .button').hide();
-          $('#newQuestion h1').text("We'll connect you with a mentor as quickly as possible!");
-          setTimeout(function() {
-              $('.close-reveal-modal').trigger('click');
-              $('#newQuestion textarea').val('');
-              $('#newQuestion textarea, #newQuestion .button').show();
-              $('#newQuestion h1').text("Ask a question to find a mentor!");
-            }, 500);
-        }
-      );
+      addQuestion();
+    });
+    
+    $('#newQuestion textarea').keypress(function(e) {
+      if (e.keyCode == 13 && !e.shiftKey) {
+        e.preventDefault();
+        addQuestion();
+      }
     });
   }
 
 
 });
 
+function addQuestion(t) {
+  var content = $('#newQuestion textarea').val();
+  $.post('/conversations',
+    {
+      data_type: 'text',
+      value: content
+    }, 
+    function() {
+      $('#newQuestion textarea, #newQuestion .button').hide();
+      $('#newQuestion h1').text("We'll connect you with a mentor as quickly as possible!");
+      setTimeout(function() {
+          $('.close-reveal-modal').trigger('click');
+          setTimeout(function() {
+            $('#newQuestion textarea').val('');
+            $('#newQuestion textarea, #newQuestion .button').show();
+            $('#newQuestion h1').text("Ask a question to find a mentor!");
+          }, 1000);
+        }, 1500);
+    }
+  );
+}
 
 
 function respond() {
@@ -137,13 +149,13 @@ function processVideos() {
 function formatDate(date) {
     var d = new Date(date);
     var hh = d.getHours();
-    var m = d.getMinutes();
+    var m = d.getMinutes() - 1;
     var s = d.getSeconds();
-    var dd = "AM";
+    var dd = "am";
     var h = hh;
     if (h >= 12) {
         h = hh-12;
-        dd = "PM";
+        dd = "pm";
     }
     if (h == 0) {
         h = 12;
