@@ -78,3 +78,14 @@ conversations.each do |conversation|
     m.save
   end
 end
+
+mentee = Mentee.create({first_name: "Bob", last_name: "Dale", email: "bobdale@test.com", picture_url: "http://placekitten.com/50/50", birthday: "10/22/50"})
+mentor = Mentor.create({first_name: "Jim", last_name: "Yelp", email: "jimyelp@test.com", picture_url: "http://placekitten.com/50/50", birthday: "10/17/50"})
+c = mentee.conversations.build
+c.mentor = mentor
+c.save
+
+m = c.messages.build
+m.owner_type = "mentee"
+m.value = "Can you answer my question?"
+m.save
