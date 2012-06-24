@@ -22,14 +22,28 @@
         .grid_2
           = link_to image_tag( 'mentor-h.png'), 'http://www.mentor.im'
         .grid_2
-          = link_to 'Messages', 'conversations'
+          -if current_user.user_type == 'mentee'
+            = link_to 'Messages', mentee_path + '/conversations'
+          -else
+            = link_to 'Messages', mentor_path + '/conversations'
         .grid_2
-          = link_to 'Profile', '#'
+          -if current_user.user_type == 'mentee'
+            = link_to 'Profile', mentee_path
+          -else
+            = link_to 'Profile', mentor_path
         .grid_2
-          = link_to 'Find a Mentor', '#'
+          -if current_user.user_type == 'mentee'
+            .submitQ Add A Question
+          -else
+            = link_to 'New Questions', 'stream'
         .grid_2
-          = link_to 'Mentors', 'stream'
-        .grid_2#home
-          = link_to 'Conway A.', '#'    
-          .button.grey.rightf Logout
+          -if current_user.user_type == 'mentee'
+            = link_to 'Mentors', mentee_path + '/conversations'
+          -else  
+            = link_to 'Mentees', mentor_path + '/conversations'
+        .grid_2
+          -if current_user
+            = link_to 'Sign Out', 'sign_out'
+          -else
+            = link_to 'Sign In', 'sign_in'
     = yield
