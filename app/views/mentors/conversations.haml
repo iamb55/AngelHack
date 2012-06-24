@@ -32,22 +32,23 @@
           .messages#scroll{ data: { id: "#{@conversations[0][:id]}"} }
             %ul
               -@messages.each do |message| 
+                -owner = message.conversation.send(message.owner_type) 
                 %li
                   -if message['data_type'] == 'text'
                     .container_12
                       .grid_1
-                        %img.imagerounded{src: "http://www.dummyimage.com/50x50/000000/fff"}
+                        %img.imagerounded{src: owner.picture_url}
                       .grid_5
-                        %h5 Conway Anderson
+                        %h5=owner.first_name
                       .grid_2#timestamp  
-                        4:45 PM
+                        =owner.created_at
                     .message{class: "#{message.owner_type}"}
                       %p=message.value
                       %span=message.created_at
                   -else
                     .container_12
                       .grid_1
-                        %img.imagerounded{src: "http://www.dummyimage.com/50x50/000000/fff"}
+                        %img.imagerounded{src: owner.picture_url}
                       .grid_5
                         %h5 Conway Anderson
                       .grid_2#timestamp  
@@ -63,7 +64,7 @@
                 %span Reply
                 .ask3 &nbsp;
               .button.grey.reply.rightf.respondButton.video
-                %span Answer
+                %span Add a Video
                 .video2 &nbsp;
             .clear   
         -else
@@ -71,7 +72,33 @@
             %ul
               %li
                 %h3 You don't have any conversations right now!
-   
+  
+                -if message['data_type'] == 'text'
+                  .container_12
+                    .grid_1
+                      %img.imagerounded{src: "http://www.dummyimage.com/50x50/000000/fff"}
+                    .grid_5
+                      %h5 Conway Anderson
+                    .grid_2#timestamp  
+                      4:45 PM
+                  .message{class: "#{message.owner_type}"}
+                    %p=message.value
+                    <!--%span=message.created_at-->
+                -else
+                  .container_12
+                    .grid_1
+                      %img.imagerounded{src: "http://www.dummyimage.com/50x50/000000/fff"}
+                    .grid_5
+                      %h5 Conway Anderson
+                    .grid_2#timestamp  
+                      4:45 PM
+                  .videoPlayer{id: "#{message.value}", data: { id: "#{message.value}" } }
+                    %div{id: "p#{message.value}"}
+                  
+       
+          .clear
+    .clear   
+    
 
 #responseModal.reveal-modal
   %h1= 'Submit a Response'
@@ -83,6 +110,3 @@
     %p.leftf 
       Made by <a href="https://twitter.com/#!/brennenbyrne" title="brenne byrne">five</a> <a href="https://twitter.com/#!/grungerabbit" title="cheryl wu">nerds</a> <a href="https://twitter.com/#!/conwayanderson" title="conway anderson">at</a> <a href="https://twitter.com/#!/jessepollak" title="jesse pollak">Angelhack</a> <a href="https://twitter.com/#!/thetabyte" title="jordan goldstein">NYC</a>
     %p.rightf About | Navigation | Navigation   
-
-    
-

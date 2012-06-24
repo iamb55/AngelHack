@@ -137,8 +137,8 @@ function formatDate(date) {
 function createMessage(message) {
   var li = $("<li></li>");
   var m = $("<div class='container_12 " + message.owner_type + "'></div>");
-  var img = "<div class='grid_1'><img src='http://www.dummyimage.com/50x50/000000/fff'/></div>";
-  var name = "<div class='grid_5'><h5>Conway Anderson</h5></div>";
+  var img = "<div class='grid_1'><img src=" + message.picture_url + "/></div>";
+  var name = "<div class='grid_5'><h5>" + message.name + "</h5></div>";
   var timestamp = "<div class='grid_2' id='timestamp'>" + formatDate(message.created_at) + "</div>";
   var content = "<div class='message " + message.owner_type + "'><p>" + message.value + "</p></div>";
   m.append(img);
@@ -153,8 +153,8 @@ function createMessage(message) {
 function createVideoMessage(message) {
   var li = $("<li></li>");
   var m = $("<div class='container_12 " + message.owner_type + "'></div>");
-  var img = "<div class='grid_1'><img src='http://www.dummyimage.com/50x50/000000/fff'/></div>";
-  var name = "<div class='grid_5'><h5>Conway Anderson</h5></div>";
+  var img = "<div class='grid_1'><img src=" + message.picture_url + "/></div>";
+  var name = "<div class='grid_5'><h5>" + message.name + "</h5></div>";
   var timestamp = "<div class='grid_2' id='timestamp'>" + formatDate(message.created_at) + "</div>";
   var videoPlayer = $("<div class='videoPlayer' id='" + message.value + "' data-id='" + message.value + "'></div>");
 	playerDiv = document.createElement('div');
