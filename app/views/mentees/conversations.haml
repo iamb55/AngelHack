@@ -1,0 +1,50 @@
+=content_for :head do
+  =javascript_include_tag 'conversation_view'
+  =javascript_include_tag 'ICanHaz.min.js'
+  =javascript_include_tag 'templates/message'
+  =javascript_include_tag 'conversation_view'
+  
+#main
+  .container_12
+    .conversations
+      .leftbar
+        .users
+          .button.blue#newq New Question
+          %ul.list
+            -@conversations.each do |conversation| 
+              %li
+                
+                .user{data: { id: "#{conversation[:id]}"}}
+                  %img.imagerounded{src: "#{conversation[:user].picture_url}"}
+                  .information
+                    %p.rightf test
+                    %h4= conversation[:user].first_name
+                    %p test
+                  .clear    
+                
+      .rightbar
+        .messages
+          %ul
+            -@messages.each do |message| 
+              %li
+                .container_12
+                  .grid_1
+                    %img.imagerounded{src: "http://www.dummyimage.com/50x50/000000/fff"}
+                  .grid_5
+                    %h5 Conway Anderson
+                  .grid_2#timestamp  
+                    4:45 PM
+                .message{class: "#{message.owner_type}"}
+                  %p=message.value
+                  %span=message.created_at
+                  
+        .replybar
+
+          %p
+            %textarea= ""
+          .rightf
+ 
+            .button.blue.reply.rightf Reply
+            .button.grey.reply.rightf Add Video
+          .clear
+    .clear        

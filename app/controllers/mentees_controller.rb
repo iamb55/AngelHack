@@ -82,5 +82,16 @@ class MenteesController < ApplicationController
   end
   
   def conversations
+    cs = current_user.conversations
+    unless cs.empty?
+      @conversations = cs.collect do |conversation|
+        if current_user.mentor?
+          { user: conversation.mentee, id: conversation.id }
+        else
+          { user: conversation.mentor, id: conversation.id }
+        end
+      end
+      @messages = cs.first.messages
+    end
   end
 end
