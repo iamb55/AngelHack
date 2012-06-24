@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   before_filter :current_user
 
   rescue_from CanCan::AccessDenied do |exception|
-    binding.pry
     redirect_to '/' # TODO Update to redirect to main dashboard
   end
 
