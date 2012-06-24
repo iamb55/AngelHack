@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
         session[:user_id] = current_user.id
         redirect_to '/mentors/' + current_user.id.to_s + '/conversations'
       else
-        redirect_to 'auth/failure'
+        redirect_to '/auth/failure'
       end
     elsif session[:type] == 'Mentee'
       current_user = Mentee.find_or_create_from_singly(session[:access_token])
@@ -27,7 +27,7 @@ class SessionsController < ApplicationController
         session[:user_id] = current_user.id
         redirect_to '/mentees/' + current_user.id.to_s + '/conversations'
       else
-        redirect_to 'auth/failure'
+        redirect_to '/auth/failure'
       end
     else
       redirect_to '/'
