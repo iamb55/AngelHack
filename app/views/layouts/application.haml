@@ -20,7 +20,10 @@
     #header
       .container_12
         .grid_2
-          = link_to image_tag( 'mentor-h.png'), 'http://www.mentor.im'
+          -if current_user.user_type == 'mentee'
+            = link_to image_tag( 'mentor-h.png'), mentee_path + '/conversations'
+          -else
+            = link_to image_tag( 'mentor-h.png'), mentor_path + '/conversations'
         .grid_2
           -if current_user.user_type == 'mentee'
             = link_to 'Messages', mentee_path + '/conversations'
