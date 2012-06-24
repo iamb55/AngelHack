@@ -12,13 +12,14 @@ var VIDEO_WIDTH = 320;
 
 
 $(document).ready(function() {
-    $('.respondButton').click(respond());
+    $('.respondButton').click(respond);
     recorderManager = TB.initRecorderManager(API_KEY);
     createRecorder();
 });
 
 var respond = function() {
-    $('responseModal').reveal();
+    $('#responseModal').reveal();
+    console.log('test');
     questionID = $(this).parent().data('id');
 }
 
@@ -60,7 +61,7 @@ function recStartedHandler(event) {
 
 function archiveSavedHandler(event) {
     $.ajax({
-	url: "/messages/new",
+	url: "/messages",
         method: "POST",
 	data: {
 	    csrf: $('meta[name="csrf-token"]').attr('content'),
