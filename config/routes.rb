@@ -4,6 +4,7 @@ AngelHack::Application.routes.draw do
   resources :mentors do
     member do
       get 'conversations'
+      get 'stream'
     end
   end
 
