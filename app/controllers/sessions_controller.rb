@@ -1,6 +1,8 @@
 class SessionsController < ApplicationController
   layout false
   
+  FACEBOOK_SCOPE='user_likes,user_photos,friends_about_me,friends_likes,email'
+  
   def new
     redirect_to '/mentors/' + session[:user_id].to_s + '/conversations' if session[:type] == 'Mentor' && session[:user_id]
     redirect_to '/mentees/' + session[:user_id].to_s + '/conversations' if session[:type] == 'Mentee' && session[:user_id] 
@@ -8,27 +10,20 @@ class SessionsController < ApplicationController
   
   def start_session
     session[:type] = params[:type]
-    redirect_to "/auth/singly?service=facebook&scope=user_about_me,email,user_birthday"
+    session[:access_token] = nil
+    redirect_to authenticator.url_for_oauth_code(:permissions => FACEBOOK_SCOPE)
   end
   
   def create
-    session[:access_token] = request.env['omniauth.auth'].credentials.token
+    session[:access_token] = authenticator.get_access_token(params[:code])
     if session[:type] == 'Mentor'
-      current_user = Mentor.find_or_create_from_singly(session[:access_token])
-      if current_user
-        session[:user_id] = current_user.id
-        redirect_to '/mentors/' + current_user.id.to_s + '/conversations'
-      else
-        redirect_to '/auth/failure'
-      end
+      current_user = Mentor.find_or_create_from_fb(session[:access_token])
+      session[:user_id] = current_user.id
+      redirect_to '/mentors/' + current_user.id.to_s + '/conversations'
     elsif session[:type] == 'Mentee'
-      current_user = Mentee.find_or_create_from_singly(session[:access_token])
-      if current_user
-        session[:user_id] = current_user.id
-        redirect_to '/mentees/' + current_user.id.to_s + '/conversations'
-      else
-        redirect_to '/auth/failure'
-      end
+      current_user = Mentee.find_or_create_from_fb(session[:access_token])
+      session[:user_id] = current_user.id
+      redirect_to '/mentees/' + current_user.id.to_s + '/conversations'
     else
       redirect_to '/'
     end
@@ -46,5 +41,10 @@ class SessionsController < ApplicationController
   def failure
     render text: "<p>We're very sorry, but your authentication failed! Please <a href='/sign_in'>visit the login page</a> and try again</p>"
   end
+  
+  protected
+   def authenticator
+     @authenticator ||= Koala::Facebook::OAuth.new(ENV["FACEBOOK_APP_ID"], ENV["FACEBOOK_SECRET"], 'http://testmentorim.herokuapp.com/auth/facebook/callback')
+   end
 end
 
