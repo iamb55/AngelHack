@@ -13,10 +13,12 @@ class SessionsController < ApplicationController
     auth = request.env['omniauth.auth']
     if session[:type] == 'Mentor'
       current_user = Mentor.find_or_create_from_singly(auth)
+      redirect_to 'mentors#conversations'
     elsif session[:type] == 'Mentee'
       current_user = Mentee.find_or_create_from_singly(auth)
+      redirect_to 'mentees#conversations'
     else
-      redirect_to root_Url
+      redirect_to root_url
     end
   end
   
