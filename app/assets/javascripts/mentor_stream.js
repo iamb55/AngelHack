@@ -19,7 +19,6 @@ $(document).ready(function() {
 
 var respond = function() {
     $('#responseModal').reveal();
-    console.log('test');
     questionID = $(this).parent().data('id');
 }
 
@@ -60,19 +59,23 @@ function recStartedHandler(event) {
 }
 
 function archiveSavedHandler(event) {
-    $.ajax({
-	url: "/messages",
-        method: "POST",
-	data: {
-	    csrf: $('meta[name="csrf-token"]').attr('content'),
-	    value: event.archives[0].archiveId,
-	    data_type: 'video',
-	    questionID: questionID
+    $.post('/messages',
+        {
+	        csrf: $('meta[name="csrf-token"]').attr('content'),
+	        value: event.archives[0].archiveId,
+     	    data_type: 'video',
+	        conversation_id: questionID
         },
-	success: function() {
-	    $('.close-reveal-modal').trigger('click');
-	}
-    });
+        function(data) {
+            console.log('success');
+	        $('.close-reveal-modal').trigger('click');
+            session.stopRecording(archive);
+    	},
+	    function(data) {
+            console.log('error');
+	        $('.close-reveal-modal').trigger('click');
+            session.stopRecording(archive);
+   	});
 }
 
 function archiveLoadedHandler(event) {
