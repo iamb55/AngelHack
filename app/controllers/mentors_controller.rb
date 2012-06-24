@@ -95,8 +95,6 @@ class MentorsController < ApplicationController
         end
       end
       @messages = cs.first.messages
-      puts "this"
-      puts @messages.first.owner_type
     end
   end
 
