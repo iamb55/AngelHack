@@ -17,7 +17,6 @@ $(document).ready(function() {
     }
   });
   
-  console.log(getParameterByName('conversation_id'));
   if(getParameterByName('conversation_id')) {
     var el = $("[data-id='" + getParameterByName('conversation_id') + "']");
     changeConversation(el[0]);

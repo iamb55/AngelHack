@@ -15,6 +15,17 @@
 		<link rel="stylesheet" href="stylesheets/ie.css">
 	<![endif]-->
 	<script>
+  	function getParameterByName(name)
+    {
+      name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+      var regexS = "[\\?&]" + name + "=([^&#]*)";
+      var regex = new RegExp(regexS);
+      var results = regex.exec(window.location.search);
+      if(results == null)
+        return "";
+      else
+        return decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
 	  $(document).ready(function() {
 
 	    $('#samewidth').on('click', function() {
@@ -31,7 +42,16 @@
     	    return;
     	  }
 	    });
+	    
+	    if(getParameterByName('type') == 'Mentor') {
+	      $("input[value='mentor']").attr('checked', 'checked');
+	    }
+	    if(getParameterByName('type') == 'Mentee') {
+	      $("input[value='mentee']").attr('checked', 'checked');
+	    }
 	  });
+	  
+
 	</script>
 
 </head>
@@ -44,8 +64,8 @@
 			<div id="landingcollect">
 
       
-				<label for="radio1" id="purplelabel"><input type="radio" name="selectmentor" value='mentor'>&nbsp; I'm a Mentor</label> &nbsp; &nbsp;
-				<label for="radio2" id="greenlabel"><input type="radio" name="selectmentor" value='mentee'>&nbsp; I Need a Mentor</label>
+				<label for="radio1" id="purplelabel"><input type="radio" name="selectmentor" value='mentor'>&nbsp; Mentor</label> &nbsp; &nbsp;
+				<label for="radio2" id="greenlabel"><input type="radio" name="selectmentor" value='mentee'>&nbsp; Mentee</label>
 									<br /><br />
 
 
