@@ -3,25 +3,20 @@ class Mentee < ActiveRecord::Base
 
   has_many :conversations
   
-  def self.find_or_create_from_singly(access)
-    begin
-      @fb_profile = HTTParty.get(
-                    "https://api.singly.com/profiles/facebook",
-                     { :query => { :access_token => access } }
-                     ).parsed_response['data']
-      if mentee = find_by_u_id(@fb_profile['id'])
-        mentee
-      else
-        Mentee.create first_name: @fb_profile['first_name'],
-          last_name: @fb_profile['last_name'],
-          birthday: @fb_profile['birthday'],
-          email: @fb_profile['email'],
-          picture_url: "https://graph.facebook.com/#{@fb_profile['id']}/picture?type=square",
-          u_id: @fb_profile['id']
-      end
-    rescue
-      redirect_to '/auth/failure'
-    end
+  def self.find_or_create_from_fb(access)
+    @graph  = Koala::Facebook::API.new(access)
+  	@fb_info = @graph.get_object('me', fields: "email,picture,id,name,location,hometown,likes,gender")
+  	if mentee = find_by_u_id(@fb_info['id'])
+  	  mentee
+	  else 	
+	    p @fb_info['name']
+    	Mentee.create u_id: @fb_info['id'],
+    	  picture_url: @fb_info['picture'],
+    	  email: @fb_info['email'],
+    	  first_name: @fb_info['name'].split(' ')[0],
+    	  last_name: @fb_info['name'].split(' ')[1],
+    	  birthday: @fb_info['birthday']
+  	end
   end
   
   def mentor?

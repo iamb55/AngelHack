@@ -1,4 +1,7 @@
 AngelHack::Application.configure do
+
+  ENV['FACEBOOK_APP_ID'] = '195519233854114'
+  ENV['FACEBOOK_SECRET'] = 'dbe88f55b3ea0616733205d457f1e723'
   # Settings specified here will take precedence over those in config/application.rb
 
   # In the development environment your application's code is reloaded on
