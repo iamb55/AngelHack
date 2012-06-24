@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 gem 'rails', '3.2.6'
 gem 'haml'
 gem 'cancan'
-gem 'omniauth-singly'
+gem "koala"
 gem 'httparty'
 gem 'pry'
 
