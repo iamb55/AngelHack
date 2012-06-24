@@ -138,11 +138,12 @@ function processVideos() {
     var id = player.data('id');
     recorderManager.displayPlayer(id, TOKEN, "p" + id);
   });
-  
-  setTimeout(function() {
-    var myDiv = document.getElementById('scroll');
-    myDiv.scrollTop = myDiv.scrollHeight + 200;
-  }, 500);
+  if ($('.message').length > 0) {
+    setTimeout(function() {
+      var myDiv = document.getElementById('scroll');
+      myDiv.scrollTop = myDiv.scrollHeight + 200;
+    }, 500);
+  }
 }
 
 function formatDate(date) {

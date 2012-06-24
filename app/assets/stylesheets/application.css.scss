@@ -118,6 +118,29 @@ $inset: inset 0 0 10px #000000;
 	text-shadow: 0px 1px 4px #000;
 }
 
+* {
+	margin: 0;
+}
+html, body {
+	height: 100%;
+}
+.wrapper {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -150px; /* the bottom margin is the negative value of the footer's height */
+}
+.footer, .push {
+	height: 150px; /* .push must be the same height as .footer */
+}
+
+/*
+
+Sticky Footer by Ryan Fait
+http://ryanfait.com/
+
+*/
+
 
 .clear-left {
   clear: left;
@@ -333,3 +356,5 @@ li {
 	padding: 40px;
 	width: 380px;
 }
+
+
