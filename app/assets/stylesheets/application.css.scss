@@ -17,6 +17,7 @@ $borders: 1px solid;
 // main colors
 $dkgrey: #222;
 $mdgrey: #aaa;
+$llgrey: #eee;
 $ltgrey: #ddd;
 $transgrey: rgba(0, 0, 0, .15);
 $white: #fff;
@@ -135,6 +136,7 @@ li {
 	padding: 0;
 	background: $white;
 	@include defaultbox;
+	border-bottom: 2px solid $ltgrey;
 	.grid_2 {
 		padding: 30px 0;
 	}
@@ -151,7 +153,7 @@ li {
 }
 #main {
 	background: $white;
-	padding: 20px 8px;
+	padding: 0px;
 	margin: 20px auto;
 	text-align: left;
 	width: 960px;
@@ -173,17 +175,26 @@ li {
 }
 
 .button {
-	padding: 15px 10px;
+	padding: 10px 10px;
 	color: white;
 	font: $fontMM "Lato", "Helvetica", arial, sans-serif;
 	text-transform: uppercase;
-	padding-left: 80px;
+
 	font-weight: bold;
 	text-decoration: none;
-	margin: 20px;
+	margin: 5px;
+
 }
 
-
+.leftbar {
+	width: 300px;
+	float: left;
+	background: #eee;
+}
+.rightbar {
+	width: 660px;
+	float: left;
+}
 
 
 /*END OF GLOBAL*/
