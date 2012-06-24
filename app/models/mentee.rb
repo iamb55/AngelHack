@@ -7,8 +7,12 @@ class Mentee < ActiveRecord::Base
     @fb_profile = HTTParty.get(
                   "https://api.singly.com/profiles/facebook",
                    { :query => { :access_token => access } }
-                   ).parsed_response['data']
-    p @fb_profile
+                   )
+    if @fb_profile
+      @fb_profile = @fb_profile.parsed_response['data']
+    else
+      redirect_to 'auth/failure'
+    end
     if mentee = find_by_u_id(@fb_profile['id'])
       mentee
     else
