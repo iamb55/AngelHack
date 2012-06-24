@@ -92,7 +92,7 @@ class MenteesController < ApplicationController
         else
           { message: conversation.messages.last, updated_at: conversation.updated_at, user: conversation.mentor, id: conversation.id } if conversation.messages.count > 1
         end
-      end
+      end.compact
       @messages = cs.first.messages
     end
   end
