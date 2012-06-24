@@ -12,14 +12,20 @@ var VIDEO_WIDTH = 320;
 
 
 $(document).ready(function() {
-    $('.respondButton').click(respond);
+    $.ajaxSetup({
+      beforeSend: function(xhr) {
+        xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+      }
+    });
+  
+    $('.respondButton').click(function() { respond(this) } );
     recorderManager = TB.initRecorderManager(API_KEY);
     createRecorder();
 });
 
-var respond = function() {
+var respond = function(t) {
     $('#responseModal').reveal();
-    questionID = $(this).parent().data('id');
+    questionID = $(t).eq(0).parents('.mentorItem').data('id');
 }
 
 function createRecorder() {
@@ -64,18 +70,14 @@ function archiveSavedHandler(event) {
 	        csrf: $('meta[name="csrf-token"]').attr('content'),
 	        value: event.archives[0].archiveId,
      	    data_type: 'video',
-	        conversation_id: questionID
+	        conversation_id: questionID,
+	        new_conversation: true
         },
         function(data) {
-            console.log('success');
 	        $('.close-reveal-modal').trigger('click');
-            session.stopRecording(archive);
-    	},
-	    function(data) {
-            console.log('error');
-	        $('.close-reveal-modal').trigger('click');
-            session.stopRecording(archive);
-   	});
+	        window.location = '/mentors/' + current_user + '/conversations?conversation_id=' + questionID;
+    	}
+  	);
 }
 
 function archiveLoadedHandler(event) {

@@ -42,17 +42,29 @@ class MessagesController < ApplicationController
   # POST /messages
   # POST /messages.json
   def create
-    conversation = Conversation.find(params[:conversation_id])
-    if (conversation.nil? || ( conversation.mentor_id != current_user.id && conversation.mentee_id != current_user.id))
-      render status: 401, nothing: true
+    if params[:new_conversation]
+      conversation = Conversation.find(params[:conversation_id])
+      conversation.mentor_id = current_user.id
+      conversation.save
+      @message = Message.new
+      @message.conversation_id = params[:conversation_id]
+      @message.value = params[:value]
+      @message.owner_type = session[:type]
+      @message.data_type = params[:data_type]
+
+    else
+      conversation = Conversation.find(params[:conversation_id])
+      if (conversation.nil? || ( conversation.mentor_id != current_user.id && conversation.mentee_id != current_user.id) )
+        render status: 401, nothing: true
+      end
+
+      @message = Message.new
+      @message.conversation_id = params[:conversation_id]
+      @message.value = params[:value]
+      @message.owner_type = session[:type]
+      @message.data_type = params[:data_type]
     end
     
-    @message = Message.new
-    @message.conversation_id = params[:conversation_id]
-    @message.value = params[:value]
-    @message.owner_type = session[:type]
-    @message.data_type = params[:data_type]
-
     if @message.save
       render status: 200, json: @message
     else

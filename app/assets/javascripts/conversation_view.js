@@ -11,6 +11,16 @@ var VIDEO_HEIGHT = 240;
 var VIDEO_WIDTH = 320;
 
 $(document).ready(function() {
+  $.ajaxSetup({
+    beforeSend: function(xhr) {
+      xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+    }
+  });
+  
+  if(getParameterByName('conversation_id')) {
+    var el = $("[data-id='" + getParameterByName('conversation_id') + "']");
+    changeConversation(el[0]);
+  }
   
   $('.user').on('click', function() { changeConversation(this) } );
   $('.text').on('click', respond);
@@ -27,19 +37,12 @@ $(document).ready(function() {
   recorderManager = TB.initRecorderManager(API_KEY);
   
   createRecorder();
+
+  processVideos();
   
-  videoPlayers = $('.videoPlayer');
+
   
-  videoPlayers.each(function(player) {
-    player = $(videoPlayers[player]);
-    var id = player.data('id');
-    recorderManager.displayPlayer(id, TOKEN, "p" + id);
-  });
-  
-  setTimeout(function() {
-    var myDiv = document.getElementById('scroll');
-    myDiv.scrollTop = myDiv.scrollHeight + 200;
-  }, 500)
+
 
 });
 
@@ -60,7 +63,6 @@ function respond() {
           var m = createMessage(data);
           $('.messages ul').append(m);
           m.fadeIn(1000, function() {
-            console.log('test');
             var myDiv = document.getElementById('scroll');
             myDiv.scrollTop = myDiv.scrollHeight + 200;
           });
@@ -75,7 +77,9 @@ function changeConversation(t) {
         var new_messages = []
         var messages = $('.messages ul');
         response.forEach(function(message) {
-          var li = createMessage(message);
+          var li;
+          if (message.data_type === 'text') li = createMessage(message);
+          else li = createVideoMessage(message);
           new_messages.push(li);
         });
         var height = $('.messages').height();
@@ -84,10 +88,27 @@ function changeConversation(t) {
           messages.append(message);
           message.fadeIn();
         });
+        processVideos();
         var myDiv = document.getElementById('scroll');
         myDiv.scrollTop = myDiv.scrollHeight;
         $('.messages').data('id', _this.data().id)
   }, 'json')
+}
+
+function processVideos() {
+  videoPlayers = $('.videoPlayer');
+
+  videoPlayers.each(function(player) {
+    player = $(videoPlayers[player]);
+    console.log(player);
+    var id = player.data('id');
+    recorderManager.displayPlayer(id, TOKEN, "p" + id);
+  });
+  
+  setTimeout(function() {
+    var myDiv = document.getElementById('scroll');
+    myDiv.scrollTop = myDiv.scrollHeight + 200;
+  }, 500);
 }
 
 function formatDate(date) {
@@ -135,7 +156,7 @@ function createVideoMessage(message) {
   var img = "<div class='grid_1'><img src='http://www.dummyimage.com/50x50/000000/fff'/></div>";
   var name = "<div class='grid_5'><h5>Conway Anderson</h5></div>";
   var timestamp = "<div class='grid_2' id='timestamp'>" + formatDate(message.created_at) + "</div>";
-  var videoPlayer = $("<div class='videoPlayer' id='" + message.value + "'></div>");
+  var videoPlayer = $("<div class='videoPlayer' id='" + message.value + "' data-id='" + message.value + "'></div>");
 	playerDiv = document.createElement('div');
 	playerDiv.setAttribute('id', "p" + message.value);
 	videoPlayer.append(playerDiv);
@@ -184,7 +205,6 @@ function recStartedHandler(event) {
 function archiveSavedHandler(event) {
     $.post('/messages',
         {
-	        csrf: $('meta[name="csrf-token"]').attr('content'),
 	        value: event.archives[0].archiveId,
      	    data_type: 'video',
 	        conversation_id: questionID
@@ -210,6 +230,17 @@ function archiveLoadedHandler(event) {
     archive.startPlayback();
 }
 
+function getParameterByName(name)
+{
+  name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+  var regexS = "[\\?&]" + name + "=([^&#]*)";
+  var regex = new RegExp(regexS);
+  var results = regex.exec(window.location.search);
+  if(results == null)
+    return "";
+  else
+    return decodeURIComponent(results[1].replace(/\+/g, " "));
+}
 
 
 

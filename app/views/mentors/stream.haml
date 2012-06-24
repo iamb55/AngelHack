@@ -20,7 +20,7 @@
         <div class="checklist"><label for="checkbox1"><input type="checkbox" id="checkbox4"> Scholarships and Loans</label></div>
       .rightbar
         %ul.mentorStream
-          %h3 425 Unanswered Questions
+          %h3= pluralize(@questions.count, "Unanswered Question")
           -@questions.each do |question|
             %li.mentorItem{ data: { id: question.id } }
               .container_12

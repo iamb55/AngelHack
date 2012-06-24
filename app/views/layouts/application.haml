@@ -11,6 +11,9 @@
     = yield :head
 
   %body
+    -if current_user
+      :javascript
+        var current_user = "#{current_user.id}"
   
     #header
       .container_12
