@@ -11,10 +11,11 @@
 
       .rightbar
         %ul.mentorStream
+          %h3 425 Unanswered Questions
           -@questions.each do |question|
             %li.mentorItem{ data: { id: question.id } }
               .container_12
-                %h3 425 Unanswered Questions
+                
                 .grid_1
                   %img.imagerounded{src: "http://www.dummyimage.com/50x50/000000/fff"}
                 .message

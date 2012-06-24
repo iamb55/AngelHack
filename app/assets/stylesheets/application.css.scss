@@ -20,6 +20,7 @@ $mdgrey: #aaa;
 $llgrey: #eee;
 $ltgrey: #ddd;
 $transgrey: rgba(0, 0, 0, .15);
+$transgrey2: rgba(0, 0, 0, .25);
 $white: #fff;
 $greenn: #4ea7b9;
 $purplen: #8b67a8;
@@ -49,8 +50,8 @@ $fontS: .75em;
 $fontXS: .55em;
 
 $fontstack: "Lato", "Helvetica", arial, sans-serif;
-
-$bsd: 10px 0px 10px $mdgrey;
+$bsd: 0px 2px 6px $transgrey;
+$bsd2: 0px 2px 6px $transgrey2;
 $inset: inset 0 0 10px #000000;
 
 @mixin no-sides {
@@ -64,6 +65,11 @@ $inset: inset 0 0 10px #000000;
 	-moz-box-shadow: $bsd;
 	-webkit-box-shadow: $bsd;
 	box-shadow: $bsd;
+}
+@mixin defaultbox2 {
+	-moz-box-shadow: $bsd2;
+	-webkit-box-shadow: $bsd2;
+	box-shadow: $bsd2;
 }
 @mixin border5 {
        -moz-border-radius: 5px;
@@ -166,6 +172,7 @@ li {
 	margin: 20px auto;
 	text-align: left;
 	width: 960px;
+	@include defaultbox2;
 }
 
 
@@ -175,7 +182,7 @@ li {
 .button {
 	padding: 15px 10px;
 	color: white;
-	font: $fontMM "Lato", "Helvetica", arial, sans-serif;
+	font: $fontRS "Lato", "Helvetica", arial, sans-serif;
 	text-transform: uppercase;
 	padding-left: 80px;
 	font-weight: bold;
@@ -198,10 +205,12 @@ li {
 	width: 300px;
 	float: left;
 	background: #eee;
+
 }
 .rightbar {
-	width: 660px;
+	width: 659px;
 	float: left;
+	border-left: $borders $ltgrey;
 }
 
 /*END OF GLOBAL*/

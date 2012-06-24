@@ -66,10 +66,12 @@ $bsd: 10px 0px 10px $mdgrey;
   cursor: pointer;
 	&#newq {
 		padding-left: 80px;
+		margin: 20px;
 	}
 	&.reply {
 		width: 100px !important;
 		text-align: center;
+		font-size: $fontMS;
 	}
 }
 
@@ -79,7 +81,7 @@ $bsd: 10px 0px 10px $mdgrey;
   li {
 
 	margin: 0 !important;
-	border-bottom: $borders $mdgrey;
+	border-bottom: $borders $ltgrey;
     img {
       float: left;
 		margin: 0px 10px 10px 0;
@@ -105,14 +107,14 @@ $bsd: 10px 0px 10px $mdgrey;
 .messages {
 	color: $dmgrey;
 	border: none;
-	padding: none;
+	padding: 0;
 	height: 400px;
 	overflow: scroll;
 	overflow-x: hidden;
 
 
 	li {
-		border-bottom: $borders $mdgrey;
+		border-bottom: $borders $ltgrey;
 		width: 580px !important;
 		padding: 20px 0;
 		margin: 0 0 0 30px;

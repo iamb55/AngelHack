@@ -1,19 +1,25 @@
 // main colors
 $dkgrey: #222;
+$dmgrey: #858585;
 $mdgrey: #aaa;
-$llgrey: #eee;
 $ltgrey: #ddd;
+$llgrey: #eee;
+$slgrey: #f2f2f2;
 $transgrey: rgba(0, 0, 0, .15);
 $white: #fff;
 $greenn: #4ea7b9;
 $purplen: #8b67a8;
 $bluen: #5592c6;
+$blued: #3c678c;
 
 $purplel: #a58db9;
 $turquoisel: #99cbeb;
 $transpurple: rgba(165, 141, 185, .5);
 $transturq: rgba(153, 203, 235, .5);
 $bluel: #6b93c8;
+
+$ltblue: #d5e7ff;
+$mdblue: #accbf3;
 $transblue: rgb(107, 147, 200);
 $greyL: #818383;
 
@@ -297,9 +303,9 @@ input.range::-webkit-slider-thumb {
 	&.blue {
 	-webkit-box-shadow: 
 		inset 0 1px 0 rgba(255, 255, 255, 0.6),
-		0 1px 0 $bluel,
-		0 0 0 1px $bluel,
-		0 1px 2px $bluel;
+		0 1px 0 $blued,
+		0 0 0 1px $blued,
+		0 1px 2px $blued;
 		background-image: 
 			-webkit-gradient(
 				linear,
@@ -320,10 +326,10 @@ input.range::-webkit-slider-thumb {
 					linear,
 					left top,
 					left bottom,
-					from(rgb(240, 240, 240)),
-					to(rgb(210, 210, 210))
+					from($white),
+					to($slgrey)
 				);
-			color: $mdgrey !important;
+			color: $dmgrey !important;
 		}
 	border-radius: 3px;
 
@@ -344,32 +350,38 @@ input.range::-webkit-slider-thumb {
 }
 
 
-ul.list {
-	-webkit-box-shadow: 
-		0 1px 0 rgba(0, 0, 0, 0.2),
-		0 0 0 1px $ltgrey,
-		0 1px 2px rgba(0, 0, 0, 0.25);
-	background: rgba(255, 255, 255, 0.8);
-	color: rgb(90, 90, 90);
-	border-radius: 3px;
-}
 
 ul.list li {
 	-webkit-box-shadow:
-		0 -1px 0 $mdgrey,
+		0 -1px 0 $llgrey,
 		inset 0 1px 0 rgba(255, 255, 255, 0.6);
 	background-image: 
 		-webkit-gradient(
 			linear,
 			left top,
 			left bottom,
-			from($ltgrey + $ltgrey),
-			to($ltgrey)
+			from($white),
+			to($slgrey)
 		);
 	line-height: 1;
 	padding: 10px;
 }
+ul.list li:active, ul.list li:hover {
+/*
+	background-image: 
+		-webkit-gradient(
+			linear,
+			left top,
+			left bottom,
+			from($ltblue),
+			to($mdblue)
 
+
+		);*/
+	background: $llgrey;
+}
+
+/*
 ul.list li:first-child {
 	border-radius: 3px 3px 0 0;
 	-webkit-box-shadow: none;
@@ -378,6 +390,7 @@ ul.list li:first-child {
 ul.list li:last-child {
 	border-radius: 0 0 3px 3px;
 }
+*/
 
 div.toolbar {
 	-webkit-box-shadow: 
