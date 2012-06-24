@@ -5,6 +5,7 @@ gem 'haml'
 gem 'cancan'
 gem 'omniauth-singly'
 gem 'httparty'
+gem 'pry'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
