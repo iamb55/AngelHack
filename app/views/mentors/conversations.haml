@@ -1,6 +1,14 @@
 =content_for :head do
   =javascript_include_tag 'conversation_view'
   =javascript_include_tag 'ICanHaz.min.js'
+
+:javascript
+  $(document).ready(function() {
+    $('.chatSelection').click(function() {
+      $('.active').removeClass('active');
+      $(this).addClass('active');
+    });
+  });
   
 #main
   .container_12
@@ -10,7 +18,7 @@
           %ul.list
             -if @conversations
               -@conversations.each do |conversation| 
-                %li
+                %li.chatSelection
               
                   .user{data: { id: "#{conversation[:id]}"}}
                     %img.imagerounded{src: "#{conversation[:user].picture_url}"}

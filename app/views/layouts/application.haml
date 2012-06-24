@@ -35,7 +35,7 @@
           -if current_user.user_type == 'mentee'
             %a.newq{href: "#"} Add A Question
           -else
-            = link_to 'New Questions', 'stream'
+            = link_to 'New Questions', mentor_path + '/stream'
         .grid_2
           -if current_user.user_type == 'mentee'
             = link_to 'Mentors', mentee_path + '/conversations'
@@ -43,7 +43,7 @@
             = link_to 'Mentees', mentor_path + '/conversations'
         .grid_2
           -if current_user
-            = link_to 'Sign Out', 'sign_out'
+            = link_to 'Sign Out', '/sign_out'
           -else
-            = link_to 'Sign In', 'sign_in'
+            = link_to 'Sign In', '/sign_in'
     = yield
