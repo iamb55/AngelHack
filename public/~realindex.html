@@ -1,0 +1,99 @@
+<html>
+<head>
+    <link href="/assets/application.css?body=1" media="all" rel="stylesheet" type="text/css" />
+    <link href="/assets/960.css?body=1" media="all" rel="stylesheet" type="text/css" />
+    <link href="/assets/foundation.css?body=1" media="all" rel="stylesheet" type="text/css" />
+    <link href="/assets/style.css?body=1" media="all" rel="stylesheet" type="text/css" />
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,700,300italic' rel='stylesheet' type='text/css'>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <script src='jquery-1.7.2.min.js'></script>
+    <title>Mentor.im</title>
+    
+    
+</head>
+    <body>
+
+
+      <div id='header' class="splash">
+        <div class='container_12'>
+          <div class='grid_2' id="splashlogo">
+            <a href="/"><img alt="Mentor-h" src="/assets/mentor-h.png" /></a>
+          </div>
+          <div class='grid_2'>
+ <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fmentor.im&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21&amp;appId=315165228524689" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:21px;" allowTransparency="true"></iframe>
+              </div>
+              <div class='grid_2'>
+              
+              </div>
+              <div class='grid_2'>
+        
+              </div>
+              <div class='grid_2'>
+               
+              </div>
+
+          <div class='grid_2' id='home'>
+            <p class="login"><a href="/sign_in">log in</a></p>
+            <div class='button grey rightf signup' style='cursor:pointer;'>Sign Up</div>
+          </div>
+        </div>
+      </div>
+
+<div id="main" class="bill">
+
+  <div id="primary">
+    <h2 id="headline">Bringing the best mentors<br /> to where they're needed most</h1>
+   
+   </div>
+  
+  <div class="container_12" id="secondary">
+      <div class="grid_6">
+        <h2>Lead the next generation</h2>
+        <p>We make it easy to get involved anytime you have time to spare. Our online text and video chat helps you foster personal relationships with young people that are looking for advice without requiring traditional in-person meetings.
+          
+          
+          </p>
+        
+        <div class="button green reply mentor">
+                              <span>Become a Mentor</span>
+                              
+                            </div>
+        </div>
+      <div class="grid_6">
+        <h2>Get awesome advice</h2>
+         <p>Send out questions to our community of mentors with our simple text form. You'll get video intros from multiple mentors with direct experience in the area you want help. Easily and safely connect with mentors whenever you need advice!</p>
+         
+         <div class="button purple reply mentee">
+                               <span>Find a Mentor</span>
+                               
+                             </div>
+        </div>
+      
+  </div>
+  
+</div>
+
+
+<div class="footer">
+      <div class="container_12">
+        <p class="leftf">
+          Made by <a href="https://twitter.com/#!/brennenbyrne" title="brenne byrne">five</a> <a href="https://twitter.com/#!/grungerabbit" title="cheryl wu">nerds</a> <a href="https://twitter.com/#!/conwayanderson" title="conway anderson">at</a> <a href="https://twitter.com/#!/jessepollak" title="jesse pollak">Angelhack</a> <a href="https://twitter.com/#!/thetabyte" title="jordan goldstein">NYC</a>
+        </p>
+        <p class="rightf">About | Navigation | Navigation</p>
+      </div>
+    </div>
+    
+    <script>
+      $('.signup').on('click', function() {
+        window.location = '/sign_in';
+      })
+      
+      $('.mentor').on('click', function() {
+        window.location = '/sign_in?type=Mentor'
+      });
+      
+      $('.mentee').on('click', function() {
+        window.location = '/sign_in?type=Mentee'
+      });
+    </script>
+</body>
