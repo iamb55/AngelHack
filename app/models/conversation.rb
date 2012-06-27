@@ -14,4 +14,14 @@ class Conversation < ActiveRecord::Base
       conv if conv.messages.count == 1 
     end.compact
   end
+  
+  def as_json(options = {})
+    {
+      messages: messages,
+      mentor: mentor,
+      mentee: mentee,
+      id: id,
+      updated_at: updated_at
+    }
+  end
 end

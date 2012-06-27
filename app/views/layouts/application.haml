@@ -4,8 +4,7 @@
     = stylesheet_link_tag "application", :media => "all"
     <link rel="shortcut icon" href="/favicon.ico" />
     <link href='http://fonts.googleapis.com/css?family=Lato:100,300,700,300italic' rel='stylesheet' type='text/css'>
-    = javascript_include_tag "jquery-1.7.2.min.js"
-    = javascript_include_tag "jquery.reveal.js"
+    = javascript_include_tag "application"
     <script src="http://staging.tokbox.com/v0.91/js/TB.min.js" type="text/javascript" charset="utf-8"></script>
     = csrf_meta_tags
     = yield :head
@@ -19,14 +18,14 @@
       .container_12
         .grid_2
           -if current_user.user_type == 'mentee'
-            = link_to image_tag( 'mentor-h.png'),  mentee_path + '/conversations'
+            = link_to image_tag( 'mentor-h.png'),  mentees_path + '/conversations'
           -else
-            = link_to image_tag( 'mentor-h.png'),  mentor_path + '/conversations'
+            = link_to image_tag( 'mentor-h.png'),  mentors_path + '/conversations'
         .grid_2
           -if current_user.user_type == 'mentee'
-            = link_to 'Messages',  mentee_path + '/conversations'
+            = link_to 'Messages',  mentees_path + '/conversations'
           -else
-            = link_to 'Messages',  mentor_path + '/conversations'
+            = link_to 'Messages',  mentors_path + '/conversations'
         .grid_2
           -if current_user.user_type == 'mentee'
             = link_to 'Profile', "#"
@@ -36,12 +35,12 @@
           -if current_user.user_type == 'mentee'
             %a.newq{href: "#"} Add A Question
           -else
-            = link_to 'New Questions', mentor_path + '/stream'
+            = link_to 'New Questions', mentors_path + '/stream'
         .grid_2
           -if current_user.user_type == 'mentee'
-            = link_to 'Mentors',  mentee_path + '/conversations'
+            = link_to 'Mentors',  mentees_path + '/conversations'
           -else  
-            = link_to 'Mentees', mentor_path + '/conversations'
+            = link_to 'Mentees', mentors_path + '/conversations'
         .grid_2
           -if current_user
             = link_to 'Sign Out', '/sign_out'

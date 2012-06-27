@@ -6,6 +6,8 @@ gem 'cancan'
 gem "koala"
 gem 'httparty'
 gem 'pry'
+gem "rails-backbone"
+gem 'haml-js'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

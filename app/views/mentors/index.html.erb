@@ -1,0 +1,17 @@
+<div id='main'>
+  <div class="container_12">
+    <div class="conversations">
+      <div class="leftbar">
+      </div>
+      <div class="rightbar">
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(function() {
+    window.router = new AngelHack.Routers.ConversationsRouter({conversations: <%= @conversations.to_json.html_safe -%>});
+    Backbone.history.start();
+  });
+</script>

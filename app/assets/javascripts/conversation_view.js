@@ -10,55 +10,55 @@ var TOKEN = 'moderator_token';
 var VIDEO_HEIGHT = 240;
 var VIDEO_WIDTH = 320;
 
-$(document).ready(function() {
-  $.ajaxSetup({
-    beforeSend: function(xhr) {
-      xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
-    }
-  });
-  
-  if(getParameterByName('conversation_id')) {
-    var el = $("[data-id='" + getParameterByName('conversation_id') + "']");
-    changeConversation(el[0]);
-  }
-  
-  $('.user').on('click', function() { changeConversation(this) } );
-  $('.text').on('click', respond);
-  
-  $('.replybar textarea').keypress(function(e) {
-    if (e.keyCode == 13 && !e.shiftKey) {
-      e.preventDefault();
-      respond();
-    }
-  });
-  
-  $('.video').click(respondVideo);
-  
-  recorderManager = TB.initRecorderManager(API_KEY);
-  
-  createRecorder();
-
-  processVideos();
-  
-  if($('.newq').length != 0) {
-    $('.newq').on('click', function() {
-      $('#newQuestion').reveal();
-    });
-    
-    $('.submitQ').on('click', function() {
-      addQuestion();
-    });
-    
-    $('#newQuestion textarea').keypress(function(e) {
-      if (e.keyCode == 13 && !e.shiftKey) {
-        e.preventDefault();
-        addQuestion();
-      }
-    });
-  }
-
-
-});
+// $(document).ready(function() {
+//   $.ajaxSetup({
+//     beforeSend: function(xhr) {
+//       xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+//     }
+//   });
+//   
+//   if(getParameterByName('conversation_id')) {
+//     var el = $("[data-id='" + getParameterByName('conversation_id') + "']");
+//     changeConversation(el[0]);
+//   }
+//   
+//   $('.user').on('click', function() { changeConversation(this) } );
+//   $('.text').on('click', respond);
+//   
+//   $('.replybar textarea').keypress(function(e) {
+//     if (e.keyCode == 13 && !e.shiftKey) {
+//       e.preventDefault();
+//       respond();
+//     }
+//   });
+//   
+//   $('.video').click(respondVideo);
+//   
+//   recorderManager = TB.initRecorderManager(API_KEY);
+//   
+//   createRecorder();
+// 
+//   processVideos();
+//   
+//   if($('.newq').length != 0) {
+//     $('.newq').on('click', function() {
+//       $('#newQuestion').reveal();
+//     });
+//     
+//     $('.submitQ').on('click', function() {
+//       addQuestion();
+//     });
+//     
+//     $('#newQuestion textarea').keypress(function(e) {
+//       if (e.keyCode == 13 && !e.shiftKey) {
+//         e.preventDefault();
+//         addQuestion();
+//       }
+//     });
+//   }
+// 
+// 
+// });
 
 function addQuestion(t) {
   var content = $('#newQuestion textarea').val();

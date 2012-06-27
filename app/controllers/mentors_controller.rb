@@ -4,11 +4,10 @@ class MentorsController < ApplicationController
   # GET /mentors
   # GET /mentors.json
   def index
-    @mentors = Mentor.all
-
+    @conversations = current_user.conversations
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @mentors }
+        format.html { render :index }
+        format.json { render json: @conversations }
     end
   end
 
