@@ -1,5 +1,7 @@
 =content_for :head do
-  =javascript_include_tag 'conversation_view'
+  = javascript_include_tag 'tokbox'
+  = javascript_include_tag 'conversation_view'
+  = javascript_include_tag "http://staging.tokbox.com/v0.91/js/TB.min.js"
 
 :javascript
   $(document).ready(function() {
@@ -85,3 +87,27 @@
   %h1= 'Submit a Response'
   #recorderContainer
   <a class="close-reveal-modal">&#215;</a>
+  
+%script.text-message-template{ type: "text/x-handlebars-template" }
+  %li
+    .container_12
+      .grid_1
+        %img.imagerounded{src: "{{picture_url}}" }
+      .grid_5
+        %h5 {{ name }}
+      .grid_2#timestamp  
+        {{ created_at }}
+    .message{class: "{{owner_type}}" }
+      %p {{value}}
+
+%script.video-message-template{ type: "text/x-handlebars-template" }
+  %li
+    .container_12
+      .grid_1
+        %img.imagerounded{src: "{{picture_url}}" }
+      .grid_5
+        %h5 {{ name }}
+      .grid_2#timestamp  
+        {{created_at}}
+    .videoPlayer{id: "{{value}}", data: { id: "{{value}}" } }
+      %div{id: "p{{value}}"}

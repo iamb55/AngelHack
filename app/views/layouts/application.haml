@@ -6,7 +6,8 @@
     <link href='http://fonts.googleapis.com/css?family=Lato:100,300,700,300italic' rel='stylesheet' type='text/css'>
     = javascript_include_tag "jquery-1.7.2.min.js"
     = javascript_include_tag "jquery.reveal.js"
-    <script src="http://staging.tokbox.com/v0.91/js/TB.min.js" type="text/javascript" charset="utf-8"></script>
+    = javascript_include_tag "loader.js"
+    = javascript_include_tag 'handlebars-1.0.0.beta.6.js'
     = csrf_meta_tags
     = yield :head
 
