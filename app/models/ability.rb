@@ -1,10 +1,7 @@
-require 'pry'
-
 class Ability
   include CanCan::Ability
 
   def initialize(user)
-    binding.pry
     if user.nil?
       return
     elsif user.user_type == 'mentor'
