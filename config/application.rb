@@ -9,6 +9,7 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
+require 'tlsmail'    
 
 module AngelHack
   class Application < Rails::Application
@@ -61,5 +62,23 @@ module AngelHack
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    config.assets.initialize_on_precompile = false
+
+    Net::SMTP.enable_tls(OpenSSL::SSL::VERIFY_NONE)
+
+    ActionMailer::Base.delivery_method = :smtp
+    ActionMailer::Base.perform_deliveries = true
+    ActionMailer::Base.raise_delivery_errors = true
+    ActionMailer::Base.smtp_settings = {
+        :enable_starttls_auto => true,  
+        :address            => 'smtp.gmail.com',
+        :port               => 587,
+        :tls                => true,
+        :domain             => 'mentor.im',
+        :authentication     => :plain,
+        :user_name          => 'info@mentor.im',
+        :password           => 'doesthatmakesensetome'
+  }
   end
 end

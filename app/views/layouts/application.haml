@@ -9,6 +9,7 @@
     = javascript_include_tag "jquery.reveal.js"
     = javascript_include_tag "loader.js"
     = javascript_include_tag 'handlebars-1.0.0.beta.6.js'
+    = javascript_include_tag "application.js"
     = csrf_meta_tags
     = yield :head
 
@@ -32,7 +33,10 @@
           %a{:href => "#"}
             %img{:src => "https://graph.facebook.com/100001984628565/picture?type=square"}>/
             Conway A.
-          %a.signout{:href => "#"} (sign out)
+          -if mentor_signed_in? 
+            =link_to 'Sign out', destroy_mentor_session_path, :method => :delete
+          -if mentee_signed_in? 
+            =link_to 'Sign out', destroy_mentee_session_path, :method => :delete
     = yield
     
     .push

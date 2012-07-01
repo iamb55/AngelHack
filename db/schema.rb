@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120701192526) do
+ActiveRecord::Schema.define(:version => 20120701214420) do
 
   create_table "conversations", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -28,29 +28,40 @@ ActiveRecord::Schema.define(:version => 20120701192526) do
   end
 
   create_table "mentees", :force => true do |t|
-    t.string   "birthday"
-    t.string   "access_token"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "email"
-    t.string   "picture_url"
-    t.integer  "grade"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-    t.string   "u_id"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
   end
 
+  add_index "mentees", ["email"], :name => "index_mentees_on_email", :unique => true
+  add_index "mentees", ["reset_password_token"], :name => "index_mentees_on_reset_password_token", :unique => true
+
   create_table "mentors", :force => true do |t|
-    t.string   "birthday"
-    t.string   "access_token"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "email"
-    t.string   "picture_url"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-    t.string   "u_id"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
   end
+
+  add_index "mentors", ["email"], :name => "index_mentors_on_email", :unique => true
+  add_index "mentors", ["reset_password_token"], :name => "index_mentors_on_reset_password_token", :unique => true
 
   create_table "messages", :force => true do |t|
     t.string   "text"
