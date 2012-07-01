@@ -1,92 +1,108 @@
-=content_for :head do
-  =javascript_include_tag 'conversation_view'
+=co=content_for :head do
+  = javascript_include_tag 'tokbox'
+  = javascript_include_tag 'conversation_view'
+  = javascript_include_tag "http://staging.tokbox.com/v0.91/js/TB.min.js"
+  = stylesheet_link_tag "inbox.css"
 
-:javascript
-  $(document).ready(function() {
-    $('.chatSelection').click(function() {
-      $('.active').removeClass('active');
-      $(this).addClass('active');
-    });
-  });
-  
 #main
   .container_12
     .conversations
       .leftbar
+        #newq.button New Question
+        %h3 Mentor Responses
         .users
-          .button.blue.newq#newq
-            %span New Question
-            .ask2 &nbsp;
           %ul.list
             -if @conversations && !@conversations.empty?
-              -@conversations.each do |conversation| 
+              -@conversations.each do |conversation|
                 %li.chatSelection
-                  .user{data: { id: "#{conversation[:id]}"}}
-                    %img.imagerounded{src: "#{conversation[:user].picture_url}"}
+                  .user{"data-id" => "#{conversation[:id]}"}
+                    %img.imagerounded{:src => "#{conversation[:user].picture_url}"}
+                      .information
+                        %h4= conversation[:user].first_name
+                        -if conversation[:message][:data_type] == 'video'
+                          %p video
+                        -else
+                          %p= truncate(conversation[:message][:value], length: 50)
+                      .clear
+          %h3 Pending Questions
+          .users
+            %ul.list
+              %li.chatSelection
+                .user{"data-id" => "11"}
+                  %img.imagerounded{:src => "https://graph.facebook.com/550876882/picture?type=square"}
                     .information
-                      %p.rightf= format_date(conversation[:updated_at])
-                      %h4= conversation[:user].first_name
-                      -if conversation[:message][:data_type] == 'video'
-                        %p video
-                      -else
-                        %p= truncate(conversation[:message][:value], length: 50)
-                    .clear 
-            -else
-              %li
-                .user
-                  %h4 You don't have any conversation right now!
-              
+                      %h4 How do I become a product designer?
+                    .clear
       .rightbar
-        -if @conversations && !@conversations.empty?
-          .messages#scroll{ data: { id: "#{@conversations[0][:id]}"} }
-            %ul
-              -@messages.each do |message| 
-                -owner = message.conversation.send(message.owner_type) 
-                %li
-                  -if message['data_type'] == 'text'
-                    .container_12
-                      .grid_1
-                        %img.imagerounded{src: owner.picture_url}
-                      .grid_5
-                        %h5=owner.first_name
-                      .grid_2#timestamp  
-                        = format_date(message['created_at'])
-                    .message{class: "#{message.owner_type}"}
-                      %p=message.value
-                  -else
-                    .container_12
-                      .grid_1
-                        %img.imagerounded{src: owner.picture_url}
-                      .grid_5
-                        %h5=owner.first_name
-                      .grid_2#timestamp  
-                        = format_date(message['created_at'])
-                    .videoPlayer{id: "#{message.value}", data: { id: "#{message.value}" } }
-                      %div{id: "p#{message.value}"}
-                
+        #scroll.messages{"data-id" => "11"}
+          -if @conversations && !@conversations.empty?
+            %h2= truncate(@messages.first.value, length: 75)
+            .messages#scroll{ data: { id: "#{@conversations[0][:id]}"} }
+              %ul
+                -@messages.each do |message| 
+                  -owner = message.conversation.send(message.owner_type)
+                  %li
+                    -if message['data_type'] == 'text'
+                      .container_12
+                        .grid_1
+                          %img.imagerounded{src: owner.picture_url}
+                        .grid_5
+                          %h5= owner.first_name
+                        #timestamp.grid_2
+                          = time_ago_in_words(message['created_at'])
+                      .mentee.message
+                        %p=message.value
+                    -else
+                      .container_12
+                        .grid_1
+                          %img.imagerounded{src: owner.picture_url}
+                        .grid_5
+                          %h5= owner.first_name
+                        #timestamp.grid_2
+                          = time_ago_in_words(message['created_at'])
+                      .mentee.message
+                        .videoPlayer{id: "#{message.value}", data: { id: "#{message.value}" } }
+                          %div{id: "p#{message.value}"}
+                          
           .replybar
             %p
-              %textarea= ""
-            .rightf
-              .button.blue.reply.rightf.text
-                %span Reply
-                .ask3 &nbsp;
-            .clear   
-        -else
-          .messages
-            %ul
-              %li
-                %h3 You don't have any conversations right now!       
-          .clear
-    .clear   
-    
+              %textarea
+              %br.clear/
+              .rightf
+                .button.reply.leftf
+                  Add a Video
+                #inboxr.button.reply.leftf
+                  %span Send
+              .clear
+    .clear
 
 #responseModal.reveal-modal
   %h1= 'Submit a Response'
   #recorderContainer
   <a class="close-reveal-modal">&#215;</a>
   
-#newQuestion.reveal-modal  
-  %h1 Ask a question to find a mentor!
-  %textarea
-  .button.blue.submitQ Submit 
+        
+%script.text-message-template{ type: "text/x-handlebars-template" }
+  %li
+    .container_12
+      .grid_1
+        %img.imagerounded{src: "{{picture_url}}" }
+      .grid_5
+        %h5 {{ name }}
+      .grid_2#timestamp  
+        {{ created_at }}
+    .message{class: "{{owner_type}}" }
+      %p {{value}}
+
+%script.video-message-template{ type: "text/x-handlebars-template" }
+  %li
+    .container_12
+      .grid_1
+        %img.imagerounded{src: "{{picture_url}}" }
+      .grid_5
+        %h5 {{ name }}
+      .grid_2#timestamp  
+        {{created_at}}
+    .videoPlayer{id: "{{value}}", data: { id: "{{value}}" } }
+      %div{id: "p{{value}}"}
+
