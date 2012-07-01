@@ -1,0 +1,87 @@
+=content_for :head do
+  =javascript_include_tag 'conversation_view'
+
+:javascript
+  $(document).ready(function() {
+    $('.chatSelection').click(function() {
+      $('.active').removeClass('active');
+      $(this).addClass('active');
+    });
+  });
+  
+#main
+  .container_12
+    .conversations
+      .leftbar
+        .users
+          %ul.list
+            -if @conversations && !@conversations.empty?
+              -@conversations.each do |conversation| 
+                %li.chatSelection
+                  .user{data: { id: "#{conversation[:id]}"}}
+                    %img.imagerounded{src: "#{conversation[:user].picture_url}"}
+                    .information
+                      %p.rightf= format_date(conversation[:updated_at])
+                      %h4= conversation[:user].first_name
+                      -if conversation[:message][:data_type] == 'video'
+                        %p video
+                      -else
+                        %p= truncate(conversation[:message][:value], length: 50)
+                    .clear 
+            -else
+              %li
+                .user
+                  %h4 You don't have any conversations right now!
+              
+      .rightbar
+        -if @conversations && !@conversations.empty?
+          .messages#scroll{ data: { id: "#{@conversations[0][:id]}"} }
+            %ul
+              -@messages.each do |message| 
+                -owner = message.conversation.send(message.owner_type) 
+                %li
+                  -if message['data_type'] == 'text'
+                    .container_12
+                      .grid_1
+                        %img.imagerounded{src: owner.picture_url}
+                      .grid_5
+                        %h5=owner.first_name
+                      .grid_2#timestamp  
+                        = format_date(message['created_at'])
+                    .message{class: "#{message.owner_type}"}
+                      %p=message.value
+                  -else
+                    .container_12
+                      .grid_1
+                        %img.imagerounded{src: owner.picture_url}
+                      .grid_5
+                        %h5=owner.first_name
+                      .grid_2#timestamp  
+                        = format_date(message['created_at'])
+                    .videoPlayer{id: "#{message.value}", data: { id: "#{message.value}" } }
+                      %div{id: "p#{message.value}"}
+                
+          .replybar
+            %p
+              %textarea= ""
+            .rightf
+              .button.blue.reply.rightf.text
+                %span Reply
+                .ask3 &nbsp;
+              .button.grey.reply.rightf.respondButton.video
+                %span Add a Video
+                .video2 &nbsp;
+            .clear   
+        -else
+          .messages
+            %ul
+              %li
+                %h3 You don't have any conversations right now!       
+          .clear
+    .clear   
+    
+
+#responseModal.reveal-modal
+  %h1= 'Submit a Response'
+  #recorderContainer
+  <a class="close-reveal-modal">&#215;</a>
