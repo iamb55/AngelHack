@@ -26,7 +26,7 @@
                   .user{data: { id: "#{conversation[:id]}"}}
                     %img.imagerounded{src: "#{conversation[:user].picture_url}"}
                     .information
-                      %p.rightf= format_date(conversation[:updated_at])
+                      %p.rightf= time_ago_in_words(conversation[:updated_at])
                       %h4= conversation[:user].first_name
                       -if conversation[:message][:data_type] == 'video'
                         %p video
@@ -52,7 +52,7 @@
                       .grid_5
                         %h5=owner.first_name
                       .grid_2#timestamp  
-                        = format_date(message['created_at'])
+                        = time_ago_in_words(message['created_at'])
                     .message{class: "#{message.owner_type}"}
                       %p=message.value
                   -else
@@ -62,7 +62,7 @@
                       .grid_5
                         %h5=owner.first_name
                       .grid_2#timestamp  
-                        = format_date(message['created_at'])
+                        = time_ago_in_words(message['created_at'])
                     .videoPlayer{id: "#{message.value}", data: { id: "#{message.value}" } }
                       %div{id: "p#{message.value}"}
                 

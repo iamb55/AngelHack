@@ -16,11 +16,7 @@ class ConversationsController < ApplicationController
   def show
     @conversation = Conversation.find(params[:id])
     @messages = @conversation.messages.collect do |message|
-      @data = message.attributes
-      owner = message.conversation.send(message.owner_type)
-      @data['name'] = owner.first_name  
-      @data['picture_url'] = owner.picture_url
-      @data
+      @data = message.as_json
     end
     respond_to do |format|
       format.html # show.html.erb
