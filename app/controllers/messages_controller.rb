@@ -42,6 +42,7 @@ class MessagesController < ApplicationController
   # POST /messages
   # POST /messages.json
   def create
+    p params
     if params[:new_conversation]
       conversation = Conversation.find(params[:conversation_id])
       conversation.mentor_id = current_user.id
@@ -58,19 +59,14 @@ class MessagesController < ApplicationController
         render status: 401, nothing: true
       end
 
-      @message = Message.new
-      @message.conversation_id = params[:conversation_id]
-      @message.value = params[:value]
+      @message = conversation.messages.build
+      @message.text = params[:text]
+      @message.video = params[:video]
       @message.owner_type = current_user.user_type
-      @message.data_type = params[:data_type]
     end
     
     if @message.save
-      @data = @message.attributes
-      owner = @message.conversation.send(@message.owner_type)
-      @data['name'] = owner.first_name  
-      @data['picture_url'] = owner.picture_url
-      render status: 200, json: @data
+      render status: 200, json: @message.as_json
     else
       render status: 500, nothing: true
     end

@@ -70,7 +70,7 @@ mentees.each do |mentee|
   c.save
   m = c.messages.build
   m.owner_type = 'mentee'
-  m.value = "Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to throw Antwone into a glass motherfuckin' house, fuckin' up the way the nigger talks. Motherfucker do that shit to me, he better paralyze my ass, 'cause I'll kill the motherfucker, know what I'm sayin'?"
+  m.text = "Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to throw Antwone into a glass motherfuckin' house, fuckin' up the way the nigger talks. Motherfucker do that shit to me, he better paralyze my ass, 'cause I'll kill the motherfucker, know what I'm sayin'?"
   m.save
 end
   
@@ -83,7 +83,7 @@ conversations.each do |conversation|
       m.owner_type = "mentee"
     end
     
-    m.value = "Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to throw Antwone into a glass motherfuckin' house, fuckin' up the way the nigger talks. Motherfucker do that shit to me, he better paralyze my ass, 'cause I'll kill the motherfucker, know what I'm sayin'?"
+    m.text = "Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to throw Antwone into a glass motherfuckin' house, fuckin' up the way the nigger talks. Motherfucker do that shit to me, he better paralyze my ass, 'cause I'll kill the motherfucker, know what I'm sayin'?"
     m.save
   end
 end
@@ -96,5 +96,5 @@ c.save
 
 m = c.messages.build
 m.owner_type = "mentee"
-m.value = "Can you answer my question?"
+m.text = "Can you answer my question?"
 m.save

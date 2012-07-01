@@ -33,6 +33,17 @@ TokBox = function() {
       archive.startPlayback();
   }
   
+  this.createRecorder = function(handler) {
+      var recDiv = document.createElement('div');
+      recDiv.setAttribute('id', 'recorderElement');
+      document.getElementById('recorderContainer').appendChild(recDiv);
+      recorder = tokbox.recorderManager.displayRecorder(TOKEN, recDiv.id);
+      recorder.addEventListener('recordingStarted', function(e) {
+        tokbox.recStartedHandler(e, recorder)
+      });
+      recorder.addEventListener('archiveSaved', handler);
+  }
+  
 }
 
 tokbox = new TokBox();

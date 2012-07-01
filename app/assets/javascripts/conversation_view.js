@@ -1,5 +1,7 @@
 Conversation = function() {
-  var questionID, text_message, video_message;
+  var questionID, message;
+  var videoAnswer = false;
+  var message_data = {};
 
   this.init = function() {
     $.ajaxSetup({
@@ -8,34 +10,60 @@ Conversation = function() {
       }
     });
     
-    text_message = $('.text-message-template').html();
-    text_message = Handlebars.compile(text_message);
-    
-    video_message = $('.video-message-template').html();
-    video_message = Handlebars.compile(video_message);
+    message = $('.message-template').html();
+    message = Handlebars.compile(message);
 
     if(getParameterByName('conversation_id')) {
       var el = $("[data-id='" + getParameterByName('conversation_id') + "']");
       conversation.changeConversation(el[0]);
     }
-
+    $('.user').first().addClass('active');
     $('.user').on('click', function() { conversation.changeConversation(this) } );
-    $('.text').on('click', conversation.respond);
+    $('.send').on('click', conversation.respond);
 
-    $('.replybar textarea').keypress(function(e) {
-      if (e.keyCode == 13 && !e.shiftKey) {
-        e.preventDefault();
-        conversation.respond();
-      }
+    // $('.replybar textarea').keypress(function(e) {
+    //   if (e.keyCode == 13 && !e.shiftKey) {
+    //     e.preventDefault();
+    //     conversation.respond();
+    //   }
+    // });
+
+    $('.replybar textarea').focus(function() {
+        if( $(this).val() == "Compose a new message..." ) {
+            $(this).val("");
+        }
+        $(this).animate({
+          height: '100px'
+        }).css('color', 'black');
+        $('.replybar .rightf').slideDown(250);
     });
-
-    $('.video').click(conversation.respondVideo);
-
-
+    
+    $(".replybar textarea").blur(function(e, wasTriggered) {
+        if( $(this).val() == "" && !videoAnswer || wasTriggered) {
+            $(this).val("Compose a new message...");
+            $(this).css('color', '#aaa');
+            
+            $(this).animate({
+              height: '50px'
+            }).css('color', '#aaa');
+            $('.replybar .rightf').slideUp(250);
+            $('.video-preview').remove();
+        }
+        
+    });
+    
+    $('.video').on('mousedown', function(e) {
+      videoAnswer = true;
+    });
+    
+    $('.video').on('mouseup', function(e) {
+      conversation.respondVideo();
+    });
+    
     conversation.processVideos();
 
-    if($('.newq').length != 0) {
-      $('.newq').on('click', function() {
+    if($('#newq').length != 0) {
+      $('#newq').on('click', function() {
         $('#newQuestion').reveal();
       });
 
@@ -78,38 +106,35 @@ Conversation = function() {
 
 
   this.respond = function() {
-    reply = $('.replybar textarea').val();
-    conversation_id = $('.messages').data().id;
+    message_data.text = $('.replybar textarea').val();
+    message_data.conversation_id = $('.messages').data().id;
     $.post('/messages', 
-          { 
-            conversation_id: conversation_id, 
-            data_type: 'text', 
-            value: reply
-          },
+          message_data,
           function(data) {
             $('.replybar textarea').val('');
-            var m = conversation.createMessage(data);
+            var m = $(message(data));
             $('.messages ul').append(m);
             m.fadeIn(1000, function() {
               var myDiv = document.getElementById('scroll');
               myDiv.scrollTop = myDiv.scrollHeight + 200;
             });
+            message_data = {};
+            videoAnswer = false;
+            $(".replybar textarea").trigger('blur', 'true');
           }
     );
   }
 
   this.changeConversation = function(t) {
     var _this = $(t);
+    $('.active').removeClass('active');
+    _this.addClass('active');
     $.get('/conversations/' + _this.data().id + ".json",
         function(response) {
           var new_messages = []
           var messages = $('.messages ul');
-          response.forEach(function(message) {
-            var li;
-            console.log(message);
-            if (message.data_type === 'text') li = text_message(message);
-            else li = video_message(message);
-            new_messages.push($(li).hide());
+          response.forEach(function(m) {
+            new_messages.push($(message(m)).hide());
           });
           var height = $('.messages').height();
           messages.css('height', height).empty();
@@ -120,7 +145,8 @@ Conversation = function() {
           conversation.processVideos();
           var myDiv = document.getElementById('scroll');
           myDiv.scrollTop = myDiv.scrollHeight + 1000;
-          $('.messages').data('id', _this.data().id)
+          $('.messages').data('id', _this.data().id);
+          $(".replybar textarea").trigger('blur', 'true');
     }, 'json')
   }
 
@@ -141,8 +167,19 @@ Conversation = function() {
   }
 
   this.respondVideo = function() {
-      $('#responseModal').reveal();
+      $('#videoModal').reveal();
+      tokbox.createRecorder(conversation.archiveSavedHandler);
       questionID = $('.messages').data('id');
+  }
+  
+  this.archiveSavedHandler = function(event) {
+    $('.replybar left').remove();
+    message_data.video = event.archives[0].archiveId;
+    var div = $('<div class="leftf video-preview"><div id="preview"></div></div>');
+    div.attr('id', message_data.video);
+    $('.replybar').append(div)
+    tokbox.recorderManager.displayPlayer(message_data.video, tokbox.TOKEN, 'preview');
+    $('.close-reveal-modal').trigger('click');
   }
 
 
