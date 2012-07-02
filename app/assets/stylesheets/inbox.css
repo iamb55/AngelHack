@@ -65,7 +65,9 @@
 	    font-size: 1.2em;
 	    line-height: 1.35em;
 	    color: #222220;
-	    margin-bottom: 0.55em; }
+	    margin-bottom: 0.55em; 
+	    display: block;
+	    }
 	  .messages h5 {
 	    font-size: 1.2em;
 	    color: #222220;
@@ -77,10 +79,14 @@
 	    padding: 0;
 	    width: 120px;
 	    text-align: right; }
-	  .messages .message, .messages .videoPlayer {
+	  .messages .message {
 	    width: 520px;
 	    padding-left: 70px;
 	    margin-top: -15px; }
+	  .messages .videoPlayer {
+	    margin-top: 10px;
+	    margin-left: 100px;
+	  }
 	  .messages img {
 	    width: 40px;
 	    height: 40px; }

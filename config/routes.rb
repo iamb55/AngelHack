@@ -24,6 +24,10 @@ AngelHack::Application.routes.draw do
   
   post 'emails/add_email'
   
+  match '/apply' => 'apps#apply', via: :get
+  match '/apply' => 'apps#create', via: :post
+  
+   
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

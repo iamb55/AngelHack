@@ -11,7 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120701214420) do
+ActiveRecord::Schema.define(:version => 20120701222448) do
+
+  create_table "apps", :force => true do |t|
+    t.text     "bio"
+    t.string   "email"
+    t.string   "twitter"
+    t.string   "linkedin"
+    t.string   "personal"
+    t.string   "name"
+    t.string   "uid"
+    t.string   "picture"
+    t.text     "education"
+    t.text     "work"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "conversations", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -65,11 +80,11 @@ ActiveRecord::Schema.define(:version => 20120701214420) do
 
   create_table "messages", :force => true do |t|
     t.string   "text"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.integer  "conversation_id"
     t.string   "owner_type"
-    t.string   "video",           :limit => nil
+    t.string   "video"
   end
 
   create_table "tags", :force => true do |t|

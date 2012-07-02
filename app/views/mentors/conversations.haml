@@ -52,9 +52,9 @@
                         = time_ago_in_words(message['created_at'])
                     .mentee.message
                       %p=message.text
-                      -if message.video
-                        .videoPlayer{id: "#{message.video}", data: { id: "#{message.video}" } }
-                          %div{id: "p#{message.video}"}
+                    -if message.video
+                      .videoPlayer{id: "#{message.video}", data: { id: "#{message.video}" } }
+                        %div{id: "p#{message.video}"}
                           
           .replybar
             %p
@@ -90,7 +90,7 @@
         {{ created_at }}
     .message{class: "{{owner_type}}" }
       %p {{text}}
-      {{#if video }}
-      .videoPlayer{id: "{{video}}", data: { id: "{{video}}" } }
-        %div{id: "p{{video}}"}
-      {{/if}}
+    {{#if video }}
+    .videoPlayer{id: "{{video}}", data: { id: "{{video}}" } }
+      %div{id: "p{{video}}"}
+    {{/if}}
