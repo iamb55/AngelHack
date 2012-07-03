@@ -6,7 +6,6 @@ class RemoveBirthdayAndAccessTokenAndFirstNameAndLastNameAndEmailAndPictureUrlAn
     remove_column :mentors, :last_name
     remove_column :mentors, :email
     remove_column :mentors, :picture_url
-    remove_column :mentors, :grade
     remove_column :mentors, :u_id
   end
 
