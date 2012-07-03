@@ -48,11 +48,11 @@ Apply = function() {
               });
               
            })
-         }, {scope: 'email,user_education_history,user_work_history'});
+         });
        } else {
 
        }
-     });
+    }, {scope: 'email,user_education_history,user_work_history'});
   }
   
   this.submitApplication = function() {
