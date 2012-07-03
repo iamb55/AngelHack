@@ -80,6 +80,9 @@ Apply = function() {
     $.post('/apply', {application: information}, function() {
       $('.part2').fadeOut(300, function() {
         $('#application h2').fadeOut(100);
+        $('#application').css({
+          'min-height': '40px'
+        })
         $('.part3').fadeIn(300);
       })
     })
