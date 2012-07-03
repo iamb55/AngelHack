@@ -125,7 +125,7 @@ $inset: inset 0 0 3px $ltgrey;
 		margin-left: 5px;
 		margin-top: 20px;
 	}
-	input, textarea {
+	input:not(.tagInputField), .bio {
 		font: $fontMS $fontstack;
 		width: 380px;
 		padding: 10px;
@@ -144,8 +144,8 @@ $inset: inset 0 0 3px $ltgrey;
   	font-weight: 300;
   	padding: 5px;
   }
-	textarea {
-		min-height: 80px;
+	.bio {
+	  min-height: 80px;
 	}
 	.button {
 		background: $primary;
@@ -175,4 +175,14 @@ $inset: inset 0 0 3px $ltgrey;
   }
 }
 
+.tags {
+  width: 380px;
+  padding: 0px!important;
+  margin: 10px 20px 0 20px!important;
+}
+
+.part2 p {
+  margin-left: 20px;
+  color: #A9A8A2;
+}
 

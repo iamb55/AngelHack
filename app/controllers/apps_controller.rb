@@ -5,8 +5,11 @@ class AppsController < ApplicationController
   end
   
   def create
+    tags = params[:application].delete(:tags)
     app = App.create(params[:application])
-    p app
+    tags.each do |tag|
+      app.tags.create(value: tag)
+    end
     render status: 200, nothing: true
   end
 end

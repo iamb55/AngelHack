@@ -8,20 +8,21 @@ Apply = function() {
       $(this).css('color', 'black');
     })
     
-    $('textarea').focus(function() {
+    $('.bio').focus(function() {
       $(this).css('color', 'black');
       if($(this).val() === 'Tell us a bit about yourself and your interests...'){
         $(this).val('');
       }
     });
     
-    $('textarea').blur(function() {
+    $('.bio').blur(function() {
       $(this).css('color', '#A9A8A2');
       if($(this).val() === "") {
         $(this).val('Tell us a bit about yourself and your interests...');
       }
     })
     
+    $('.tags').tagHandler();
     $('textarea').elastic();
     
     $('.create').on('click', apply.submitApplication);
@@ -61,12 +62,17 @@ Apply = function() {
     information.twitter = $('.twitter').val();
     information.linkedin = $('.linkedin').val();
     information.personal = $('.personal').val();
+    information.tags = $('.tags').tagHandler('getTags');
     if(information.email === "") {
       $('.email').css('border', 'solid 1px red');
       invalid = true;
     }
     if(information.bio === 'Tell us a bit about yourself and your interests...') {
       $('.bio').css('border', 'solid 1px red');
+      invalid = true;
+    }
+    if(information.tags === []) {
+      $('.tags').css('border', 'solid 1px red');
       invalid = true;
     }
     if(invalid) return false;
