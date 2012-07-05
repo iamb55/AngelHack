@@ -5,6 +5,7 @@
     <link href='http://fonts.googleapis.com/css?family=Lato:100,300,700,300italic' rel='stylesheet' type='text/css'>
     <link rel="shortcut icon" href="/favicon.ico" />
     <script src='jquery-1.7.2.min.js'></script>
+    <script src='jquery-ui-1.8.21.custom.min.js'></script>
     <title>Mentor.im</title>
 
 </head>
@@ -25,6 +26,9 @@
             
            <a href="/"><img alt="Mentor-h" src="images/mentor-v2.png" /></a>
            
+           <div class='rightf'>
+           <!--               <a href="#">Sign Up</a> -->
+            </div>
            </div>
          </div>
            
@@ -47,7 +51,7 @@
   
   
 
-  <div class="boxes no-img"><a href="/apply"><div class="action"><img src="images/landingq2.png" /><br />Find a Mentor</div></a></div>
+  <div class="boxes no-img redirect-email"><a href="#"><div class="action"><img src="images/landingq2.png" /><br />Find a Mentor</div></a></div>
      <div class="boxes"></a><a href="#"><div id="videotour" class="action"><img src="images/landingv.png" /><br />VIDEO TOUR</div></a><img src="images/mentorpix/r9.jpg" /></div> 
 
   
@@ -71,7 +75,7 @@
 
   <div class="boxes"><img src="images/mentorpix/e14.jpg" /></div>
     
-    <div class="boxes no-img redirect-email"><div class="action"><img src="images/landingi2.png" /><br />Be a Mentor</div></div>
+    <div class="boxes no-img"><a href='/apply'><div class="action"><img src="images/landingi2.png" /><br />Be a Mentor</div></a></div>
     <div class="boxes"><img src="images/mentorpix/r7.jpg" /></div>
     
           
@@ -180,12 +184,17 @@
        
            <div class="grid_4">
              
-             <label>Sign up for a mentor&mdash; it's free.</label>
                <div class='fade-out'>
+                 <label>Sign up for a mentor&mdash; it's free.</label>
                  <input class="email" placeholder="email address" type="text" style="color: black; ">
                  <div class="button submit">Go</div>
                 </div>
-             
+               <div style='display:none' class='fade-in'>
+                 <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fmentor.im&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21&amp;appId=315165228524689" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:80px; height:21px;" allowTransparency="true"></iframe>
+                 <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://mentor.im" data-text="I just signed up for Mentor.im!" data-via="mentordotim" data-related="mentordotim">Tweet</a>
+                 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                 <p>We'll let you know as soon as we're ready</p>
+                </div>
              </div>
              
                  <div class="grid_4">
@@ -231,7 +240,27 @@
 
   	    $('.redirect-email').on('click', function(e) {
   	      e.stopPropagation();
-  	      $('.email')[0].scrollIntoView();
+  	      $('html, body').animate({
+  	        scrollTop: $('.email').offset().top
+  	      }, 'slow');
+  	      $('.email').animate({
+  	        'border-color': '#4D54AE'
+  	      }, 1000);
+  	      
+  	      
+  	      $('.submit').animate({
+  	        'background-color': '#4D54AE'
+  	      }, 1000).animate({
+  	        'background-color': '#99A3AA'
+  	      }, 1000);
+  	      setInterval(function() {
+    	      $('.submit').animate({
+    	        'background-color': '#4D54AE'
+    	      }, 1000).animate({
+    	        'background-color': '#99A3AA'
+    	      }, 1000);
+  	      }, 2000)
+  	      
   	    });
   	    
   	    $('.submit').on('click', function(e) {
@@ -240,9 +269,9 @@
   	        $.post('/emails/add_email',
                {email: $('.email').val() },
                function() {
-                 $('.fade-out').fadeOut(1000)
-                  .replaceWith("<label style='margin-top:20px; display:block;'>Thanks, we'll get back to you soon!</label>")
-                  .fadeIn(1000);
+                 $('.fade-out').fadeOut(1000, function() {
+                   $('.fade-in').fadeIn(1000);
+                 });
                }
              );
   	      } else {

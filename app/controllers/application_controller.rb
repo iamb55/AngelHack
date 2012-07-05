@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :current_user=
 
   def after_sign_in_path_for(resource)
+    @resource = resource
     if resource.user_type == 'mentor'
       "/mentors/#{resource.id}/conversations" 
     elsif resource.user_type == 'mentee'
@@ -22,16 +23,14 @@ class ApplicationController < ActionController::Base
   private
    
     def current_user
-      return Mentee.first
+      return Mentor.first
       return @current_user unless @current_user.nil?
-      if session[:user_id]
-        if session[:type] == 'Mentor'
-          @current_user = Mentor.find(session[:user_id])
-        else
-          @current_user = Mentee.find(session[:user_id])
-        end
+      
+      if @resource.user_type = 'mentor'
+        @current_user = current_mentor
+      else
+        @current_user = current_mentee
       end
-      @current_user
     end
     
     def current_user=(user)
