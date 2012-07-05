@@ -1,100 +1,256 @@
-<!DOCTYPE html>
-
+<html>
 <head>
-	<meta charset="utf-8" />
-
-	<title>Mentor.im</title>
-  <link href='http://fonts.googleapis.com/css?family=Lato:100,300,700,300italic' rel='stylesheet' type='text/css'>
-  
-	<!-- Included CSS Files -->
-
-	<link rel="stylesheet" href="app.css">
-	<script src='jquery-1.7.2.min.js'></script>
-
-	<!--[if lt IE 9]>
-		<link rel="stylesheet" href="stylesheets/ie.css">
-	<![endif]-->
-	<script>
-	  $(document).ready(function() {
-	    
-	    $('#samewidth').on('click', function() {
-	      $(this).val('');
-	      $(this).css('color', 'black');
-	    });
-	    
-	    $('#signup').on('click', function() {
-	      var data = {};
-	      $('#samewidth').removeClass('error');
-    	  $('label').removeClass('error2');
-  	    var valid = true;
-  	    
-    	  if($('input[name="selectmentor"]:checked').val() == 'mentor') {
-    	    data.mentor = 'true';
-    	    $('label').removeClass('error');
-    	  }
-    	  else if ($('input[name="selectmentor"]:checked').val() === 'mentee') {
-    	    $('label').removeClass('error');
-    	    data.mentor = 'false';
-  	    }
-    	  else {
-  	      $('label').addClass('error2');
-  	      valid = false;
-	      }
-    	    
-    	  
-    	  data.email = $('#samewidth').val();
-    	  if (data.email === "" || data.email === "Email Address") {
-    	    $('#samewidth').addClass('error');
-    	    valid = false;
-    	  }
-    	  
-    	  if (!valid) return false;
-    	  console.log(data.mentor);
-    	  $.post('/emails/add_email',
-    	    data,
-    	    function() {
-    	      $('#signup').hide();
-    	      $('#signup').replaceWith("<label style='margin-top:20px; display:block;'>Thanks, we'll get back to you soon!</label>");
-    	      $('#signup').fadeIn(1000);
-    	    }
-  	    );
-  	    
-	    });
-	  });
-	</script>
-	<style>
-	  .error {
-	    border: 1px red solid!important;
-	  }
-	  .error2 {
-	    padding-bottom: 3px;
-	    border-bottom: 1px red solid!important;
-	  }
-	</style>
+    <link href="landing.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="960.css?body=1" media="all" rel="stylesheet" type="text/css" />
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,700,300italic' rel='stylesheet' type='text/css'>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <script src='jquery-1.7.2.min.js'></script>
+    <title>Mentor.im</title>
 
 </head>
-<body>
+    <body>
+      
+      
+          
+
+      <div class="wrapper" id="landingpage">
+
+        
+        <div id='header'>
+           <div class='container_12'>
+           
+           <div class="leftf">
+             <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fmentor.im&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21&amp;appId=315165228524689" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:21px;" allowTransparency="true"></iframe>
+            </div>
+            
+           <a href="/"><img alt="Mentor-h" src="images/mentor-v2.png" /></a>
+           
+           </div>
+         </div>
+           
+             
+             <br class="clear" />
+             
+             
+<div class="primary">
+
+<h1>Answers&mdash; and people who care.</h1>
 
 
-	<div id="wrap">
-		<a href="../index.html"><img src="mentor-v.png" title="mentor.im" id="logo" /></a><br />
-		
-			<div id="landingcollect">
-						
-						
-				<label for="radio1" id="purplelabel"><input type="radio" name="selectmentor" value='mentor''>&nbsp; I'm a Mentor</label> &nbsp; &nbsp;
-				<label for="radio2" id="greenlabel"><input type="radio" name="selectmentor" value='mentee'>&nbsp; I Need a Mentor</label>
-													<br /><br />
-						
-				<input type="text" id="samewidth" value="Email Address"><br />
-				<p><a href="#" class="large button radius" id="signup">Get Notified</a></p>
-							
-						
-			</div>
-			<div id="nerds">made by <a href="https://twitter.com/#!/brennenbyrne" title="brenne byrne">five</a> <a href="https://twitter.com/#!/grungerabbit" title="cheryl wu">nerds</a> <a href="https://twitter.com/#!/conwayanderson" title="conway anderson">at</a> <a href="https://twitter.com/#!/jessepollak" title="jesse pollak">angelhack</a> <a href="https://twitter.com/#!/thetabyte" title="jordan goldstein">nyc</a></div>	
-			
-		</div>
-			
+<div class="half purple">
+   <div class="boxes"><img src="images/mentorpix/e11.jpg" /></div>
 
-</body>
+  <div class="boxes"><img src="images/mentorpix/e3.jpg" /></div>
+  <div class="boxes"><img src="images/mentorpix/e2.jpg" /></div>
+  
+  <div class="boxes"><img src="images/mentorpix/e12.jpg" /></div>
+  
+  
+
+  <div class="boxes no-img"><a href="/apply"><div class="action"><img src="images/landingq2.png" /><br />Find a Mentor</div></a></div>
+     <div class="boxes"></a><a href="#"><div id="videotour" class="action"><img src="images/landingv.png" /><br />VIDEO TOUR</div></a><img src="images/mentorpix/r9.jpg" /></div> 
+
+  
+     <div class="boxes"><img src="images/mentorpix/e7.jpg" /></div> 
+
+    <div class="boxes"><img src="images/mentorpix/r11.jpg" /></div>
+
+               <div class="boxes"><img src="images/mentorpix/r13.jpg" /></div>
+               
+     
+  </div>
+
+
+
+  <div class="half green">
+    
+    <div class="boxes"><img src="images/mentorpix/r10.jpg" /></div>
+        <div class="boxes"><img src="images/mentorpix/r4.jpg" /></div>
+        
+             <div class="boxes"><img src="images/mentorpix/r6.jpg" /></div>
+
+  <div class="boxes"><img src="images/mentorpix/e14.jpg" /></div>
+    
+    <div class="boxes no-img redirect-email"><div class="action"><img src="images/landingi2.png" /><br />Be a Mentor</div></div>
+    <div class="boxes"><img src="images/mentorpix/r7.jpg" /></div>
+    
+          
+    <div class="boxes"><img src="images/mentorpix/e9.jpg" /></div>
+<div class="boxes"><img src="images/mentorpix/r1.jpg" /></div>
+        <div class="boxes"><img src="images/mentorpix/r5.jpg" /></div>
+     
+  
+   
+   
+    
+    </div>
+    
+    
+    <br class="clear" />
+
+
+    <div class="container_12 secondary">
+      
+                  
+
+      <div class="grid_4">
+        <div class="info purple">
+          <h3>Real advice, real people.</h3>
+          
+            <img src="images/screens/vidmsg.jpg" />
+            
+            <p>Ask anything. Mentors always create a personalized welcome video; starting a conversation with a real person, not a random username. More questions? Ask your current mentor or easily find a new one.
+              </p>
+        </div>
+        
+
+      </div>
+
+
+      <div class="grid_4">
+        <div class="info">
+          <h3>Helping and connecting.</h3>   
+          
+          <img src="images/screens/newq.jpg" />
+          
+            <p>
+              We match current experts to future ones. Mentoring is more than Q&amp;A &mdash; it's a genuine relationship. Simply enter what you know (or want to know) and we'll find you someone who can help.
+              </p>
+        </div>
+        
+
+      </div>
+      
+      
+      <div class="grid_4">
+        <div class="info green">
+          <h3>Give anytime, anywhere.</h3>
+          
+          
+          <img src="images/screens/iphone.jpg" />
+          
+            <p>Make a difference without leaving your desk. Mentor.im doesn't require in-person meetings or set time commitments. Super busy? Our mobile apps make it easy to offer your wisdom on the go.</p>
+        </div>
+ 
+      </div>
+     </div> 
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="container_12 tertiary">
+
+
+
+         <div class="grid_4">
+  
+           <div class="info purple">
+           <h3>Always a safe space.</h3>
+
+
+
+               <p>Get the answers that are important to you, without shame or fear. 24/7. These mentors have been in your shoes and now they're here to help.</p>
+           </div>
+
+
+         </div>
+         <div class="grid_4">
+
+
+           <div class="info">
+             <h3>Private.</h3>
+               <p>All mentees are protected: video is one way, mentor-to-mentee. Mentees are referred to by first name and can even ask sensitive questions anonymously.</p>
+           </div>
+         </div>
+         <div class="grid_4">
+
+           <div class="info green">
+             <h3>Join the best of the best.</h3>
+               <p>We vet all applications individually to make sure we have the best mentors onboard. Joining us means you're shaping the next generation.</p>
+           </div>
+         </div>
+    </div>
+
+    <div class="container_12 quartenary">
+       
+           <div class="grid_4">
+             
+             <label>Sign up for a mentor&mdash; it's free.</label>
+               <div class='fade-out'>
+                 <input class="email" placeholder="email address" type="text" style="color: black; ">
+                 <div class="button submit">Go</div>
+                </div>
+             
+             </div>
+             
+                 <div class="grid_4">
+                   <br /> <br />
+                 <p>-or-</p>
+                  </div>
+             
+          <div class="grid_4">
+            <div class="button apply">Apply to be a Mentor</div>
+          </div>
+      
+      <br class="clear" />
+      
+      
+      
+    </div>
+
+  </div>
+
+
+
+  </div>
+  
+  
+  
+  
+  
+
+      <div class="push"></div>
+
+
+
+      <div class="footer">
+        <div class="container_12">
+          <p class="leftf">
+   Made by <a href="https://twitter.com/#!/brennenbyrne" title="brenne byrne">five</a> <a href="https://twitter.com/#!/grungerabbit" title="cheryl wu">nerds</a> <a href="https://twitter.com/#!/conwayanderson" title="conway anderson">at</a> <a href="https://twitter.com/#!/jessepollak" title="jesse pollak">Angelhack</a> <a href="https://twitter.com/#!/thetabyte" title="jordan goldstein">NYC</a>
+          </p>
+          <p class="rightf"></p>
+        </div>
+      </div>
+      <script>
+        $('.apply').on('click', function() { window.location = '/apply' });
+
+  	    $('.redirect-email').on('click', function(e) {
+  	      e.stopPropagation();
+  	      $('.email')[0].scrollIntoView();
+  	    });
+  	    
+  	    $('.submit').on('click', function(e) {
+  	      $('.email').removeClass('error');
+  	      if( $('.email').val() !== "" ) {
+  	        $.post('/emails/add_email',
+               {email: $('.email').val() },
+               function() {
+                 $('.fade-out').fadeOut(1000)
+                  .replaceWith("<label style='margin-top:20px; display:block;'>Thanks, we'll get back to you soon!</label>")
+                  .fadeIn(1000);
+               }
+             );
+  	      } else {
+  	        $('.email').css({
+  	          border: '1px solid red'
+  	        });
+  	      }
+  	    });
+      </script>
+  </body>
 </html>
