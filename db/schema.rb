@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120703032044) do
+ActiveRecord::Schema.define(:version => 20120706225924) do
 
   create_table "apps", :force => true do |t|
     t.text     "bio"
@@ -55,10 +55,25 @@ ActiveRecord::Schema.define(:version => 20120703032044) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "u_id"
+    t.integer  "grade"
+    t.string   "picture_url"
+    t.string   "last_name"
+    t.string   "first_name"
+    t.string   "access_token"
+    t.string   "birthday"
   end
 
   add_index "mentees", ["email"], :name => "index_mentees_on_email", :unique => true
   add_index "mentees", ["reset_password_token"], :name => "index_mentees_on_reset_password_token", :unique => true
+
+  create_table "mentees_tags", :id => false, :force => true do |t|
+    t.integer "mentee_id"
+    t.integer "tag_id"
+  end
+
+  add_index "mentees_tags", ["mentee_id", "tag_id"], :name => "index_mentees_tags_on_mentee_id_and_tag_id"
+  add_index "mentees_tags", ["tag_id", "mentee_id"], :name => "index_mentees_tags_on_tag_id_and_mentee_id"
 
   create_table "mentors", :force => true do |t|
     t.datetime "created_at",                             :null => false
@@ -73,18 +88,33 @@ ActiveRecord::Schema.define(:version => 20120703032044) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "u_id"
+    t.integer  "grade"
+    t.string   "picture_url"
+    t.string   "last_name"
+    t.string   "first_name"
+    t.string   "access_token"
+    t.string   "birthday"
   end
 
   add_index "mentors", ["email"], :name => "index_mentors_on_email", :unique => true
   add_index "mentors", ["reset_password_token"], :name => "index_mentors_on_reset_password_token", :unique => true
 
+  create_table "mentors_tags", :id => false, :force => true do |t|
+    t.integer "mentor_id"
+    t.integer "tag_id"
+  end
+
+  add_index "mentors_tags", ["mentor_id", "tag_id"], :name => "index_mentors_tags_on_mentor_id_and_tag_id"
+  add_index "mentors_tags", ["tag_id", "mentor_id"], :name => "index_mentors_tags_on_tag_id_and_mentor_id"
+
   create_table "messages", :force => true do |t|
     t.string   "text"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.integer  "conversation_id"
     t.string   "owner_type"
-    t.string   "video"
+    t.string   "video",           :limit => nil
   end
 
   create_table "tags", :force => true do |t|

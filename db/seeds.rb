@@ -6,53 +6,68 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-mentors = Mentor.create([
+mentors = [
   {
     first_name: "Brennen",
     last_name: "Byrne",
     birthday: "12/08/1990",
     email: "test@example.com",
-    picture_url: "http://placekitten.com/50/50"
+    picture_url: "http://placekitten.com/50/50",
+    password: "password",
+    password_confirmation: "password"
   },
   {
     first_name: "Conway",
     last_name: "Anderson",
     birthday: "2/10/1987",
-    email: "test@example.com",
-    picture_url: "http://placekitten.com/50/50"
+    email: "test2@example.com",
+    picture_url: "http://placekitten.com/50/50",
+    password: "password",
+    password_confirmation: "password"
   },
   {
     first_name: "Test",
     last_name: "User",
     birthday: "02/04/1989",
-    email: "test@example.com",
-    picture_url: "http://placekitten.com/50/50"
+    email: "test3@example.com",
+    picture_url: "http://placekitten.com/50/50",
+    password: "password",
+    password_confirmation: "password"
   }
-])
+].collect {|data| Mentor.create(data) }
 
-mentees = Mentee.create([
+mentees = [
   {
     first_name: "Jesse",
     last_name: "Pollak",
-    email: "test@example.com",
+    email: "test4@example.com",
     picture_url: "http://placekitten.com/50/50",
-    birthday: "11/21/1992"
+    birthday: "11/21/1992",
+    password: "password",
+    password_confirmation: "password"
   },
   {
     first_name: "Jordan",
     last_name: "Goldstein",
-    email: "test@example.com",
+    email: "test5@example.com",
     picture_url: "http://placekitten.com/50/50",
-    birthday: "5/26/1994"
+    birthday: "5/26/1994",
+    password: "password",
+    password_confirmation: "password"
   },
   {
     first_name: "Cheryl",
     last_name: "Wu",
-    email: "test@example.com",
+    email: "test6@example.com",
     picture_url: "http://placekitten.com/50/50",
-    birthday: "08/21/1993"
+    birthday: "08/21/1993",
+    password: "password",
+    password_confirmation: "password"
   }
-])
+].collect {|data| Mentee.create(data) }
+
+# mentees.each {|m| m.confirm!}
+# mentors.each {|m| m.confirm!} 
 
 conversations = []
 (0..2).each do |i|
@@ -88,8 +103,10 @@ conversations.each do |conversation|
   end
 end
 
-mentee = Mentee.create({first_name: "Bob", last_name: "Dale", email: "bobdale@test.com", picture_url: "http://placekitten.com/50/50", birthday: "10/22/50"})
-mentor = Mentor.create({first_name: "Jim", last_name: "Yelp", email: "jimyelp@test.com", picture_url: "http://placekitten.com/50/50", birthday: "10/17/50"})
+mentee = Mentee.create({first_name: "Bob", last_name: "Dale", email: "bobdale@test.com", picture_url: "http://placekitten.com/50/50", birthday: "10/22/50", password: "password", password_confirmation: "password"})
+
+mentor = Mentor.create({first_name: "Jim", last_name: "Yelp", email: "jimyelp@test.com", picture_url: "http://placekitten.com/50/50", birthday: "10/17/50", password: "password", password_confirmation: "password"})
+
 c = mentee.conversations.build
 c.mentor = mentor
 c.save
