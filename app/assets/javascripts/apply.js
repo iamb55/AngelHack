@@ -1,5 +1,6 @@
 Apply = function() {
-  var information = {};
+  var information = {},
+      sent = false;
 
   this.init = function() {  
     $('.facebook').on('click', apply.handle_facebook);
@@ -77,15 +78,18 @@ Apply = function() {
     }
     if(invalid) return false;
     
-    $.post('/apply', {application: information}, function() {
-      $('.part2').fadeOut(300, function() {
-        $('#application h2').fadeOut(100);
-        $('#application').css({
-          'min-height': '40px'
-        })
-        $('.part3').fadeIn(300);
-      })
-    })
+    if(!sent) {
+      sent = true;
+      $.post('/apply', {application: information}, function() {
+        $('.part2').fadeOut(300, function() {
+          $('#application h2').fadeOut(100);
+          $('#application').css({
+            'min-height': '40px'
+          })
+          $('.part3').fadeIn(300);
+        });
+      });
+    }
   }
   
 }
