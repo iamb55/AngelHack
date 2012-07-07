@@ -15,26 +15,35 @@
   %body
     -if current_user
       :javascript
-        var current_user = "#{current_user.id}"
+        var current_user = "#{current_user.id}";
+        var OPENTOK_TOKEN = "#{@opentok_token}"
   .wrapper
     #header
       .container_12
         #logoc.grid_2
-          %a{:href => "/"}
-            =image_tag 'mentor-h2.png'
+          -if mentor_signed_in?
+            %a{href: "#{conversations_mentor_path(current_mentor)}" }
+              = image_tag 'mentor-h2.png'
+          -else
+            %a{href: "#{conversations_mentee_path(current_mentee)}" }
+              = image_tag 'mentor-h2.png'
         .grid_2
-          %a{:href => "#"} Inbox
+          -if mentor_signed_in?
+            = link_to "Inbox", conversations_mentor_path(current_mentor)
+          -else
+            = link_to "Inbox", conversations_mentee_path(current_mentee)
         .grid_2
           %a{:href => "#"} Profile
         .grid_2
-          %a{:href => "#"} Mentors
+          -if mentor_signed_in?
+            = link_to "Questions", stream_mentor_path(current_mentor)
         #home.grid_4
           %a{:href => "#"}
-            %img{:src => "https://graph.facebook.com/100001984628565/picture?type=square"}>/
-            Conway A.
+            %img{:src => "#{current_user.picture_url}"}>/
+            = "#{current_user.first_name} #{current_user.last_name[0]}. "
           -if mentor_signed_in? 
             =link_to 'Sign out', destroy_mentor_session_path, :method => :delete
-          -if mentee_signed_in? 
+          -else
             =link_to 'Sign out', destroy_mentee_session_path, :method => :delete
     = yield
     

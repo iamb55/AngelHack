@@ -1,12 +1,11 @@
 TokBox = function() {
   var recorderManager, recorder, player, recImgData, sessionId;
   
-  var API_KEY = '16288541',
-      TOKEN = 'moderator_token',
+  var API_KEY = '16528271',
       VIDEO_HEIGHT = 240,
       VIDEO_WIDTH = 320;
       
-  this.init = function() {  
+  this.init = function() {      
     this.recorderManager = TB.initRecorderManager(API_KEY);
   }
   
@@ -37,7 +36,7 @@ TokBox = function() {
       var recDiv = document.createElement('div');
       recDiv.setAttribute('id', 'recorderElement');
       document.getElementById('recorderContainer').appendChild(recDiv);
-      recorder = tokbox.recorderManager.displayRecorder(TOKEN, recDiv.id);
+      recorder = tokbox.recorderManager.displayRecorder(OPENTOK_TOKEN, recDiv.id);
       recorder.addEventListener('recordingStarted', function(e) {
         tokbox.recStartedHandler(e, recorder)
       });

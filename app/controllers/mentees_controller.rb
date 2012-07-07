@@ -1,6 +1,7 @@
 class MenteesController < ApplicationController
   load_and_authorize_resource
 
+  before_filter config_opentok, only: [ :conversations ]
   # GET /mentees
   # GET /mentees.json
   def index

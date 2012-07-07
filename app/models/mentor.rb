@@ -1,7 +1,9 @@
+require 'shared_methods'
 class Mentor < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
+  include SharedMethods
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 

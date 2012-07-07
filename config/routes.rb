@@ -1,7 +1,7 @@
 AngelHack::Application.routes.draw do
-  devise_for :mentors
+  devise_for :mentors, controllers: { sessions: 'sessions' }
 
-  devise_for :mentees
+  devise_for :mentees, controllers: { sessions: 'sessions' }
 
   resources :messages
 

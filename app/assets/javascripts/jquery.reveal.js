@@ -92,35 +92,36 @@
 			}); 	
 
 			//Closing Animation
-			modal.bind('reveal:close', function () {
-			  if(!locked) {
-					lockModal();
-					if(options.animation == "fadeAndPop") {
-						modalBG.delay(options.animationspeed).fadeOut(options.animationspeed);
-						modal.animate({
-							"top":  $(document).scrollTop()-topOffset + 'px',
-							"opacity" : 0
-						}, options.animationspeed/2, function() {
-							modal.css({'top':topMeasure, 'opacity' : 1, 'visibility' : 'hidden'});
-							unlockModal();
-						});					
-					}  	
-					if(options.animation == "fade") {
-						modalBG.delay(options.animationspeed).fadeOut(options.animationspeed);
-						modal.animate({
-							"opacity" : 0
-						}, options.animationspeed, function() {
-							modal.css({'opacity' : 1, 'visibility' : 'hidden', 'top' : topMeasure});
-							unlockModal();
-						});					
-					}  	
-					if(options.animation == "none") {
-						modal.css({'visibility' : 'hidden', 'top' : topMeasure});
-						modalBG.css({'display' : 'none'});	
-					}		
-				}
-				modal.unbind('reveal:close');
-			});     
+      modal.bind('reveal:close', function () {
+        if(!locked) {
+      		lockModal();
+      		if(options.animation == "fadeAndPop") {
+      			modalBG.delay(options.animationspeed).fadeOut(options.animationspeed);
+      			modal.animate({
+      				"top":  $(document).scrollTop()-topOffset + 'px',
+      				"opacity" : 0
+      			}, options.animationspeed/2, function() {
+      				modal.css({'top':topMeasure, 'opacity' : 1, 'visibility' : 'hidden'});
+      				unlockModal();
+      			});					
+      		}  	
+      		if(options.animation == "fade") {
+      			modalBG.delay(options.animationspeed).fadeOut(options.animationspeed);
+      			modal.animate({
+      				"opacity" : 0
+      			}, options.animationspeed, function() {
+      				modal.css({'opacity' : 1, 'visibility' : 'hidden', 'top' : topMeasure});
+      				unlockModal();
+      			});					
+      		}  	
+      		if(options.animation == "none") {
+      			modal.css({'visibility' : 'hidden', 'top' : topMeasure});
+      			modalBG.css({'display' : 'none'});	
+      		}		
+      	}
+      	$('#recorderContainer').empty();
+      	modal.unbind('reveal:close');
+      });     
    	
 /*---------------------------
  Open and add Closing Listeners

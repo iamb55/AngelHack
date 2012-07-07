@@ -1,6 +1,7 @@
 class MentorsController < ApplicationController
   load_and_authorize_resource
-
+  
+  before_filter :config_opentok
   # GET /mentors
   # GET /mentors.json
   def index

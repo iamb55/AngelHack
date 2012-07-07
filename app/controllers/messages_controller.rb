@@ -66,6 +66,7 @@ class MessagesController < ApplicationController
     end
     
     if @message.save
+      binding.pry
       render status: 200, json: @message.as_json
     else
       render status: 500, nothing: true

@@ -7,6 +7,7 @@ gem 'httparty'
 gem 'pry'
 gem 'devise'
 gem 'tlsmail'
+gem 'opentok'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

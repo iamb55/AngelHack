@@ -80,14 +80,14 @@ conversations = []
   end
 end
 
-mentees.each do |mentee| 
-  c = mentee.conversations.build
-  c.save
-  m = c.messages.build
-  m.owner_type = 'mentee'
-  m.text = "Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to throw Antwone into a glass motherfuckin' house, fuckin' up the way the nigger talks. Motherfucker do that shit to me, he better paralyze my ass, 'cause I'll kill the motherfucker, know what I'm sayin'?"
-  m.save
-end
+# mentees.each do |mentee| 
+#   c = mentee.conversations.build
+#   c.save
+#   m = c.messages.build
+#   m.owner_type = 'mentee'
+#   m.text = "Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to throw Antwone into a glass motherfuckin' house, fuckin' up the way the nigger talks. Motherfucker do that shit to me, he better paralyze my ass, 'cause I'll kill the motherfucker, know what I'm sayin'?"
+#   m.save
+# end
   
 conversations.each do |conversation|
   (0..9).each do |i|

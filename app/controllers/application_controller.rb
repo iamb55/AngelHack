@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     redirect_to '/unauthorized.wtf' # TODO Update to redirect to main dashboard
   end
 
-  helper_method :current_user, :current_user=
+  helper_method :current_user, :config_opentok
 
   def after_sign_in_path_for(resource)
     @resource = resource
@@ -20,20 +20,22 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  
+
+    
   private
-   
+  
+     def config_opentok
+       if @opentok.nil?
+         @opentok = OpenTok::OpenTokSDK.new 16528271, "0a9472b4ebc4ed74440108b8a0023bcda2ada9c8"
+         session_id = @opentok.create_session(request.host)
+         @opentok_token = @opentok.generate_token(session_id: session_id, role: OpenTok::RoleConstants::MODERATOR)
+       end
+     end
+     
     def current_user
-      return Mentor.first
-      return @current_user unless @current_user.nil?
-      
-      if @resource.user_type = 'mentor'
-        @current_user = current_mentor
-      else
-        @current_user = current_mentee
-      end
+      current_mentor || current_mentee
     end
     
-    def current_user=(user)
-      @current_user = user
-    end
+
 end
