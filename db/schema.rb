@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120708185244) do
+ActiveRecord::Schema.define(:version => 20120708211224) do
 
   create_table "apps", :force => true do |t|
     t.text     "bio"
@@ -35,6 +35,14 @@ ActiveRecord::Schema.define(:version => 20120708185244) do
     t.integer  "mentee_id"
     t.integer  "mentor_id"
   end
+
+  create_table "conversations_tags", :id => false, :force => true do |t|
+    t.integer "conversation_id"
+    t.integer "tag_id"
+  end
+
+  add_index "conversations_tags", ["conversation_id", "tag_id"], :name => "index_conversations_tags_on_conversation_id_and_tag_id"
+  add_index "conversations_tags", ["tag_id", "conversation_id"], :name => "index_conversations_tags_on_tag_id_and_conversation_id"
 
   create_table "emails", :force => true do |t|
     t.text     "email"

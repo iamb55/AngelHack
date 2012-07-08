@@ -26,7 +26,7 @@
                       .clear
                       
       .rightbar
-        #scroll.messages{"data-id" => "11"}
+        #scroll.messages{"data-id" => "#{@conversations.first[:id]}"}
           -if @conversations && !@conversations.empty?
             %h2= truncate(@messages.first.text, length: 75)
             #scroll{ data: { id: "#{@conversations[0][:id]}"} }

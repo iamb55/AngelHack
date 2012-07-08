@@ -1,6 +1,7 @@
 class Conversation < ActiveRecord::Base
   include ActionView::Helpers
   has_many :messages
+  has_and_belongs_to_many :tags
   belongs_to :mentee
   belongs_to :mentor
 
