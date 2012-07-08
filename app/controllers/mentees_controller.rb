@@ -1,6 +1,7 @@
 class MenteesController < ApplicationController
   load_and_authorize_resource
 
+  before_filter config_opentok, only: [ :conversations ]
   # GET /mentees
   # GET /mentees.json
   def index
@@ -84,7 +85,7 @@ class MenteesController < ApplicationController
   end
   
   def conversations
-    cs = current_user.conversations
+    cs = current_mentee.conversations
     unless cs.empty?
       @conversations = cs.collect do |conversation|
         if current_user.mentor?
@@ -95,5 +96,9 @@ class MenteesController < ApplicationController
       end.compact
       @messages = cs.first.messages
     end
+  end
+
+  def current_ability
+    @current_ability ||= Ability.new(current_mentee)
   end
 end

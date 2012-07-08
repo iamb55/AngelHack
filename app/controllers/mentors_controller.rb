@@ -1,6 +1,7 @@
 class MentorsController < ApplicationController
   load_and_authorize_resource
-
+  
+  before_filter :config_opentok
   # GET /mentors
   # GET /mentors.json
   def index
@@ -85,7 +86,7 @@ class MentorsController < ApplicationController
 
   
   def conversations
-    cs = current_user.conversations
+    cs = current_mentor.conversations
     unless cs.empty?
       @conversations = cs.collect do |conversation|
         if current_user.mentor?
@@ -100,6 +101,10 @@ class MentorsController < ApplicationController
 
   def stream
     @questions = Conversation.unanswered    
+  end
+
+  def current_ability
+    @current_ability ||= Ability.new(current_mentor)
   end
   
 end

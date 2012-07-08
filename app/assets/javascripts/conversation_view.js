@@ -71,6 +71,10 @@ Conversation = function() {
         conversation.addQuestion();
       });
 
+      $('.close-reveal-modal').on('click', function() {
+        $('#recorderContainer').empty();
+      });
+      
       $('#newQuestion textarea').keypress(function(e) {
         if (e.keyCode == 13 && !e.shiftKey) {
           e.preventDefault();
@@ -156,7 +160,7 @@ Conversation = function() {
     videoPlayers.each(function(player) {
       player = $(videoPlayers[player]);
       var id = player.data('id');
-      tokbox.recorderManager.displayPlayer(id, tokbox.TOKEN, "p" + id);
+      tokbox.recorderManager.displayPlayer(id, OPENTOK_TOKEN, "p" + id);
     });
     if ($('.message').length > 0) {
       setTimeout(function() {
@@ -178,7 +182,7 @@ Conversation = function() {
     var div = $('<div class="leftf video-preview"><div id="preview"></div></div>');
     div.attr('id', message_data.video);
     $('.replybar').append(div)
-    tokbox.recorderManager.displayPlayer(message_data.video, tokbox.TOKEN, 'preview');
+    tokbox.recorderManager.displayPlayer(message_data.video, OPENTOK_TOKEN, 'preview');
     $('.close-reveal-modal').trigger('click');
   }
 

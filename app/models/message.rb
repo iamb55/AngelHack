@@ -4,7 +4,7 @@ class Message < ActiveRecord::Base
 
   attr_accessible :text, :owner_type, :video
   
-  def as_json
+  def as_json(options = {})
     owner = self.conversation.send(self.owner_type)
     {
       created_at: time_ago_in_words(self.created_at),

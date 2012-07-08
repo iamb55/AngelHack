@@ -11,7 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120701192526) do
+ActiveRecord::Schema.define(:version => 20120706225924) do
+
+  create_table "apps", :force => true do |t|
+    t.text     "bio"
+    t.string   "email"
+    t.string   "twitter"
+    t.string   "linkedin"
+    t.string   "personal"
+    t.string   "name"
+    t.string   "uid"
+    t.string   "picture"
+    t.text     "education"
+    t.text     "work"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "conversations", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -28,29 +43,70 @@ ActiveRecord::Schema.define(:version => 20120701192526) do
   end
 
   create_table "mentees", :force => true do |t|
-    t.string   "birthday"
-    t.string   "access_token"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "email"
-    t.string   "picture_url"
-    t.integer  "grade"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
     t.string   "u_id"
+    t.integer  "grade"
+    t.string   "picture_url"
+    t.string   "last_name"
+    t.string   "first_name"
+    t.string   "access_token"
+    t.string   "birthday"
   end
 
-  create_table "mentors", :force => true do |t|
-    t.string   "birthday"
-    t.string   "access_token"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "email"
-    t.string   "picture_url"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-    t.string   "u_id"
+  add_index "mentees", ["email"], :name => "index_mentees_on_email", :unique => true
+  add_index "mentees", ["reset_password_token"], :name => "index_mentees_on_reset_password_token", :unique => true
+
+  create_table "mentees_tags", :id => false, :force => true do |t|
+    t.integer "mentee_id"
+    t.integer "tag_id"
   end
+
+  add_index "mentees_tags", ["mentee_id", "tag_id"], :name => "index_mentees_tags_on_mentee_id_and_tag_id"
+  add_index "mentees_tags", ["tag_id", "mentee_id"], :name => "index_mentees_tags_on_tag_id_and_mentee_id"
+
+  create_table "mentors", :force => true do |t|
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "u_id"
+    t.integer  "grade"
+    t.string   "picture_url"
+    t.string   "last_name"
+    t.string   "first_name"
+    t.string   "access_token"
+    t.string   "birthday"
+  end
+
+  add_index "mentors", ["email"], :name => "index_mentors_on_email", :unique => true
+  add_index "mentors", ["reset_password_token"], :name => "index_mentors_on_reset_password_token", :unique => true
+
+  create_table "mentors_tags", :id => false, :force => true do |t|
+    t.integer "mentor_id"
+    t.integer "tag_id"
+  end
+
+  add_index "mentors_tags", ["mentor_id", "tag_id"], :name => "index_mentors_tags_on_mentor_id_and_tag_id"
+  add_index "mentors_tags", ["tag_id", "mentor_id"], :name => "index_mentors_tags_on_tag_id_and_mentor_id"
 
   create_table "messages", :force => true do |t|
     t.string   "text"
@@ -65,6 +121,7 @@ ActiveRecord::Schema.define(:version => 20120701192526) do
     t.string   "value"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "app_id"
   end
 
 end

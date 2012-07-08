@@ -1,0 +1,78 @@
+%html
+  %head
+    %title Mentor.im
+    = stylesheet_link_tag "global"
+    = stylesheet_link_tag '960'
+    = stylesheet_link_tag 'apply'
+    = stylesheet_link_tag 'tags'
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,700,300italic' rel='stylesheet' type='text/css'>
+    = javascript_include_tag "jquery-1.7.2.min.js"
+    = javascript_include_tag "jquery.reveal.js"
+    = javascript_include_tag "loader.js"
+    = javascript_include_tag 'handlebars-1.0.0.beta.6.js'
+    = javascript_include_tag "application.js"
+    = javascript_include_tag "apply"
+    = javascript_include_tag 'jquery.elastic.source.js'
+    = javascript_include_tag 'tags.js'
+    = csrf_meta_tags
+  %body
+    .wrapper
+      #applogo
+        %a{:href => "/"}
+          =image_tag 'mentor-h2.png'
+        #application
+          %h2 Apply to be a mentor
+          .button.submit.facebook Connect With Facebook
+          .part2
+            %br/
+            %label *
+            %input.email{:placeholder => "Email Address", :type => "text"}/
+            %br.clear/
+            %label *
+            %textarea.bio Tell us a bit about yourself and your interests...
+            %br.clear/
+            %p What can you mentor on?
+            %label *
+            %ul.tags
+            %br.clear/
+            %input.twitter{:placeholder => "Twitter (optional)", :type => "text"}/
+            %br.clear/
+            %input.linkedin{:placeholder => "LinkedIn (optional)", :type => "text"}/
+            %br.clear/
+            %input.personal{:placeholder => "Personal Site (optional)", :type => "text"}/
+            %br.clear/
+            %input.video{:placeholder => "Link to Video Introduction (optional)", :type => "text"}/
+            %br.clear/
+            .button.create Submit Application
+            %br.clear/
+          .part3{ style: "display: none;"}
+            %p
+              Thank you for applying to be a mentor! We'll get back to you in the next few days.
+          %br.clear/  
+
+<div id="fb-root"></div>
+:javascript
+  var connected = false;
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '259568837477850', // App ID
+      channelUrl : 'http://mentor.im/channel.html', // Channel File
+      status     : true, // check login status
+      cookie     : true, // enable cookies to allow the server to access the session
+      xfbml      : true  // parse XFBML
+    });
+      
+    FB.getLoginStatus(function(response) {
+      if(response.status == "connected") connected = true;
+    });
+  };
+
+  // Load the SDK Asynchronously
+  (function(d){
+     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement('script'); js.id = id; js.async = true;
+     js.src = "//connect.facebook.net/en_US/all.js";
+     ref.parentNode.insertBefore(js, ref);
+   }(document));

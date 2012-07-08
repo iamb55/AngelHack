@@ -9,8 +9,7 @@
   .container_12
     .conversations
       .leftbar
-        #newq.button New Question
-        %h3 Mentor Responses
+        %h3 Conversations
         .users
           %ul.list
             -if @conversations && !@conversations.empty?
@@ -25,15 +24,7 @@
                         -else
                           %p= truncate(conversation[:message][:text], length: 50)
                       .clear
-          %h3 Pending Questions
-          .users
-            %ul.list
-              %li.chatSelection
-                .user{"data-id" => "11"}
-                  %img.imagerounded{:src => "https://graph.facebook.com/550876882/picture?type=square"}
-                    .information
-                      %h4 How do I become a product designer?
-                    .clear
+                      
       .rightbar
         #scroll.messages{"data-id" => "11"}
           -if @conversations && !@conversations.empty?
@@ -52,9 +43,9 @@
                         = time_ago_in_words(message['created_at'])
                     .mentee.message
                       %p=message.text
-                      -if message.video
-                        .videoPlayer{id: "#{message.video}", data: { id: "#{message.video}" } }
-                          %div{id: "p#{message.video}"}
+                    -if message.video
+                      .videoPlayer{id: "#{message.video}", data: { id: "#{message.video}" } }
+                        %div{id: "p#{message.video}"}
                           
           .replybar
             %p
@@ -72,12 +63,6 @@
   %h1= 'Submit a Response'
   #recorderContainer
   <a class="close-reveal-modal">&#215;</a>
-  
-#newQuestion.reveal-modal  
-  %h1 Ask a question to find a mentor!
-  %textarea
-  .button.blue.submitQ Submit
-  %a.close-reveal-modal &#215;
       
 %script.message-template{ type: "text/x-handlebars-template" }
   %li
@@ -90,7 +75,7 @@
         {{ created_at }}
     .message{class: "{{owner_type}}" }
       %p {{text}}
-      {{#if video }}
-      .videoPlayer{id: "{{video}}", data: { id: "{{video}}" } }
-        %div{id: "p{{video}}"}
-      {{/if}}
+    {{#if video }}
+    .videoPlayer{id: "{{video}}", data: { id: "{{video}}" } }
+      %div{id: "p{{video}}"}
+    {{/if}}

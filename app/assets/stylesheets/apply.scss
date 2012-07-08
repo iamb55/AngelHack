@@ -1,0 +1,188 @@
+$borders: 1px solid;      
+
+// main colors
+$dkgrey: #222220;
+$dqgrey: #706f6b;
+//$dmgrey: #85837b;
+$mdgrey: #a9a8a2;
+$mlgrey: #c9c8c1;
+$llgrey: #edebe1;
+$ltgrey: #e0ddd1;
+$transgrey: rgba(0, 0, 0, .15);
+$transgrey2: rgba(0, 0, 0, .25);
+$owhite: #fdfcf9;
+$white: #fff;
+$greenn: #4c899d;
+$purplen: #8b67a8;
+$bluen: #5592c6;
+
+$purplel: #775294;
+$turquoisel: #6cb2b6;
+$bluel: #4c899d;
+$greyL: #818383;
+
+//BUTTON COLORS
+$primary: #3399cc;
+$secondary: #99a3aa;
+$greena: #60a731;
+
+$bg: url(images/bg3.png);
+$ask: url(/assets/ask.png) no-repeat left center;
+
+$rbwidth: 610px;
+
+// font sizes   
+$fontXXL: 5em;
+$fontXL: 3em;
+$fontL: 2.5em;  
+$fontML: 2em; 
+$fontMM: 1.5em;
+$fontME: 1.35em;
+$fontMS: 1.2em; 
+$fontR: 1em;
+$fontRS: .85em;  
+$fontS: .75em;  
+$fontXS: .55em;
+
+$fontstack: "Lato", "Helvetica", arial, sans-serif;
+$bsd: 0px 2px 6px $transgrey;
+$bsd2: 0px 2px 6px $transgrey2;
+$inset: inset 0 0 3px $ltgrey;
+
+@mixin no-sides {
+	border-left: none;
+	border-right: none;
+}    
+@mixin boxshad($bshad) {
+	-moz-box-shadow: $bshad;
+	-webkit-box-shadow: $bshad;
+	box-shadow: $bshad;	
+}
+@mixin borderc($radius) {
+       -moz-border-radius: $radius;
+       -webkit-border-radius: $radius;
+       border-radius: $radius;
+}
+@mixin opacity($opnum) {
+	opacity: $opnum;
+	-moz-opacity: $opnum;
+	-webkit-opacity: $opnum;
+}
+@mixin border10br {
+		-moz-border-radius-bottomright: 10px;
+		-webkit-border-bottom-right-radius: 10px;
+		border-bottom-right-radius: 10px;
+}
+@mixin border10tr {
+		-moz-border-radius-topright: 10px;
+		-webkit-border-top-right-radius: 10px;
+		border-top-right-radius: 10px;
+}
+@mixin border10tl {
+		-moz-border-radius-topleft: 10px;
+		-webkit-border-top-left-radius: 10px;
+		border-top-left-radius: 10px;
+}
+@mixin bordertop10 {
+	@include border10tr;
+	@inlcude border10tl;
+}
+@mixin textshad {
+	text-shadow: 0px 1px 4px #000;
+}
+@mixin headerp {
+	height: 17px;
+	padding: 30px 0px 23px;
+}
+@mixin sqimg($side) {
+	width: $side;
+	height: $side;
+}
+
+
+#applogo {
+	@include headerp;
+}
+#application {
+
+	background: $white;
+	padding: 20px;
+	margin: 30px auto;
+	text-align: left;
+	@include boxshad($bsd);
+	@include borderc(10px);
+	width: 420px;
+	min-height: 100px;
+	h2 {
+		text-align: center;
+		font-weight: 300;
+		padding: 5px;
+	}
+	label {
+		position: absolute;
+		color: red;
+		font-size: $fontMS;
+		margin-left: 5px;
+		margin-top: 20px;
+	}
+	input:not(.tagInputField), .bio {
+		font: $fontMS $fontstack;
+		width: 380px;
+		padding: 10px;
+		border: $borders $ltgrey;
+		color: $mdgrey;
+		@include borderc(5px);
+		@include boxshad($inset);
+		margin: 10px 20px;
+		&:focus {
+			outline: none;
+			border-color: $primary;
+		}
+	}
+	h2 {
+  	text-align: center;
+  	font-weight: 300;
+  	padding: 5px;
+  }
+	.bio {
+	  min-height: 80px;
+	}
+	.button {
+		background: $primary;
+		width: 340px;
+		padding: 20px;
+		margin: 10px 20px;
+	}
+	.part2 {
+	  display: none;
+	}
+	p {
+	  font-size: 1.3em;
+	}
+}
+
+.info {
+  margin-left: 30px;
+  img {
+    float: left;
+    width: 50px;
+    margin:auto;
+  }
+  h3 {
+    float: left;
+    margin-left: 20px;
+    line-height: 50px;
+  }
+}
+
+.tags {
+  width: 380px;
+  padding: 0px!important;
+  margin: 10px 20px 0 20px!important;
+}
+
+.part2 p {
+  margin-left: 20px;
+  color: #A9A8A2;
+}
+

@@ -17,11 +17,39 @@
 	<script>
 	  $(document).ready(function() {
 	    
+	    $('#samewidth').on('click', function() {
+	      $(this).val('');
+	      $(this).css('color', 'black');
+	    });
+	    
 	    $('#signup').on('click', function() {
 	      var data = {};
-    	  if($('input[name="selectmentor"]').val() == 'mentor') data.type = 'true';
-    	  else data.type = 'false';
+	      $('#samewidth').removeClass('error');
+    	  $('label').removeClass('error2');
+  	    var valid = true;
+  	    
+    	  if($('input[name="selectmentor"]:checked').val() == 'mentor') {
+    	    data.mentor = 'true';
+    	    $('label').removeClass('error');
+    	  }
+    	  else if ($('input[name="selectmentor"]:checked').val() === 'mentee') {
+    	    $('label').removeClass('error');
+    	    data.mentor = 'false';
+  	    }
+    	  else {
+  	      $('label').addClass('error2');
+  	      valid = false;
+	      }
+    	    
+    	  
     	  data.email = $('#samewidth').val();
+    	  if (data.email === "" || data.email === "Email Address") {
+    	    $('#samewidth').addClass('error');
+    	    valid = false;
+    	  }
+    	  
+    	  if (!valid) return false;
+    	  console.log(data.mentor);
     	  $.post('/emails/add_email',
     	    data,
     	    function() {
@@ -34,6 +62,15 @@
 	    });
 	  });
 	</script>
+	<style>
+	  .error {
+	    border: 1px red solid!important;
+	  }
+	  .error2 {
+	    padding-bottom: 3px;
+	    border-bottom: 1px red solid!important;
+	  }
+	</style>
 
 </head>
 <body>

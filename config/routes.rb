@@ -1,4 +1,8 @@
 AngelHack::Application.routes.draw do
+  devise_for :mentors, controllers: { registrations: 'registrations', sessions: 'sessions' }
+
+  devise_for :mentees, controllers: { registrations: 'registrations', sessions: 'sessions' }
+
   resources :messages
 
   resources :mentors do
@@ -20,12 +24,10 @@ AngelHack::Application.routes.draw do
   
   post 'emails/add_email'
   
-  match '/auth/facebook/callback' => 'sessions#create'
-  match '/sign_out'              => 'sessions#destroy'
-  match '/sign_in'              => 'sessions#new'
-  match '/start_session'        => 'sessions#start_session'
-  match '/auth/failure'         => 'sessions#failure'
-
+  match '/apply' => 'apps#apply', via: :get
+  match '/apply' => 'apps#create', via: :post
+  
+   
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

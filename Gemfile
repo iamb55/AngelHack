@@ -3,9 +3,11 @@ source 'http://rubygems.org'
 gem 'rails', '3.2.6'
 gem 'haml'
 gem 'cancan'
-gem "koala"
 gem 'httparty'
 gem 'pry'
+gem 'devise'
+gem 'tlsmail'
+gem 'opentok'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
