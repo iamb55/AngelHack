@@ -6,6 +6,7 @@ class Mentee < ActiveRecord::Base
   include SharedMethods
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  devise :token_authenticatable
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :birthday, :picture_url

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120706225924) do
+ActiveRecord::Schema.define(:version => 20120708172114) do
 
   create_table "apps", :force => true do |t|
     t.text     "bio"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(:version => 20120706225924) do
     t.string   "first_name"
     t.string   "access_token"
     t.string   "birthday"
+    t.string   "authentication_token"
   end
 
   add_index "mentees", ["email"], :name => "index_mentees_on_email", :unique => true
@@ -95,6 +96,7 @@ ActiveRecord::Schema.define(:version => 20120706225924) do
     t.string   "first_name"
     t.string   "access_token"
     t.string   "birthday"
+    t.string   "authentication_token"
   end
 
   add_index "mentors", ["email"], :name => "index_mentors_on_email", :unique => true
@@ -110,11 +112,11 @@ ActiveRecord::Schema.define(:version => 20120706225924) do
 
   create_table "messages", :force => true do |t|
     t.string   "text"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.integer  "conversation_id"
     t.string   "owner_type"
-    t.string   "video",           :limit => nil
+    t.string   "video"
   end
 
   create_table "tags", :force => true do |t|

@@ -22,6 +22,15 @@ AngelHack::Application.routes.draw do
     end
   end
   
+  namespace :api do
+    namespace :v1 do
+      post 'tokens/create'
+      post 'tokens/destroy'
+      get 'conversations/all'
+      get 'conversations/show'
+    end
+  end
+  
   post 'emails/add_email'
   
   match '/apply' => 'apps#apply', via: :get
