@@ -1,11 +1,6 @@
 Stream = function() {
   var questionID;
 
-  var API_KEY = '16288541',
-      TOKEN = 'moderator_token',
-      VIDEO_HEIGHT = 240,
-      VIDEO_WIDTH = 320;
-
   this.init = function() {
     $.ajaxSetup({
       beforeSend: function(xhr) {
@@ -14,24 +9,12 @@ Stream = function() {
     });
 
     $('.respondButton').click(function() { stream.respond(this) } );
-
-    stream.createRecorder();
   }
 
   this.respond = function(t) {
       $('#responseModal').reveal();
-      questionID = $(t).eq(0).parents('.mentorItem').data('id');
-  }
-
-  this.createRecorder = function() {
-      var recDiv = document.createElement('div');
-      recDiv.setAttribute('id', 'recorderElement');
-      document.getElementById('recorderContainer').appendChild(recDiv);
-      recorder = tokbox.recorderManager.displayRecorder(TOKEN, recDiv.id);
-      recorder.addEventListener('recordingStarted', function(e) {
-        tokbox.recStartedHandler(e, recorder)
-      });
-      recorder.addEventListener('archiveSaved', stream.archiveSavedHandler);
+      tokbox.createRecorder(stream.archiveSavedHandler);
+      questionID = $(t).parents('.mentorItem').data('id');
   }
 
   this.getImg = function(imgData) {
@@ -45,7 +28,7 @@ Stream = function() {
       	playerDiv = document.createElement('div');
       	playerDiv.setAttribute('id', 'playerElement');
       	document.getElementById('playerContainer').appendChild(playerDiv);
-      	player = tokbox.recorderManager.displayPlayer(archiveId, TOKEN, playerDiv.id);
+      	player = tokbox.recorderManager.displayPlayer(archiveId, OPENTOK_TOKEN, playerDiv.id);
       	document.getElementById('playerContainer').style.display = 'block';
       } else {
       	player.loadArchive(archiveId);
@@ -53,10 +36,10 @@ Stream = function() {
   }
 
   this.archiveSavedHandler = function(event) {
+      console.log('test');
       $.post('/messages',
           {
-  	        csrf: $('meta[name="csrf-token"]').attr('content'),
-  	        value: event.archives[0].archiveId,
+  	        video: event.archives[0].archiveId,
        	    data_type: 'video',
   	        conversation_id: questionID,
   	        new_conversation: true

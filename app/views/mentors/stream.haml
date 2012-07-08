@@ -1,36 +1,31 @@
 =content_for :head do
+  = javascript_include_tag "http://staging.tokbox.com/v0.91/js/TB.min.js"
   = javascript_include_tag 'tokbox'
   = javascript_include_tag "mentor_stream"
-  = javascript_include_tag "http://staging.tokbox.com/v0.91/js/TB.min.js"
   = stylesheet_link_tag 'stream'
-
+  = stylesheet_link_tag "reveal"
 
     
 #main
   .container_12
     .conversations
       .leftbar
-        .howitworks
-          %h4.leftf How it Works
-          .rightf <a href="#">x</a>
-          %br.clear
-          %ul
-            %li <span>1</span> View questions that match you.
-            %li <span>2</span> Click "reply" to send a video. We require videos for the first reply for a personal touch. Additional messages can be text or video.
-            %li <span>3</span> Continue convos in your inbox.
+        -if current_user.conversations.count == 0
+          .howitworks
+            %h4.leftf How it Works
+            .rightf <a href="#">x</a>
+            %br.clear
+            %ul
+              %li <span>1</span> View questions that match you.
+              %li <span>2</span> Click "reply" to send a video. We require videos for the first reply for a personal touch. Additional messages can be text or video.
+              %li <span>3</span> Continue conversations in your inbox.
         .mentorcat
-          %h4.leftf Your Mentor Categories
+          %h4.leftf Things you mentor on
           .rightf <a href="#">Edit</a>
           %br.clear
           %ul
-            %li LGBT
-            %li First Generation College
-            %li Finance
-            %li Crohn's Disease
-            %li First Job
-            %li Creative Professionals
-            %li Technology
-            %li Science
+            -current_user.tags.each do |tag|
+              %li=tag.value
           
           
       .rightbar
@@ -40,15 +35,15 @@
             %li.mentorItem{ data: { id: question.id } }
               .container_12
                 .grid_1
-                  %img.imagerounded{src: "https://graph.facebook.com/100001984628565/picture?type=square"}
+                  %img.imagerounded{src: question.mentee.picture_url}
                 .grid_5
-                  %h5.name= "Jesse"
+                  %h5.name= question.mentee.first_name
                 #timestamp.grid_2
-                  1:23 PM
+                  =time_ago_in_words(question.created_at) + " ago"
               .mentee.message
                 %p.question= question.messages.first.text
                   
-                .button.leftf
+                .button.leftf.respondButton
                   %span Reply
                   .video2 &nbsp;
                 .match
@@ -63,6 +58,3 @@
     %a.close-reveal-modal &#215
 
     .clear
-
-:javascript
-  var OPENTOK_TOKEN = #{@opentok_token}
