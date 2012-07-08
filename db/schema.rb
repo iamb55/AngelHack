@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120708172114) do
+ActiveRecord::Schema.define(:version => 20120708185244) do
 
   create_table "apps", :force => true do |t|
     t.text     "bio"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20120708172114) do
     t.text     "work"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "token"
   end
 
   create_table "conversations", :force => true do |t|

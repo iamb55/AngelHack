@@ -12,8 +12,6 @@
   <div><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation %></div>
 
-  <%= f.hidden_field :token, { :value => params[:token] } %>
-
   <div><%= f.submit "Sign up" %></div>
 <% end %>
 
