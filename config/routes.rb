@@ -27,7 +27,8 @@ AngelHack::Application.routes.draw do
       post 'tokens/create'
       post 'tokens/destroy'
       get 'conversations/all'
-      get 'conversations/show'
+      match 'conversations/:id' => "conversations#show"
+      post 'messages/create'
     end
   end
   
