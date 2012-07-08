@@ -121,11 +121,11 @@ ActiveRecord::Schema.define(:version => 20120708211224) do
 
   create_table "messages", :force => true do |t|
     t.string   "text"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.integer  "conversation_id"
     t.string   "owner_type"
-    t.string   "video"
+    t.string   "video",           :limit => nil
   end
 
   create_table "tags", :force => true do |t|
