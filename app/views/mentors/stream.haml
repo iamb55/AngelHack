@@ -2,39 +2,59 @@
   = javascript_include_tag 'tokbox'
   = javascript_include_tag "mentor_stream"
   = javascript_include_tag "http://staging.tokbox.com/v0.91/js/TB.min.js"
+  = stylesheet_link_tag 'stream'
 
 
     
 #main
   .container_12
     .conversations
-      .leftbar#checks
-        %h6 Personal Questions
-        <div class="checklist"><label for="checkbox1"><input type="checkbox" id="checkbox1"> Self Confidence</label></div>
-        <div class="checklist"><label for="checkbox1"><input type="checkbox" id="checkbox2"> LGBT</label></div>
-        <div class="checklist"><label for="checkbox1"><input type="checkbox" id="checkbox3"> Bullying</label></div>
-        <div class="checklist"><label for="checkbox1"><input type="checkbox" id="checkbox4"> Introversion</label></div>
-        %hr
-        %h6 Career &amp; Education Questions
-        <div class="checklist"><label for="checkbox1"><input type="checkbox" id="checkbox1"> Higher Education</label></div>
-        <div class="checklist"><label for="checkbox1"><input type="checkbox" id="checkbox2"> Applying for a Job</label></div>
-        <div class="checklist"><label for="checkbox1"><input type="checkbox" id="checkbox3"> Study Habits</label></div>
-        <div class="checklist"><label for="checkbox1"><input type="checkbox" id="checkbox4"> Scholarships and Loans</label></div>
+      .leftbar
+        .howitworks
+          %h4.leftf How it Works
+          .rightf <a href="#">x</a>
+          %br.clear
+          %ul
+            %li <span>1</span> View questions that match you.
+            %li <span>2</span> Click "reply" to send a video. We require videos for the first reply for a personal touch. Additional messages can be text or video.
+            %li <span>3</span> Continue convos in your inbox.
+        .mentorcat
+          %h4.leftf Your Mentor Categories
+          .rightf <a href="#">Edit</a>
+          %br.clear
+          %ul
+            %li LGBT
+            %li First Generation College
+            %li Finance
+            %li Crohn's Disease
+            %li First Job
+            %li Creative Professionals
+            %li Technology
+            %li Science
+          
+          
       .rightbar
         %ul.mentorStream
           %h3= pluralize(@questions.count, "Unanswered Question")
           -@questions.each do |question|
             %li.mentorItem{ data: { id: question.id } }
               .container_12
-                
                 .grid_1
-                .message
-                  %h5.name= question.mentee.first_name
-                  %p.question= question.messages.first.text
-
-                  .button.grey.reply.rightf.respondButton
-                    %span Answer
-                    .video2 &nbsp;
+                  %img.imagerounded{src: "https://graph.facebook.com/100001984628565/picture?type=square"}
+                .grid_5
+                  %h5.name= "Jesse"
+                #timestamp.grid_2
+                  1:23 PM
+              .mentee.message
+                %p.question= question.messages.first.text
+                  
+                .button.leftf
+                  %span Reply
+                  .video2 &nbsp;
+                .match
+                  <span>88%</span> Mentor Match
+                  
+                .clear
         
         
 #responseModal.reveal-modal
