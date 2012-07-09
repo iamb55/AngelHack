@@ -43,12 +43,9 @@ class ConversationsController < ApplicationController
   # POST /conversations
   # POST /conversations.json
   def create
-    @conversation = current_user.conversations.build
-    m = @conversation.messages.build
-    m.value = params[:value]
-    m.data_type = params[:data_type]
-    m.owner_type = current_user.user_type
-    m.save
+    @conversation = current_user.conversations.create
+    m = @conversation.messages.create(text: params[:text], owner_type: current_user.user_type)
+    @conversation.add_tags(params[:tags])
 
     respond_to do |format|
       if @conversation.save

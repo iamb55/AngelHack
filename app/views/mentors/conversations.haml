@@ -14,19 +14,19 @@
           %ul.list
             -if @conversations && !@conversations.empty?
               -@conversations.each do |conversation|
-                %li.chatSelection
+                %li
                   .user{"data-id" => "#{conversation[:id]}"}
                     %img.imagerounded{:src => "#{conversation[:user].picture_url}"}
                       .information
                         %h4= conversation[:user].first_name
-                        -if conversation[:message][:data_type] == 'video'
+                        -if conversation[:message][:video]
                           %p video
                         -else
                           %p= truncate(conversation[:message][:text], length: 50)
                       .clear
                       
       .rightbar
-        #scroll.messages{"data-id" => "#{@conversations.first[:id]}"}
+        .messages{"data-id" => "#{@conversations.first[:id]}"}
           -if @conversations && !@conversations.empty?
             %h2= truncate(@messages.first.text, length: 75)
             #scroll{ data: { id: "#{@conversations[0][:id]}"} }

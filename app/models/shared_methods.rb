@@ -3,7 +3,7 @@ module SharedMethods
     if tag = Tag.find_by_value(value)
       self.tags.push(tag)
     else
-      self.tags.create(value: value)
+      self.tags.create(value: value.downcase)
     end
   end
   
@@ -11,6 +11,8 @@ module SharedMethods
     tags.each {|value| self.add_tag(value) }
   end
   
-  def match(other)
+  def m(other)
+    num = (self.tags & other.tags).length
+    100 - (50/( num*other.id % 5 ))
   end
 end
