@@ -103,11 +103,11 @@ conversations.each do |conversation|
   end
 end
 
-tags = ["Analytics", "Ballpark Figure", "Bandwidth", "Business-to-Business", "Business-to-Consumer", "Best practices", "Business Process Outsourcing", "Buzzword compliant", "Co-opetition", "Core competency", "Downsizing", "Drinking the Kool-Aid", "Eating your own dogfood", "Entitlement", "Event horizon", "Herding cats", "Holistic", "Knowledge Process Outsourcing", "Logistics", "Long Tail", "Mission Critical", "Next generation", "Offshoring", "Return on Investment", "Reverse fulfilment", "Seamless", "integration", "Sarbanes-Oxley", "Sustainability"]
-
-mentors.each do |mentor|
-  mentor.add_tags(tags.sample(5))
-end
+# tags = ["Analytics", "Ballpark Figure", "Bandwidth", "Business-to-Business", "Business-to-Consumer", "Best practices", "Business Process Outsourcing", "Buzzword compliant", "Co-opetition", "Core competency", "Downsizing", "Drinking the Kool-Aid", "Eating your own dogfood", "Entitlement", "Event horizon", "Herding cats", "Holistic", "Knowledge Process Outsourcing", "Logistics", "Long Tail", "Mission Critical", "Next generation", "Offshoring", "Return on Investment", "Reverse fulfilment", "Seamless", "integration", "Sarbanes-Oxley", "Sustainability"]
+# 
+# mentors.each do |mentor|
+#   mentor.add_tags(tags.sample(5))
+# end
 
 mentee = Mentee.create({first_name: "Bob", last_name: "Dale", email: "bobdale@test.com", picture_url: "http://placekitten.com/50/50", birthday: "10/22/50", password: "password", password_confirmation: "password"})
 
