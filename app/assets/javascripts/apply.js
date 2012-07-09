@@ -3,7 +3,17 @@ Apply = function() {
       sent = false;
 
   this.init = function() {  
-    $('.facebook').on('click', apply.handle_facebook);
+    if(readCookie('mentor-app') === '1') {
+      $('.part3').show();
+      $('#application').css({
+        'min-height': '40px'
+      });
+    } else {
+      $('.part1').show();
+    }
+    $('a[id*=li_ui_li_gen_]').css({marginBottom: '20px'}).html('<img src="/assets/linkedin-button-2.png" style="margin: 10px 0 0 80px" border="0"/>');
+    
+    IN.Event.on(IN, 'auth', apply.handleLinkedIn);
     
     $('input').focus('change', function() {
       $(this).css('color', 'black');
@@ -29,31 +39,20 @@ Apply = function() {
     $('.create').on('click', apply.submitApplication);
   }
   
-  
-  this.handle_facebook = function() {
-    FB.login(function(response) {
-       if (response.authResponse) {
-         FB.api('/me', function(response) {
-           FB.api('/me/picture', function(r2) {
-              $('.facebook').fadeOut(300, function() {
-                $('#application h2').fadeOut(200, function() {
-                  $('#application h2').text('Glad to have you as a mentor, ' + response.first_name).fadeIn(200);
-                })
-                information.picture = r2;
-                information.name = response.name;
-                information.education = JSON.stringify(response.education);
-                information.work = JSON.stringify(response.work);
-                information.uid = response.id;
-                $('.email').val(response.email);
-                $('.part2').slideDown(500);
-              });
-              
-           })
-         });
-       } else {
-
-       }
-    }, {scope: 'email,user_education_history,user_work_history'});
+  this.handleLinkedIn = function() {
+    IN.API.Profile('me').fields('id','skills','picture-url', 'first-name', 'last-name', 'twitter-accounts').result(function(profile) {
+      var data = profile.values[0];
+      console.log(data);
+      information.name = data.firstName + " " + data.lastName;
+      information.picture = data.pictureUrl;
+      information.uid = data.id;
+      if(data.twitterAccounts) $('.twitter').val("@" + data.twitterAccounts.values[0].providerAccountName);
+      information.tags = []
+      for(var i = 0; i < data.skills.values.length; i++) {
+        information.tags.push(data.skills.values[i].skill.name);
+      }
+      $('.part2').slideDown();
+    })
   }
   
   this.submitApplication = function() {
@@ -61,9 +60,8 @@ Apply = function() {
     information.email = $('.email').val();
     information.bio = $('.bio').val();
     information.twitter = $('.twitter').val();
-    information.linkedin = $('.linkedin').val();
     information.personal = $('.personal').val();
-    information.tags = $('.tags').tagHandler('getTags');
+    information.tags = information.tags.concat($('.tags').tagHandler('getTags'));
     if(information.email === "") {
       $('.email').css('border', 'solid 1px red');
       invalid = true;
@@ -87,6 +85,7 @@ Apply = function() {
             'min-height': '40px'
           })
           $('.part3').fadeIn(300);
+          createCookie('mentor-app',1,60);
         });
       });
     }
@@ -94,9 +93,26 @@ Apply = function() {
   
 }
 
+function createCookie(name,value,days) {
+	if (days) {
+		var date = new Date();
+		date.setTime(date.getTime()+(days*24*60*60*1000));
+		var expires = "; expires="+date.toGMTString();
+	}
+	else var expires = "";
+	document.cookie = name+"="+value+expires+"; path=/";
+}
+
+function readCookie(name) {
+	var nameEQ = name + "=";
+	var ca = document.cookie.split(';');
+	for(var i=0;i < ca.length;i++) {
+		var c = ca[i];
+		while (c.charAt(0)==' ') c = c.substring(1,c.length);
+		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+	}
+	return null;
+}
 
 apply = new Apply();
 
-Loader.register(function() {
-  apply.init();
-});
