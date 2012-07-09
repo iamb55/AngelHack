@@ -6,8 +6,14 @@
     <link rel="shortcut icon" href="/favicon.ico" />
     <script src='jquery-1.7.2.min.js'></script>
     <title>Mentor.im</title>
-    
-    
+    <meta property="og:title" content="Mentor.im"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="http://mentor.im"/>
+    <meta property="og:image" content="REPLACE ME PLEASE"/>
+    <meta property="og:site_name" content="Mentor.im"/>
+    <meta property="fb:admins" content="10150873797245579"/>
+    <meta property="og:description"
+    content=" Bringing mentors to where they're needed most."/>
 </head>
     <body>
       
@@ -214,5 +220,15 @@
           );
 	      }
 	    }
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-33268970-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
     </script>
 </body>
