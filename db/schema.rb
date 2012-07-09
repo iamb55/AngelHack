@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120708231657) do
+ActiveRecord::Schema.define(:version => 20120709144638) do
 
   create_table "apps", :force => true do |t|
     t.text     "bio"
@@ -128,9 +128,9 @@ ActiveRecord::Schema.define(:version => 20120708231657) do
   add_index "mentors_tags", ["tag_id", "mentor_id"], :name => "index_mentors_tags_on_tag_id_and_mentor_id"
 
   create_table "messages", :force => true do |t|
-    t.string   "text"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.text     "text",            :limit => 255
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.integer  "conversation_id"
     t.string   "owner_type"
     t.string   "video"
