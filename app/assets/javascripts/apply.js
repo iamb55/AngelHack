@@ -46,9 +46,9 @@ Apply = function() {
       information.name = data.firstName + " " + data.lastName;
       information.picture = data.pictureUrl;
       information.uid = data.id;
-      if(data.twitterAccounts) $('.twitter').val("@" + data.twitterAccounts.values[0].providerAccountName);
+      if(data.twitterAccounts && data.twitterAccounts.values) $('.twitter').val("@" + data.twitterAccounts.values[0].providerAccountName);
       information.tags = []
-      if(data.skills.values) {
+      if(data.skills && data.skills.values) {
         for(var i = 0; i < data.skills.length; i++) {
           information.tags.push(data.skills.values[i].skill.name);
         }
