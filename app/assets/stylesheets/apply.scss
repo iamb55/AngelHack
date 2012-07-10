@@ -98,7 +98,12 @@ $inset: inset 0 0 3px $ltgrey;
 	width: $side;
 	height: $side;
 }
-
+a {
+	color: $bluel;
+	&:hover, &.active {
+		color: $mdgrey;
+	}
+}
 
 #applogo {
 	@include headerp;
@@ -111,12 +116,45 @@ $inset: inset 0 0 3px $ltgrey;
 	text-align: left;
 	@include boxshad($bsd);
 	@include borderc(10px);
-	width: 420px;
+	width: 650px;
 	min-height: 100px;
-	h2 {
-		text-align: center;
-		font-weight: 300;
-		padding: 5px;
+	.leftf {
+		width: 420px;
+		a {
+			float: right;
+			padding: 10px 20px;
+		}
+	}
+	.rightf {
+		text-align: left;
+		min-height: 350px;
+		width: 209px;
+		float: left;
+		padding-left: 20px;
+		border-left: $borders $ltgrey;
+		p {
+			font-size: $fontMS;
+		}
+		a {
+			padding: 15px 10px;
+			color: white;
+			font-size: $fontR;
+			text-transform: uppercase;
+			font-weight: bold;
+			text-decoration: none;
+			@include borderc(5px);
+		  	cursor: pointer !important;
+			text-align: center;
+			background: $secondary;
+			float: right;
+			width: 100px;
+			&:hover {
+				background: $secondary + $dkgrey;
+			}
+		}
+		hr {
+			margin: 10px 0;
+		}
 	}
 	label {
 		position: absolute;
@@ -125,6 +163,20 @@ $inset: inset 0 0 3px $ltgrey;
 		margin-left: 5px;
 		margin-top: 20px;
 	}
+	&.sign label {
+		position: static;
+		color: $dkgrey;
+		font-size: $fontMS;
+		margin-left: 20px;
+		margin-top: 20px;
+	}
+}
+	h2 {
+		text-align: center;
+		font-weight: 300;
+		padding: 5px;
+	}
+
 	input:not(.tagInputField), .bio {
 		font: $fontMS $fontstack;
 		width: 380px;
@@ -139,28 +191,48 @@ $inset: inset 0 0 3px $ltgrey;
 			border-color: $primary;
 		}
 	}
+	input#mentor_remember_me, input#mentee_remember_me {
+		width: 0px;
+/*		margin-left: 100px;*/
+		margin-right: -5px;
+	}
 	h2 {
-  	text-align: center;
-  	font-weight: 300;
-  	padding: 5px;
-  }
-	.bio {
-	  min-height: 80px;
-	}
-	.button {
-		background: $primary;
-		width: 340px;
-		padding: 20px;
-		margin: 10px 20px;
-	}
-	.part2 {
-	  display: none;
-	}
-	p {
-	  font-size: 1.3em;
+	text-align: center;
+	font-weight: 300;
+	padding: 5px;
+}
+.bio {
+  min-height: 80px;
+}
+.button {
+	background: $primary;
+	width: 340px;
+	padding: 20px;
+	margin: 10px 20px;
+}
+input.submit {
+	padding: 15px 10px;
+	color: white !important;
+	font: $fontR "Lato", "Helvetica", arial, sans-serif;
+	text-transform: uppercase;
+	font-weight: bold;
+	text-decoration: none;
+	margin: 10px 20px;
+	@include borderc(5px);
+  	cursor: pointer !important;
+	text-align: center;
+	background: $primary;
+	box-shadow: none;
+	&:hover {
+		background: $primary + $dkgrey;
 	}
 }
-
+.part2 {
+  display: none;
+}
+p {
+  font-size: 1.3em;
+}
 .info {
   margin-left: 30px;
   img {

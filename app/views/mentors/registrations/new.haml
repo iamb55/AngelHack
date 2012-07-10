@@ -1,18 +1,42 @@
-%h2 Sign up
+%html
+  %head
+    %title Mentor.im
+    = stylesheet_link_tag "global"
+    = stylesheet_link_tag "apply"
+    = stylesheet_link_tag '960'
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,700,300italic' rel='stylesheet' type='text/css'>
+    = javascript_include_tag "application.js"
+    = javascript_include_tag "jquery.reveal.js"
+    = javascript_include_tag "loader.js"
+    = javascript_include_tag 'handlebars-1.0.0.beta.6.js'
+    = csrf_meta_tags
+    = yield :head
 
-= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
-  = devise_error_messages!
+  %body
+    #applogo
+    <a href='/'><img alt="Mentor-h2" src="/assets/mentor-h2-eae534aeecf1c914e22e0ce8fa5676dd.png" /></a>
 
-  = f.label :email
-  = f.email_field :email
-
-  = f.label :password 
-  = f.password_field :password 
-
-  = f.label :password_confirmation
-  = f.password_field :password_confirmation 
-  = f.hidden_field :token, { value: params[:token] }
-
-  = f.submit "Sign up"
-
-= render "devise/shared/links"
+    #application.sign
+      .leftf
+        %h2 Sign up to mentor
+        
+        = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+          = devise_error_messages!
+        
+          = f.label :email
+          = f.email_field :email
+        
+          = f.label :password 
+          = f.password_field :password 
+        
+          = f.label :password_confirmation
+          = f.password_field :password_confirmation 
+        
+          = f.submit "Sign up", class: "submit"
+        
+      .rightf
+        %h3 Already have an account?
+        %br
+        = link_to "Sign in", new_session_path(resource_name) 
+      %br.clear
