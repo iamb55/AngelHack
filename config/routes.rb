@@ -38,6 +38,10 @@ AngelHack::Application.routes.draw do
   match '/apply' => 'apps#create', via: :post
   match '/' => 'mentee_apps#create', via: :post
   
+  devise_scope :mentor do
+    match '/sign_in' => 'sessions#new'
+  end
+  
    
   # The priority is based upon order of creation:
   # first created -> highest priority.
