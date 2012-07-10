@@ -16,7 +16,7 @@
   %body
     #applogo
     <a href='/'><img alt="Mentor-h2" src="/assets/mentor-h2-eae534aeecf1c914e22e0ce8fa5676dd.png" /></a>
-    #application.sign
+    #application.sign.thin
       .leftf
         %h2 Sign in for mentoring
         
@@ -33,11 +33,6 @@
         
           = f.submit "Sign in", class: "submit"
           = link_to "Forgot your password?", new_password_path(resource_name)
-      .rightf
-        %h3 Don't have an account?
-        %br
-        = link_to "Sign up", new_session_path(resource_name) 
-        %p It's free!
         
         
       %br.clear
