@@ -116,8 +116,14 @@ a {
 	text-align: left;
 	@include boxshad($bsd);
 	@include borderc(10px);
-	width: 650px;
+	width: 420px;
 	min-height: 100px;
+	&.sign {
+		width: 650px;
+	}
+	&.thin {
+		width: 420px !important;
+	}
 	.leftf {
 		width: 420px;
 		a {
