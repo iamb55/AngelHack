@@ -12,9 +12,9 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     @resource = resource
     if resource.user_type == 'mentor'
-      "/mentors/#{resource.id}/conversations" 
+      "/mentors/conversations" 
     elsif resource.user_type == 'mentee'
-      "/mentees/#{resource.id}/conversations"
+      "/mentees/conversations"
     else
       '/'
     end

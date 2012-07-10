@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120709144638) do
+ActiveRecord::Schema.define(:version => 20120710021339) do
 
   create_table "apps", :force => true do |t|
     t.text     "bio"
@@ -28,6 +28,14 @@ ActiveRecord::Schema.define(:version => 20120709144638) do
     t.datetime "updated_at", :null => false
     t.string   "token"
   end
+
+  create_table "apps_tags", :id => false, :force => true do |t|
+    t.integer "app_id"
+    t.integer "tag_id"
+  end
+
+  add_index "apps_tags", ["app_id", "tag_id"], :name => "index_apps_tags_on_app_id_and_tag_id"
+  add_index "apps_tags", ["tag_id", "app_id"], :name => "index_apps_tags_on_tag_id_and_app_id"
 
   create_table "conversations", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -140,7 +148,6 @@ ActiveRecord::Schema.define(:version => 20120709144638) do
     t.string   "value"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "app_id"
   end
 
 end

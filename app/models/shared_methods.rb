@@ -13,6 +13,7 @@ module SharedMethods
   
   def m(other)
     num = (self.tags & other.tags).length
-    100 - (50/( num*other.id % 5 ))
+    binding.pry
+    100 - (50/( num * (1 + other.id % 5) ))
   end
 end

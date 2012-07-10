@@ -7,16 +7,26 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    app = App.find_by_token(params[:mentor][:token])
-    params[:mentor].delete(:token)
-    # binding.pry
-    first_name = app.name.split[0]
-    last_name = app.name.split.slice(1, app.name.split.size).join(' ')
-    picture_url = app.picture
-    super
-    Mentor.find_by_email(app.email).update_attributes({ :first_name => first_name,
-                              :last_name => last_name,
-                              :picture_url => picture_url })
+    if params[:mentee]
+      if app = MenteeApp.find_by_token(params[:mentee].delete(:token))
+        super
+      else
+        redirect_to '/'
+      end
+    else
+      if app = App.find_by_token(params[:mentor].delete(:token))
+        super
+        mentor = Mentor.find_by_email(app.email)
+        mentor.update_attributes({ 
+          :first_name => app.name.split[0],
+          :last_name => app.name.split.slice(1, app.name.split.size).join(' '),
+          :picture_url => app.picture 
+        })
+        mentor.add_tags(app.tags.collect {|t| t.value}.uniq)
+      else
+        redirect_to '/'
+      end
+    end
   end
 
   def update

@@ -6,7 +6,7 @@ AngelHack::Application.routes.draw do
   resources :messages
 
   resources :mentors do
-    member do
+    collection do
       get 'conversations'
       get 'stream'
     end
@@ -17,7 +17,7 @@ AngelHack::Application.routes.draw do
   resources :conversations
   
   resources :mentees do
-    member do
+    collection do
       get 'conversations'
     end
   end
