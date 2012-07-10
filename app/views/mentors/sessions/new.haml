@@ -1,16 +1,42 @@
-%h2 Sign in
+%html
+  %head
+    %title Mentor.im
+    = stylesheet_link_tag "global"
+    = stylesheet_link_tag "apply"
+    = stylesheet_link_tag '960'
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,700,300italic' rel='stylesheet' type='text/css'>
+    = javascript_include_tag "application.js"
+    = javascript_include_tag "jquery.reveal.js"
+    = javascript_include_tag "loader.js"
+    = javascript_include_tag 'handlebars-1.0.0.beta.6.js'
+    = csrf_meta_tags
+    = yield :head
 
-= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-  = f.label :email
-  = f.email_field :email
+  %body
+    #applogo
+    <a href='/'><img alt="Mentor-h2" src="/assets/mentor-h2-eae534aeecf1c914e22e0ce8fa5676dd.png" /></a>
+    
+    #application.sign
+      .leftf
+        %h2 Sign in to mentor
 
-  = f.label :password
-  = f.password_field :password
-
-  - if devise_mapping.rememberable?
-    = f.check_box :remember_me 
-    = f.label :remember_me 
-
-  = f.submit "Sign in"
-
-= render "devise/shared/links"
+        = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+          = f.label :email
+          = f.email_field :email
+        
+          = f.label :password
+          = f.password_field :password
+        
+          - if devise_mapping.rememberable?
+            = f.check_box :remember_me 
+            = f.label :remember_me 
+        
+          = f.submit "Sign in", class: "submit"
+          = link_to "Forgot your password?", new_password_path(resource_name)
+      .rightf
+        %h3 Don't have an account?
+        %br
+        = link_to "Sign up", new_session_path(resource_name) 
+        %p It's free!
+      %br.clear
