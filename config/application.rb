@@ -74,7 +74,6 @@ module AngelHack
         :enable_starttls_auto => true,  
         :address            => 'smtp.gmail.com',
         :port               => 587,
-        :tls                => true,
         :domain             => 'mentor.im',
         :authentication     => :plain,
         :user_name          => 'info@mentor.im',
