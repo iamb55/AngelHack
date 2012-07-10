@@ -7,7 +7,7 @@ class AppsController < ApplicationController
   def create
     tags = params[:application].delete(:tags)
     app = App.create(params[:application])
-    app.add_tags(tagsw)
+    app.add_tags(tags)
     render status: 200, nothing: true
   end
 end
