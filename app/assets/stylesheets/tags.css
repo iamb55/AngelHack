@@ -30,7 +30,7 @@
     background-color: #39C;
     color: #FFF;
     padding: 3px 8px;
-    cursor: url('../images/tag_remove.cur'), pointer;
+    cursor: url('tag_remove.cur'), pointer;
 }
 .tagHandler ul.tagHandlerContainer li.tagItem:hover {
     background-color: #008afb;

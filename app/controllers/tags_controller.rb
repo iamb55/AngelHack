@@ -3,10 +3,10 @@ class TagsController < ApplicationController
   # GET /tags.json
   def index
     @tags = Tag.all
-
+    
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @tags }
+      format.json { render json: { availableTags: @tags.as_json, assignedTags: [] } }
     end
   end
 

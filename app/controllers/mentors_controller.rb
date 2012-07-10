@@ -100,7 +100,8 @@ class MentorsController < ApplicationController
   end
 
   def stream
-    @questions = Conversation.unanswered    
+    tags = current_user.tags
+    @questions = Conversation.unanswered.collect {|c| c unless (tags & c.tags).empty? }.compact
   end
 
   def current_ability

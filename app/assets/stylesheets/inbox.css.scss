@@ -248,4 +248,16 @@ $inset: inset 0 0 3px $ltgrey;
 	}
 }
 
+#scroll {
+  height: 600px;
+  width: 650px;
+  overflow-y: scroll;
+}
+.tags {
+  background: white;
+}
+
+.taginputfield {
+  @include borderc(3px);
+}
 

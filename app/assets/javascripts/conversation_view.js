@@ -66,13 +66,22 @@ Conversation = function() {
       $('#newq').on('click', function() {
         $('#newQuestion').reveal();
       });
+      
+      
+      $('.tags').tagHandler({
+          getData: {},
+          getURL: '/tags.json',
+          autocomplete: true,
+          minChars: 1
+      });
+      
 
       $('.submitQ').on('click', function() {
         conversation.addQuestion();
       });
 
       $('.close-reveal-modal').on('click', function() {
-        $('#recorderContainer').empty();
+        $('.tagItem').remove();
       });
       
       $('#newQuestion textarea').keypress(function(e) {
@@ -90,20 +99,22 @@ Conversation = function() {
     var content = $('#newQuestion textarea').val();
     $.post('/conversations',
       {
-        data_type: 'text',
-        value: content
+        text: content,
+        tags: $('.tags').tagHandler('getTags')
       }, 
       function() {
-        $('#newQuestion textarea, #newQuestion .button').hide();
+        $('#newQuestion textarea, #newQuestion .button, #newQuestion h2, .tags').hide();
         $('#newQuestion h1').text("We'll connect you with a mentor as quickly as possible!");
         setTimeout(function() {
             $('.close-reveal-modal').trigger('click');
             setTimeout(function() {
               $('#newQuestion textarea').val('');
               $('#newQuestion textarea, #newQuestion .button').show();
+              $('.tags').show();
+              $('#newQuestion h2').show();
               $('#newQuestion h1').text("Ask a question to find a mentor!");
             }, 1000);
-          }, 1500);
+         }, 1500);
       }
     );
   }
@@ -147,8 +158,14 @@ Conversation = function() {
             message.fadeIn();
           });
           conversation.processVideos();
+          if(response[0].text.length > 75) {
+            $('.messages h2').text(response[0].text.substring(0, 75) + "...");
+          } else {
+            $('.messages h2').text(response[0].text);
+          }
+          
           var myDiv = document.getElementById('scroll');
-          myDiv.scrollTop = myDiv.scrollHeight + 1000;
+          myDiv.scrollTop = myDiv.scrollHeight + 100;
           $('.messages').data('id', _this.data().id);
           $(".replybar textarea").trigger('blur', 'true');
     }, 'json')

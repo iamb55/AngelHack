@@ -1,5 +1,6 @@
 class Conversation < ActiveRecord::Base
   include ActionView::Helpers
+  include SharedMethods
   has_many :messages
   has_and_belongs_to_many :tags
   belongs_to :mentee

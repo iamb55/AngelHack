@@ -36,6 +36,7 @@ AngelHack::Application.routes.draw do
   
   match '/apply' => 'apps#apply', via: :get
   match '/apply' => 'apps#create', via: :post
+  match '/' => 'mentee_apps#create', via: :post
   
    
   # The priority is based upon order of creation:

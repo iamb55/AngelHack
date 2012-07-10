@@ -4,4 +4,8 @@ class Tag < ActiveRecord::Base
   has_and_belongs_to_many :mentors
   has_and_belongs_to_many :mentees
   has_and_belongs_to_many :conversations
+  
+  def as_json(options ={})
+    self.value
+  end
 end

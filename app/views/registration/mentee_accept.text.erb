@@ -1,0 +1,11 @@
+Hello,
+
+We'd like to invite you to join us at Mentor.im to get your questions answered.
+
+Please click the link below to sign up:
+<% if Rails.env == 'production' %>
+  <% host = 'mentor.im' %>
+<% else %>
+  <% host = 'localhost:3000' %>
+<% end %>
+<%= 'http://' + host + '/mentees/sign_up?token=' + @mentee_app.token %>

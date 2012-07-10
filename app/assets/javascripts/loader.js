@@ -5,7 +5,6 @@ var Loader = function() {
 	var loadStack = [];
 	
 	var execLoadStack = function() {
-	  console.log(typeof loadStack);
 	  for(var i = 0; i < loadStack.length; i++) {
 	    var loadable = loadStack[i];
       // try {

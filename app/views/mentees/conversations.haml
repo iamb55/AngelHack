@@ -1,88 +1,92 @@
-=co=content_for :head do
+=content_for :head do
+  = javascript_include_tag 'jquery-ui-1.8.21.custom.min'
   = javascript_include_tag 'tokbox'
   = javascript_include_tag 'conversation_view'
   = javascript_include_tag "http://staging.tokbox.com/v0.91/js/TB.min.js"
-  = stylesheet_link_tag "inbox.css"
+  = javascript_include_tag 'tags.js'
+  = stylesheet_link_tag "inbox"
+  = stylesheet_link_tag "reveal"
+  = stylesheet_link_tag 'tags'
+  = stylesheet_link_tag 'jquery-ui-1.8.21.custom'
+
 
 #main
   .container_12
     .conversations
       .leftbar
         #newq.button New Question
-        %h3 Mentor Responses
+        %h3 Conversations
         .users
           %ul.list
             -if @conversations && !@conversations.empty?
               -@conversations.each do |conversation|
-                %li.chatSelection
+                %li
                   .user{"data-id" => "#{conversation[:id]}"}
                     %img.imagerounded{:src => "#{conversation[:user].picture_url}"}
                       .information
                         %h4= conversation[:user].first_name
-                        -if conversation[:message][:data_type] == 'video'
+                        -if conversation[:message][:video]
                           %p video
                         -else
-                          %p= truncate(conversation[:message][:value], length: 50)
+                          %p= truncate(conversation[:message][:text], length: 50)
                       .clear
-          %h3 Pending Questions
-          .users
-            %ul.list
-              %li.chatSelection
-                .user{"data-id" => "11"}
-                  %img.imagerounded{:src => "https://graph.facebook.com/550876882/picture?type=square"}
-                    .information
-                      %h4 How do I become a product designer?
-                    .clear
+                      
+          -if @unanswered && !@unanswered.empty?
+            %h3 Pending Questions
+            .users
+              %ul.list
+                -@unanswered.each do |conversation|
+                  %li
+                    %div{"data-id" => "#{conversation[:id]}"}
+                      %img.imagerounded{:src => "#{current_user.picture_url}"}
+                        .information
+                          %h4
+                          -if conversation[:message][:video]
+                            %p video
+                          -else
+                            %p= truncate(conversation[:message][:text], length: 50)
+                        .clear
       .rightbar
-        #scroll.messages{"data-id" => "11"}
+        .messages{"data-id" => "#{@conversations.first[:id]}"}
           -if @conversations && !@conversations.empty?
-            %h2= truncate(@messages.first.value, length: 75)
-            .messages#scroll{ data: { id: "#{@conversations[0][:id]}"} }
+            %h2= truncate(@messages.first.text, length: 75)
+            #scroll{ data: { id: "#{@conversations[0][:id]}"} }
               %ul
                 -@messages.each do |message| 
                   -owner = message.conversation.send(message.owner_type)
                   %li
-                    -if message['data_type'] == 'text'
-                      .container_12
-                        .grid_1
-                          %img.imagerounded{src: owner.picture_url}
-                        .grid_5
-                          %h5= owner.first_name
-                        #timestamp.grid_2
-                          = time_ago_in_words(message['created_at'])
-                      .mentee.message
-                        %p=message.value
-                    -else
-                      .container_12
-                        .grid_1
-                          %img.imagerounded{src: owner.picture_url}
-                        .grid_5
-                          %h5= owner.first_name
-                        #timestamp.grid_2
-                          = time_ago_in_words(message['created_at'])
-                      .mentee.message
-                        .videoPlayer{id: "#{message.value}", data: { id: "#{message.value}" } }
-                          %div{id: "p#{message.value}"}
-                          
+                    .container_12
+                      .grid_1
+                        %img.imagerounded{src: owner.picture_url}
+                      .grid_5
+                        %h5= owner.first_name
+                      #timestamp.grid_2
+                        = time_ago_in_words(message['created_at'])
+                    .mentee.message
+                      %p=message.text
+                    -if message.video
+                      .videoPlayer{id: "#{message.video}", data: { id: "#{message.video}" } }
+                        %div{id: "p#{message.video}"}
+
           .replybar
             %p
-              %textarea
+              %textarea.new-message Compose a new message...
               %br.clear/
-              .rightf
-                .button.reply.leftf
-                  Add a Video
-                #inboxr.button.reply.leftf
+              .rightf{style: "display:none;"}
+                #inboxr.button.reply.leftf.send
                   %span Send
               .clear
     .clear
-
-#responseModal.reveal-modal
-  %h1= 'Submit a Response'
-  #recorderContainer
+    
+#newQuestion.reveal-modal  
+  %h1 Ask a question to find a mentor!
+  %textarea
+  %h2 What are some tags for your question?
+  %ul.tags
+  .button.blue.submitQ Submit
   <a class="close-reveal-modal">&#215;</a>
   
-        
-%script.text-message-template{ type: "text/x-handlebars-template" }
+%script.message-template{ type: "text/x-handlebars-template" }
   %li
     .container_12
       .grid_1
@@ -92,16 +96,8 @@
       .grid_2#timestamp  
         {{ created_at }}
     .message{class: "{{owner_type}}" }
-      %p {{value}}
-
-%script.video-message-template{ type: "text/x-handlebars-template" }
-  %li
-    .container_12
-      .grid_1
-        %img.imagerounded{src: "{{picture_url}}" }
-      .grid_5
-        %h5 {{ name }}
-      .grid_2#timestamp  
-        {{created_at}}
-    .videoPlayer{id: "{{value}}", data: { id: "{{value}}" } }
-      %div{id: "p{{value}}"}
+      %p {{text}}
+    {{#if video }}
+    .videoPlayer{id: "{{video}}", data: { id: "{{video}}" } }
+      %div{id: "p{{video}}"}
+    {{/if}}
