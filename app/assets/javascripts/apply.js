@@ -48,9 +48,11 @@ Apply = function() {
       information.uid = data.id;
       if(data.twitterAccounts) $('.twitter').val("@" + data.twitterAccounts.values[0].providerAccountName);
       information.tags = []
-      for(var i = 0; i < data.skills.values.length; i++) {
-        information.tags.push(data.skills.values[i].skill.name);
-      }
+      if(data.skills.values) {
+        for(var i = 0; i < data.skills.length; i++) {
+          information.tags.push(data.skills.values[i].skill.name);
+        }
+      } 
       $('.part2').slideDown();
     })
   }
