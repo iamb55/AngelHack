@@ -16,7 +16,8 @@ class RegistrationsController < Devise::RegistrationsController
     else
       if app = App.find_by_token(params[:mentor].delete(:token))
         super
-        mentor = Mentor.find_by_email(app.email)
+          binding.pry
+        mentor = Mentor.find_by_email(params[:email])
         mentor.update_attributes({ 
           :first_name => app.name.split[0],
           :last_name => app.name.split.slice(1, app.name.split.size).join(' '),
