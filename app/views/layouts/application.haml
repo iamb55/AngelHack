@@ -15,7 +15,7 @@
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-33268970-1']);
       _gaq.push(['_trackPageview']);
-
+    
       (function() {
         var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
@@ -42,10 +42,10 @@
           -else
             = link_to "Inbox", conversations_mentees_path
         .grid_2
-          %a{:href => "#"} Profile
-        .grid_2
           -if mentor_signed_in?
             = link_to "Questions", stream_mentors_path
+        .grid_2
+          / %a{:href => "#"} Profile
         #home.grid_4
           %a{:href => "#"}
             %img{:src => "#{current_user.picture_url}"}>/

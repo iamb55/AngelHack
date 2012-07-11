@@ -8,7 +8,7 @@ module SharedMethods
   end
   
   def add_tags(tags)
-    tags.each {|value| self.add_tag(value) }
+    tags.each {|value| self.add_tag(value) } if tags
   end
   
   def m(other)
