@@ -27,6 +27,7 @@ class Api::V1::ConversationsController < ApplicationController
       return
     end
     data[:conversations] = []
+    data[:success] = true
     render status: 200, json: data, nothing: true
   end
   
