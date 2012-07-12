@@ -15,6 +15,7 @@ class Mentee < ActiveRecord::Base
   validates_presence_of :last_name
 
   has_many :conversations
+  has_many :ratings
   has_and_belongs_to_many :tags
   
   def mentor?
