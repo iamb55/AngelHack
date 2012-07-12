@@ -11,8 +11,12 @@ body {
   text-align: center; }
 
 .leftf {
-  float: left; }
-
+  float: left;
+}
+.social {
+  width: 215px!important;
+  margin-left: -15px;
+}
 .rightf {
   float: right; }
 

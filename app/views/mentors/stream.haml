@@ -29,29 +29,31 @@
           
           
       .rightbar
-        %h1.empty No new questions! Questions are asked all the time, so check back later.
-        %ul.mentorStream
-          %h3= pluralize(@questions.count, "Unanswered Question")
-          -@questions.each do |question|
-            %li.mentorItem{ data: { id: question.id } }
-              .container_12
-                .grid_1
-                  %img.imagerounded{src: question.mentee.picture_url}
-                .grid_5
-                  %h5.name= question.mentee.first_name
-                #timestamp.grid_2
-                  =time_ago_in_words(question.created_at) + " ago"
-              .mentee.message
-                %p.question= question.messages.first.text
+        -if @questions && !@questions.empty?
+          %ul.mentorStream
+            %h3= pluralize(@questions.count, "Unanswered Question")
+            -@questions.each do |question|
+              %li.mentorItem{ data: { id: question.id } }
+                .container_12
+                  .grid_1
+                    %img.imagerounded{src: question.mentee.picture_url}
+                  .grid_5
+                    %h5.name= question.mentee.first_name
+                  #timestamp.grid_2
+                    =time_ago_in_words(question.created_at) + " ago"
+                .mentee.message
+                  %p.question= question.messages.first.text
                   
-                .button.leftf.respondButton
-                  %span Reply
-                  .video2 &nbsp;
-                .match
-                  %span= "%#{current_mentor.m(question)}"
-                  Mentor Match
+                  .button.leftf.respondButton
+                    %span Reply
+                    .video2 &nbsp;
+                  .match
+                    %span= "%#{current_mentor.m(question)}"
+                    Mentor Match
                   
-                .clear
+                  .clear
+        -else
+          %h1.empty No new questions! Questions are asked all the time, so check back later.
         
         
 #responseModal.reveal-modal

@@ -28,9 +28,9 @@
               %li No active conversations
                       
       .rightbar
-        %h1.empty No active conversations! Browse <a href="#">new questions</a> to get started.
-        .messages{"data-id" => "#{@conversations.first[:id]}"}
-          -if @conversations && !@conversations.empty?
+        %h1.empty No active conversations! Browse <a href="/mentors/stream">new questions</a> to get started.
+        -if @conversations && !@conversations.empty?
+          .messages{"data-id" => "#{@conversations.first[:id]}"}
             %h2= truncate(@messages.first.text, length: 75)
             #scroll{ data: { id: "#{@conversations[0][:id]}"} }
               %ul
@@ -50,16 +50,16 @@
                       .videoPlayer{id: "#{message.video}", data: { id: "#{message.video}" } }
                         %div{id: "p#{message.video}"}
                           
-          .replybar
-            %p
-              %textarea.new-message Compose a new message...
-              %br.clear/
-              .rightf{style: "display:none;"}
-                .button.leftf.video
-                  Add a Video
-                #inboxr.button.reply.leftf.send
-                  %span Send
-              .clear
+            .replybar
+              %p
+                %textarea.new-message Compose a new message...
+                %br.clear/
+                .rightf{style: "display:none;"}
+                  .button.leftf.video
+                    Add a Video
+                  #inboxr.button.reply.leftf.send
+                    %span Send
+                .clear
     .clear
 
 #videoModal.reveal-modal
