@@ -64,7 +64,7 @@ class MessagesController < ApplicationController
     end
     
     if @message.save
-      render status: 200, json: @message.as_json
+      render status: 200, json: {message: @message.as_json, num_messages: conversation.messages.count }
     else
       render status: 500, nothing: true
     end

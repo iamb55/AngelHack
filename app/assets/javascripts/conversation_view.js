@@ -2,6 +2,8 @@ Conversation = function() {
   var questionID, message;
   var videoAnswer = false;
   var message_data = {};
+  var mentee = false;
+  var submitted = false;
 
   this.init = function() {
     $.ajaxSetup({
@@ -63,6 +65,7 @@ Conversation = function() {
     conversation.processVideos();
 
     if($('#newq').length != 0) {
+      mentee = true;
       $('#newq').on('click', function() {
         $('#newQuestion').reveal();
       });
@@ -88,6 +91,34 @@ Conversation = function() {
         if (e.keyCode == 13 && !e.shiftKey) {
           e.preventDefault();
           conversation.addQuestion();
+        }
+      });
+      
+      $('.good').on('click', function() {
+        if(!submitted) {
+          submitted = true;
+          $.post('/ratings',
+          {
+            conversation_id: $('.messages').data().id,
+            rating: "good"
+          }, function() {
+              submitted = false;
+              $('#ratingModal .close-reveal-modal').trigger('click');
+          })
+        }
+      });
+      
+      $('.bad').on('click', function() {
+        if(!submitted) {
+          submitted = true;
+          $.post('/ratings',
+          {
+            conversation_id: $('.messages').data().id,
+            rating: "bad"
+          }, function() {
+              submitted = false;
+              $('#ratingModal .close-reveal-modal').trigger('click');
+          });
         }
       });
     }
@@ -127,7 +158,7 @@ Conversation = function() {
           message_data,
           function(data) {
             $('.replybar textarea').val('');
-            var m = $(message(data));
+            var m = $(message(data.message));
             $('.messages ul').append(m);
             m.fadeIn(1000, function() {
               var myDiv = document.getElementById('scroll');
@@ -136,6 +167,9 @@ Conversation = function() {
             message_data = {};
             videoAnswer = false;
             $(".replybar textarea").trigger('blur', 'true');
+            if(mentee && data.num_messages % 7 === 0) {
+              $('#ratingModal').reveal();
+            }
           }
     );
   }
