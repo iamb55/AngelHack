@@ -1,9 +1,10 @@
 module SharedMethods
   def add_tag(value)
+    value = value.downcase
     if tag = Tag.find_by_value(value)
       self.tags.push(tag)
     else
-      self.tags.create(value: value.downcase)
+      self.tags.create(value: value)
     end
   end
   
