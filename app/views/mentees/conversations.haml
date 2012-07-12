@@ -102,3 +102,16 @@
     .videoPlayer{id: "{{video}}", data: { id: "{{video}}" } }
       %div{id: "p{{video}}"}
     {{/if}}
+    
+
+#ratingModal.reveal-modal
+  %h1 Rate your mentor
+  .leftv
+    <a href="#"><img src="/assets/upvote.png"><br /><span>Great!</span></a>
+  .rightv
+    <a href="#"><img src="/assets/downvote.png"><br /><span>Not so great.</span></a>
+  %br.clear
+  %p.thanks Thanks for rating this mentor!
+  <a class="close-reveal-modal">&#215;</a>
+
+  .clear
