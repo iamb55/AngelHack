@@ -261,4 +261,39 @@ $inset: inset 0 0 3px $ltgrey;
 .taginputfield {
   @include borderc(3px);
 }
+#ratingModal {
+	.leftv, .rightv {
+		float: left;
+		width: 100px;
+		padding: 20px 20px;
+		img {
+			margin-bottom: 5px;
+		}
+		a img {
+			opacity: .5;
 
+		}
+		a:hover img {
+			opacity: 1;
+		}
+		a {
+			color: $mdgrey;
+			&:hover {
+				color: $bluen;
+			}
+		}
+
+	}
+	span {
+		padding: 10px;
+		font-weight: bold;
+		font: $fontR;
+	}
+	.leftv {
+		padding-left: 135px;
+	}
+	.thanks {
+		font-weight: 300;
+		font-size: $fontMM;
+	}
+}
