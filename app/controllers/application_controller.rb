@@ -12,7 +12,11 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     @resource = resource
     if resource.user_type == 'mentor'
-      "/mentors/conversations" 
+      if current_mentor.conversations.length == 0
+        '/mentors/stream'
+      else
+        "/mentors/conversations" 
+      end
     elsif resource.user_type == 'mentee'
       "/mentees/conversations"
     else
@@ -27,9 +31,9 @@ class ApplicationController < ActionController::Base
   
      def config_opentok
        if @opentok.nil?
-         @opentok = OpenTok::OpenTokSDK.new 16528271, "0a9472b4ebc4ed74440108b8a0023bcda2ada9c8"
-         session_id = @opentok.create_session(request.host)
-         @opentok_token = @opentok.generate_token(session_id: session_id, role: OpenTok::RoleConstants::MODERATOR)
+         # @opentok = OpenTok::OpenTokSDK.new 16528271, "0a9472b4ebc4ed74440108b8a0023bcda2ada9c8"
+         # session_id = @opentok.create_session(request.host)
+         # @opentok_token = @opentok.generate_token(session_id: session_id, role: OpenTok::RoleConstants::MODERATOR)
        end
      end
      

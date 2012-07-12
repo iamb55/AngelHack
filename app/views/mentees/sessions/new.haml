@@ -22,6 +22,7 @@
         %h2 Sign in for mentoring
         
         = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+          = devise_error_messages!
           
           = f.label :email
           = f.email_field :email

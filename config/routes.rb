@@ -1,7 +1,7 @@
 AngelHack::Application.routes.draw do
-  devise_for :mentors, controllers: { registrations: 'registrations', sessions: 'sessions' }
+  devise_for :mentors, controllers: { registrations: 'registrations', sessions: 'sessions', passwords: 'passwords' }
 
-  devise_for :mentees, controllers: { registrations: 'registrations', sessions: 'sessions' }
+  devise_for :mentees, controllers: { registrations: 'registrations', sessions: 'sessions', passwords: 'passwords' }
 
   resources :messages
 
@@ -40,6 +40,7 @@ AngelHack::Application.routes.draw do
   
   devise_scope :mentor do
     match '/sign_in' => 'sessions#new'
+    match '/new_password' => 'passwords#new'
   end
   
    

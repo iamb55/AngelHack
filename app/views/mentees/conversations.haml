@@ -30,6 +30,8 @@
                         -else
                           %p= truncate(conversation[:message][:text], length: 50)
                       .clear
+            -else
+              %li No active conversations
                       
           -if @unanswered && !@unanswered.empty?
             %h3 Pending Questions

@@ -28,4 +28,8 @@ class Mentee < ActiveRecord::Base
   def user_type
     "mentee"
   end
+  
+  def picture_url
+    '/assets/avatar.png'
+  end
 end
