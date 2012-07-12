@@ -1,0 +1,63 @@
+=content_for :head do
+  = javascript_include_tag 'jquery-ui-1.8.21.custom.min'
+  = javascript_include_tag 'tokbox'
+  = javascript_include_tag 'conversation_view'
+  = javascript_include_tag "http://staging.tokbox.com/v0.91/js/TB.min.js"
+  = javascript_include_tag 'tags.js'
+  = stylesheet_link_tag "inbox"
+  = stylesheet_link_tag "reveal"
+  = stylesheet_link_tag 'tags'
+  = stylesheet_link_tag 'jquery-ui-1.8.21.custom'
+
+
+#main
+  .container_12
+    .conversations
+      .leftbar
+        #newq.button New Question
+        %h3 Conversations
+
+      .rightbar
+        .messages
+          %ul
+            %li
+              .container_12
+                .grid_1
+                .grid_5
+                #timestamp.grid_2
+              .mentee.message
+                %p=You don't have any active conversations! Ask a question using the button on the left.
+
+          .replybar
+            %p
+              %textarea.new-message Compose a new message...
+              %br.clear/
+              .rightf{style: "display:none;"}
+                #inboxr.button.reply.leftf.send
+                  %span Send
+              .clear
+    .clear
+    
+#newQuestion.reveal-modal  
+  %h1 Ask a question to find a mentor!
+  %textarea
+  %h2 What are some tags for your question?
+  %ul.tags
+  .button.blue.submitQ Submit
+  <a class="close-reveal-modal">&#215;</a>
+  
+%script.message-template{ type: "text/x-handlebars-template" }
+  %li
+    .container_12
+      .grid_1
+        %img.imagerounded{src: "{{picture_url}}" }
+      .grid_5
+        %h5 {{ name }}
+      .grid_2#timestamp  
+        {{ created_at }}
+    .message{class: "{{owner_type}}" }
+      %p {{text}}
+    {{#if video }}
+    .videoPlayer{id: "{{video}}", data: { id: "{{video}}" } }
+      %div{id: "p{{video}}"}
+    {{/if}}

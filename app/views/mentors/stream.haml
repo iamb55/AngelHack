@@ -29,6 +29,7 @@
           
           
       .rightbar
+        %h1.empty No new questions! Questions are asked all the time, so check back later.
         %ul.mentorStream
           %h3= pluralize(@questions.count, "Unanswered Question")
           -@questions.each do |question|

@@ -28,8 +28,9 @@
               %li No active conversations
                       
       .rightbar
-        -if @conversations && !@conversations.empty?
-          .messages{"data-id" => "#{@conversations.first[:id]}"}
+        %h1.empty No active conversations! Browse <a href="#">new questions</a> to get started.
+        .messages{"data-id" => "#{@conversations.first[:id]}"}
+          -if @conversations && !@conversations.empty?
             %h2= truncate(@messages.first.text, length: 75)
             #scroll{ data: { id: "#{@conversations[0][:id]}"} }
               %ul

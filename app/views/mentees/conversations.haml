@@ -49,8 +49,9 @@
                             %p= truncate(conversation[:message][:text], length: 50)
                         .clear
       .rightbar
-        -if @conversations && !@conversations.empty?
-          .messages{"data-id" => "#{@conversations.first[:id]}"}
+        %h1.empty No active conversations! Ask a question to get started.
+        .messages{"data-id" => "#{@conversations.first[:id]}"}
+          -if @conversations && !@conversations.empty?
             %h2= truncate(@messages.first.text, length: 75)
             #scroll{ data: { id: "#{@conversations[0][:id]}"} }
               %ul
