@@ -217,10 +217,17 @@ $inset: inset 0 0 3px $ltgrey;
 		padding: 0 10px;
 	}
 	li {
-		padding: 10px 10px 10px 40px;
+		padding: 5px;
+    border-radius: 10px;
+    float: left;
+    background: #7FD4F0;
+    margin: 5px;
 	}
 	a {
 		color: $dqgrey;
 		text-decoration: underline;
+	}
+	ul {
+	  margin-top: 20px;
 	}
 }

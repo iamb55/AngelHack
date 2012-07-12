@@ -31,7 +31,7 @@ class Api::V1::TokensController < ApplicationController
       @mentor.ensure_authentication_token! 
       if @mentor.valid_password?(password)
         data[:mentor] = @mentor
-        data[:mentor_token] = @mentor.authentication_token
+        data[:mentor_token] = @mentor.authentication_token.to_s
       end
     end
     
@@ -39,7 +39,7 @@ class Api::V1::TokensController < ApplicationController
       @mentee.ensure_authentication_token! 
       if @mentee.valid_password?(password)
         data[:mentee] = @mentee
-        data[:mentee_token] = @mentee.authentication_token
+        data[:mentee_token] = @mentee.authentication_token.to_s
       end
     end
     

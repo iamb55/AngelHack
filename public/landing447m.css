@@ -11,8 +11,12 @@ body {
   text-align: center; }
 
 .leftf {
-  float: left; }
-
+  float: left;
+}
+.social {
+  width: 215px!important;
+  margin-left: -15px;
+}
 .rightf {
   float: right; }
 
@@ -44,8 +48,7 @@ body {
     #header a:hover, #header a.active {
       color: #4c899d; }
   #header .leftf, #header .rightf {
-    width: 210px;
-    margin-left: -10px }
+    width: 200px; }
   #header .rightf {
     font-size: 0.75em;
     width: 200px; }
@@ -95,21 +98,25 @@ body {
         -webkit-border-radius: 25px;
         border-radius: 25px; }
         #landingpage .primary .conversation img.leftphoto {
-          margin-left: -85px; }
+          left: 50%;
+          margin-left: -337px; }
         #landingpage .primary .conversation img.rightphoto {
-          margin-left: 535px; }
+          left: 50%;
+          margin-left: 285px; }
       #landingpage .primary .conversation .leftconvo {
         background: url(images/left.png) top left;
         width: 24px;
         height: 19px;
         position: absolute;
-        margin-left: -164px; }
+        left: 50%;
+        margin-left: -274px; }
       #landingpage .primary .conversation .rightconvo {
         background: url(images/right.png) top left;
         width: 24px;
         height: 19px;
         position: absolute;
-        margin-left: 450px; }
+        left: 50%;
+        margin-left: 250px; }
     #landingpage .primary p {
       background: #7fd4f0;
       color: white;
@@ -219,6 +226,7 @@ body {
     text-decoration: none; }
     .footer a:hover {
       color: #a9a8a2; }
+
       
 .error {
   border: 1px solid red!important;

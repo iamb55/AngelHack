@@ -18,13 +18,19 @@
     <a href='/'><img alt="Mentor-h2" src="/assets/mentor-h2-eae534aeecf1c914e22e0ce8fa5676dd.png" /></a>
     #application.sign
       .leftf
-        %h2 Sign up for mentoring
+        %h2 Sign up to be mentored
         
         = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
           = devise_error_messages!
+          
+          = f.label :first_name
+          = f.text_field :first_name
+          
+          = f.label :last_name
+          = f.text_field :last_name
         
           = f.label :email
-          = f.email_field :email
+          = f.email_field :email, value: @email
         
           = f.label :password 
           = f.password_field :password 

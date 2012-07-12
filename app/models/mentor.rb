@@ -12,6 +12,7 @@ class Mentor < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :birthday, :picture_url
 
   has_many :conversations
+  has_many :ratings
   has_and_belongs_to_many :tags
   
   def mentor?
@@ -24,5 +25,9 @@ class Mentor < ActiveRecord::Base
 
   def user_type
     "mentor"
+  end
+
+  def rating
+    return self.ratings.where(value: 'good').count - self.ratings.where(value: 'bad').count
   end
 end

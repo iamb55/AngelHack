@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120708231657) do
+ActiveRecord::Schema.define(:version => 20120712185311) do
 
   create_table "apps", :force => true do |t|
     t.text     "bio"
@@ -28,6 +28,14 @@ ActiveRecord::Schema.define(:version => 20120708231657) do
     t.datetime "updated_at", :null => false
     t.string   "token"
   end
+
+  create_table "apps_tags", :id => false, :force => true do |t|
+    t.integer "app_id"
+    t.integer "tag_id"
+  end
+
+  add_index "apps_tags", ["app_id", "tag_id"], :name => "index_apps_tags_on_app_id_and_tag_id"
+  add_index "apps_tags", ["tag_id", "app_id"], :name => "index_apps_tags_on_tag_id_and_app_id"
 
   create_table "conversations", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -49,6 +57,12 @@ ActiveRecord::Schema.define(:version => 20120708231657) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.boolean  "mentor"
+  end
+
+  create_table "invitations", :force => true do |t|
+    t.string   "token"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "mentee_apps", :force => true do |t|
@@ -128,19 +142,26 @@ ActiveRecord::Schema.define(:version => 20120708231657) do
   add_index "mentors_tags", ["tag_id", "mentor_id"], :name => "index_mentors_tags_on_tag_id_and_mentor_id"
 
   create_table "messages", :force => true do |t|
-    t.string   "text"
+    t.text     "text",            :limit => 255
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
     t.integer  "conversation_id"
     t.string   "owner_type"
-    t.string   "video",           :limit => nil
+    t.string   "video"
+  end
+
+  create_table "ratings", :force => true do |t|
+    t.string   "value"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "mentor_id"
+    t.integer  "mentee_id"
   end
 
   create_table "tags", :force => true do |t|
     t.string   "value"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "app_id"
   end
 
 end

@@ -12,9 +12,13 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     @resource = resource
     if resource.user_type == 'mentor'
-      "/mentors/#{resource.id}/conversations" 
+      if current_mentor.conversations.length == 0
+        '/mentors/stream'
+      else
+        "/mentors/conversations" 
+      end
     elsif resource.user_type == 'mentee'
-      "/mentees/#{resource.id}/conversations"
+      "/mentees/conversations"
     else
       '/'
     end

@@ -22,8 +22,9 @@
         %a{:href => "/"}
           =image_tag 'mentor-h2.png'
         #application
-          %h2 Apply to be a mentor
-          .button.submit.facebook Connect With Facebook
+          .part1{style: "display:none;"}
+            %h2 Apply to be a mentor
+            %script{type: "in/Login"}
           .part2
             %br/
             %label *
@@ -38,12 +39,12 @@
             %br.clear/
             %input.twitter{:placeholder => "Twitter (optional)", :type => "text"}/
             %br.clear/
-            %input.linkedin{:placeholder => "LinkedIn (optional)", :type => "text"}/
-            %br.clear/
             %input.personal{:placeholder => "Personal Site (optional)", :type => "text"}/
             %br.clear/
             %input.video{:placeholder => "Link to Video Introduction (optional)", :type => "text"}/
             %br.clear/
+            %input.invitation{placeholder: "Invitation code (optional)", value: "#{params[:invitation]}", type: "test"}
+            %br.clear
             .button.create Submit Application
             %br.clear/
           .part3{ style: "display: none;"}
@@ -51,28 +52,10 @@
               Thank you for applying to be a mentor! We'll get back to you in the next few days.
           %br.clear/  
 
-<div id="fb-root"></div>
-:javascript
-  var connected = false;
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '259568837477850', // App ID
-      channelUrl : 'http://mentor.im/channel.html', // Channel File
-      status     : true, // check login status
-      cookie     : true, // enable cookies to allow the server to access the session
-      xfbml      : true  // parse XFBML
-    });
-      
-    FB.getLoginStatus(function(response) {
-      if(response.status == "connected") connected = true;
-    });
-  };
+%script{type: "text/javascript", src: 'http://platform.linkedin.com/in.js'}
+  -if Rails.env.production?
+    api_key: 1vojlh8n2vxw
+  -else
+    api_key: etdb4nl1aus5
+  onLoad: apply.init
 
-  // Load the SDK Asynchronously
-  (function(d){
-     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement('script'); js.id = id; js.async = true;
-     js.src = "//connect.facebook.net/en_US/all.js";
-     ref.parentNode.insertBefore(js, ref);
-   }(document));

@@ -46,7 +46,7 @@ Stream = function() {
           },
           function(data) {
   	        $('.close-reveal-modal').trigger('click');
-  	        window.location = '/mentors/' + current_user + '/conversations?conversation_id=' + questionID;
+  	        window.location = '/mentors/conversations?conversation_id=' + questionID;
       	}
     	);
   }

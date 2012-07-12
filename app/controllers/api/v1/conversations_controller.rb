@@ -24,7 +24,11 @@ class Api::V1::ConversationsController < ApplicationController
       data[:conversations] = conversations
       data[:success] = true
       render status: 200, json: conversations, nothing: true
+      return
     end
+    data[:conversations] = []
+    data[:success] = true
+    render status: 200, json: data, nothing: true
   end
   
   def show

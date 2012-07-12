@@ -1,12 +1,14 @@
 AngelHack::Application.routes.draw do
-  devise_for :mentors, controllers: { registrations: 'registrations', sessions: 'sessions' }
+  devise_for :mentors, controllers: { registrations: 'registrations', sessions: 'sessions', passwords: 'passwords' }
 
-  devise_for :mentees, controllers: { registrations: 'registrations', sessions: 'sessions' }
+  devise_for :mentees, controllers: { registrations: 'registrations', sessions: 'sessions', passwords: 'passwords' }
 
   resources :messages
 
+  resources :ratings, :only => [:create]
+
   resources :mentors do
-    member do
+    collection do
       get 'conversations'
       get 'stream'
     end
@@ -17,7 +19,7 @@ AngelHack::Application.routes.draw do
   resources :conversations
   
   resources :mentees do
-    member do
+    collection do
       get 'conversations'
     end
   end
@@ -37,6 +39,11 @@ AngelHack::Application.routes.draw do
   match '/apply' => 'apps#apply', via: :get
   match '/apply' => 'apps#create', via: :post
   match '/' => 'mentee_apps#create', via: :post
+  
+  devise_scope :mentor do
+    match '/sign_in' => 'sessions#new'
+    match '/new_password' => 'passwords#new'
+  end
   
    
   # The priority is based upon order of creation:

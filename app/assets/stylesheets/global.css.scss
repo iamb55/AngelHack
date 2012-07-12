@@ -308,6 +308,19 @@ input, textarea {
 		display: none;
 	}
 }
+
+#error_explanation {
+  margin-bottom: 20px;
+  border: 1px solid red;
+  padding: 10px;
+  border-radius: 5px;
+  h2 {
+    font-size: 1.3em;
+  }
+  ul {
+    margin-left: 50px;
+  }
+}
 .rightbar .empty {
 	padding: 30px 20px;
 }

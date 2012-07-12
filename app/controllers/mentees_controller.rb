@@ -96,7 +96,11 @@ class MenteesController < ApplicationController
           nil
         end
       end.compact
-      @messages = cs.first.messages
+      if @conversations.first
+        @messages = Conversation.find(@conversations.first[:id]).messages
+      else
+        @messages = []
+      end
     end
   end
 

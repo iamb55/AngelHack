@@ -16,11 +16,14 @@
   %body
     #applogo
     <a href='/'><img alt="Mentor-h2" src="/assets/mentor-h2-eae534aeecf1c914e22e0ce8fa5676dd.png" /></a>
+
     #application.sign.thin
       .leftf
         %h2 Sign in for mentoring
         
         = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+          = devise_error_messages!
+          
           = f.label :email
           = f.email_field :email
         
@@ -33,6 +36,4 @@
         
           = f.submit "Sign in", class: "submit"
           = link_to "Forgot your password?", new_password_path(resource_name)
-        
-        
       %br.clear
