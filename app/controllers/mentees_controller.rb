@@ -100,6 +100,7 @@ class MenteesController < ApplicationController
         @messages = Conversation.find(@conversations.first[:id]).messages
       else
         @messages = []
+      end
     end
   end
 
