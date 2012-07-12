@@ -5,6 +5,8 @@ AngelHack::Application.routes.draw do
 
   resources :messages
 
+  resources :ratings, :only => [:create]
+
   resources :mentors do
     collection do
       get 'conversations'
