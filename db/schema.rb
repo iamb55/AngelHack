@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120710021339) do
+ActiveRecord::Schema.define(:version => 20120712061419) do
 
   create_table "apps", :force => true do |t|
     t.text     "bio"
@@ -57,6 +57,12 @@ ActiveRecord::Schema.define(:version => 20120710021339) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.boolean  "mentor"
+  end
+
+  create_table "invitations", :force => true do |t|
+    t.string   "token"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "mentee_apps", :force => true do |t|

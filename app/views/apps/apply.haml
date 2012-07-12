@@ -43,6 +43,8 @@
             %br.clear/
             %input.video{:placeholder => "Link to Video Introduction (optional)", :type => "text"}/
             %br.clear/
+            %input.invitation{placeholder: "Invitation code (optional)", value: "#{params[:invitation]}", type: "test"}
+            %br.clear
             .button.create Submit Application
             %br.clear/
           .part3{ style: "display: none;"}
@@ -51,6 +53,9 @@
           %br.clear/  
 
 %script{type: "text/javascript", src: 'http://platform.linkedin.com/in.js'}
-  api_key: 1vojlh8n2vxw
+  -if Rails.env.production?
+    api_key: 1vojlh8n2vxw
+  -else
+    api_key: etdb4nl1aus5
   onLoad: apply.init
 

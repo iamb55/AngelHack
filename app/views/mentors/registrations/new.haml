@@ -25,14 +25,14 @@
           = devise_error_messages!
           
           = f.label :email
-          = f.email_field :email
+          = f.email_field :email, value: @email
         
           = f.label :password 
           = f.password_field :password 
         
           = f.label :password_confirmation
           = f.password_field :password_confirmation 
-          = f.hidden_field :token, { value: params[:token] }
+          = f.hidden_field :token, { value: (params[:token] || @token) }
         
           = f.submit "Sign up", class: "submit"
         

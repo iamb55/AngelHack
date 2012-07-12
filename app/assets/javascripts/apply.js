@@ -3,7 +3,7 @@ Apply = function() {
       sent = false;
 
   this.init = function() {  
-    if(readCookie('mentor-app') === '1') {
+    if(readCookie('mentor-app') === '2') {
       $('.part3').show();
       $('#application').css({
         'min-height': '40px'
@@ -64,6 +64,7 @@ Apply = function() {
     information.twitter = $('.twitter').val();
     information.personal = $('.personal').val();
     information.tags = information.tags.concat($('.tags').tagHandler('getTags'));
+    information.invite = $('.invitation').val();
     if(information.email === "") {
       $('.email').css('border', 'solid 1px red');
       invalid = true;
@@ -80,7 +81,8 @@ Apply = function() {
     
     if(!sent) {
       sent = true;
-      $.post('/apply', {application: information}, function() {
+      $.post('/apply', {application: information}, function(response) {
+        if(response.token) window.location = '/mentors/sign_up?token=' + response.token
         $('.part2').fadeOut(300, function() {
           $('#application h2').fadeOut(100);
           $('#application').css({
