@@ -157,7 +157,12 @@ body {
   overflow-x: hidden; }
 
 a {
-  text-decoration: none; }
+  text-decoration: none;
+  color: $bluen;
+ 	&:hover {
+	color: $greenn;
+	}
+}
 p {
 	text-indent: 0 !important;
 }
@@ -302,4 +307,7 @@ input, textarea {
 	.rightf {
 		display: none;
 	}
+}
+.rightbar .empty {
+	padding: 30px 20px;
 }

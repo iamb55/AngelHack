@@ -29,7 +29,7 @@ $greena: #60a731;
 $bg: url(assets/bg3.png);
 $ask: url(/assets/ask.png) no-repeat left center;
 
-$rbwidth: 610px;
+$rbwidth: 590px;
 
 // font sizes   
 $fontXXL: 5em;
@@ -187,11 +187,11 @@ $inset: inset 0 0 3px $ltgrey;
 		color: $mdgrey;
 		font-size: $fontMS;
 		padding: 0;
-		width: 120px;
+		width: 90px;
 		text-align: right;
 	}
 	.message, .videoPlayer {
-		width: 520px;
+		width: 490px;
 		padding-left: 70px;
 		margin-top: -15px;
 	}
@@ -252,6 +252,7 @@ $inset: inset 0 0 3px $ltgrey;
   height: 600px;
   width: 650px;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 .tags {
   background: white;
