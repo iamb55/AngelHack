@@ -31,9 +31,9 @@ class ApplicationController < ActionController::Base
   
      def config_opentok
        if @opentok.nil?
-         # @opentok = OpenTok::OpenTokSDK.new 16528271, "0a9472b4ebc4ed74440108b8a0023bcda2ada9c8"
-         # session_id = @opentok.create_session(request.host)
-         # @opentok_token = @opentok.generate_token(session_id: session_id, role: OpenTok::RoleConstants::MODERATOR)
+         @opentok = OpenTok::OpenTokSDK.new 16528271, "0a9472b4ebc4ed74440108b8a0023bcda2ada9c8"
+         session_id = @opentok.create_session(request.host)
+         @opentok_token = @opentok.generate_token(session_id: session_id, role: OpenTok::RoleConstants::MODERATOR)
        end
      end
      

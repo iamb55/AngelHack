@@ -28,7 +28,6 @@
               %li No active conversations
                       
       .rightbar
-        %h1.empty No active conversations! Browse <a href="/mentors/stream">new questions</a> to get started.
         -if @conversations && !@conversations.empty?
           .messages{"data-id" => "#{@conversations.first[:id]}"}
             %h2= truncate(@messages.first.text, length: 75)
@@ -60,6 +59,8 @@
                   #inboxr.button.reply.leftf.send
                     %span Send
                 .clear
+        -else
+          %h1.empty No active conversations! Browse <a href="/mentors/stream">new questions</a> to get started.
     .clear
 
 #videoModal.reveal-modal
